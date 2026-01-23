@@ -12,3 +12,8 @@ but expression. To feel, to experiment, and to allow emotional release without n
 The pieces here are uneven, exploratory, and sometimes unsure—and that is intentional.  They are best thought of as personal playlists—songs I've created primarily for myself, grouped into emotionally personal songs, lighter more playful pieces, and songs drawn from scriptural ideas that hold personal meaning for me.
 
 You're welcome to listen, and I hope you find something of value in them.
+
+[Overtones](Overtones/README.md)
+[Deeply](Deeply/README.md)
+[Digressions](Digressions/README.md)
+[Dedicated](Dedicated/README.md)
