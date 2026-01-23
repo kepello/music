@@ -10,5 +10,6 @@ The pieces here are uneven, exploratory, and sometimes unsure—and that is inte
 
 You're welcome to listen, and I hope you find something of value in them.
 
-(c) Carl Lance, 2026
+Carl Lance
+
 [![License: CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
