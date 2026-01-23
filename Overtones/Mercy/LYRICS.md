@@ -1,6 +1,7 @@
 ## Mercy
 
 ### Verse 1
+```
 The timbers cried, the canvas tore
 A howling wind that he couldn’t ignore
 Men shouting prayers to gods of stone
@@ -10,10 +11,11 @@ He knew the cost, he knew the blame
 Knew every wave was calling his name
 He saw their fear, he heard their cries
 And chose the sea before their eyes
-
+```
 ### Instrumental Break — 2 bars
 
 ### Verse 2 
+```
 A prophet called in a broken land
 Faithful steps where few would stand
 Kings did wrong, the message — hard
@@ -23,8 +25,9 @@ But NIN-uh-vuh loomed, a city of blades
 Streets soaked deep in violent ways
 A message heavy on his tongue
 A call that left his courage numb
-
+```
 ### Chorus
+```
 So don’t be quick to call him weak
 Or judge the fear he couldn’t beat
 He fell, he learned, he rose again
@@ -35,8 +38,9 @@ For the storm to break, for the fear to fade
 Hold to this truth when hope is gone:
 All things are possible
 — with GOD
-
+```
 ### Verse 3
+```
 Cold black water, no way back
 Seaweed pulling, light turned black
 The ship pulled off, the night closed in
@@ -49,8 +53,9 @@ His breath was held — not lost, not dead
 
 Inside the dark, his cry, his prayer
 Jehovah heard — always there
-
+```
 ### Bridge
+```
 No depth too deep, no night too long
 No place beyond where He is strong
 He knows your fear, He hears your cry
@@ -60,8 +65,9 @@ Three days waiting, mercy shown
 The sea gave way — he was not alone
 He doesn’t leave us where we fall
 He will help us up — He can save us all
-
+```
 ### Chorus
+```
 So don’t be quick to call him weak
 Or judge the fear he couldn’t beat
 He fell, he learned, he rose again
@@ -72,6 +78,7 @@ For the storm to break, for the fear to fade
 Hold to this truth when hope is gone:
 All things are possible
 — with GOD
+```
 
 ## Instrumental Reprise — 4 bars, reflective
 
