@@ -1,4 +1,4 @@
-<img src="COVER.png" alt="Album cover" style="width: 500px;">
+<img src="COVER.png" alt="Album cover" style="width: 300px;">
 
 ### Inside Out
 *Once ignored, now Explored*
