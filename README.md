@@ -1,4 +1,7 @@
-# Inside Out
+[![License: CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
+### Inside Out
+<em>Once ignored, now explored</em>
+<hr />
 
 For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.
 
