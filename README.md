@@ -1,3 +1,5 @@
+<img src="images/cover.jpg" alt="Album cover" style="max-width: 300px; width: 100%;">
+
 ### Inside Out
 *Once ignored, now Explored*
 
