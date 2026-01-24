@@ -1,4 +1,4 @@
-<img src="COVER.png" alt="Album cover" style="width: 300px;">
+<img src="COVER.jpg" alt="Album cover" style="width: 300px;">
 
 ### Love
 *1 Corinthians 13:1–8*
