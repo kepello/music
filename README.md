@@ -1,4 +1,4 @@
-<img src="COVER.png" alt="Album cover" style="width: 300px;">
+<img src="Dedicated/cover.jpg" alt="Album cover" style="width: 300px;">
 
 For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.
 
