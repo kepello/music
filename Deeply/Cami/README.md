@@ -1,5 +1,3 @@
-# Cami
-
 This song was written in one of the hardest moments we’ve faced—saying goodbye to our dog, Cami.
 
 She was with us for seventeen years, woven into the daily fabric of our lives in ways that are hard to explain unless you’ve loved a dog that long. She was especially precious to my wife, Debra, steady and close through every season. As age and illness took their toll, we reached a moment where love had to speak louder than the desire to hold on. It was the right decision. And it hurt deeply.

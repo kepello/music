@@ -1,4 +1,3 @@
-# Anxious
 
 _Stop Being Anxious_
 

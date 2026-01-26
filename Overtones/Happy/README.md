@@ -1,4 +1,3 @@
-# Happy
 
 _Happy Is The One Who Reads it Aloud_
 

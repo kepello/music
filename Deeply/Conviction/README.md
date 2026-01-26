@@ -1,4 +1,3 @@
-# Conviction
 
 This song was written about my relationship with my mother—a relationship that shaped me deeply and unevenly, in ways both strong and painful.
 

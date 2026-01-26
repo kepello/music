@@ -1,4 +1,3 @@
-# Side
 
 _By Your Side_
 

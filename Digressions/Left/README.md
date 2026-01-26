@@ -1,4 +1,3 @@
-# Left
 
 *Left-Brained Beginner Blues*
 

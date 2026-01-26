@@ -1,4 +1,3 @@
-## Jellybean
 
 *The Last Jellybean*
 

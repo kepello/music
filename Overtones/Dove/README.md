@@ -1,4 +1,3 @@
-# Dove
 
 _If Only I Had Wings Like a Dove_
 

@@ -1,4 +1,3 @@
-# Buddy
 
 _Buddy and Sid_
 

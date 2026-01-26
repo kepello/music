@@ -1,4 +1,3 @@
-# D
 
 _The Key of D_
 

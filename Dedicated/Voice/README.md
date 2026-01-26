@@ -1,4 +1,3 @@
-# Voice
 
 _Because He Hears My Voice_
 

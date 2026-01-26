@@ -1,4 +1,3 @@
-## Mercy
 *(Jonah 1,2)*
 
 This song sits with a familiar story and looks beyond the summary. Jonah is often remembered for running, but his story is really about fear, responsibility, correction, and compassion. He was chosen, overwhelmed, wrong at times — and still heard.
