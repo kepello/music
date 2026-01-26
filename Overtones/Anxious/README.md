@@ -1,5 +1,6 @@
-### Anxious
-*Stop Being Anxious*
+# Anxious
+
+_Stop Being Anxious_
 
 This was one of the first songs I arranged.
 

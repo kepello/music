@@ -1,5 +1,6 @@
-### D
-*The Key of D*
+# D
+
+_The Key of D_
 
 This song came from a small, slightly ridiculous moment.
 

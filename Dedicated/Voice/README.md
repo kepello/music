@@ -1,6 +1,6 @@
-### Voice
+# Voice
 
-*Because He Hears My Voice*
+_Because He Hears My Voice_
 
 This song was created as a gift for a friend.
 
@@ -12,4 +12,3 @@ It was a treat stepping outside my usual habits and shaping something around her
 
 Sometimes the best gifts aren’t the ones that sound most like us,
 but the ones that sound like care.
-

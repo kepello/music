@@ -1,4 +1,4 @@
-### Cami
+# Cami
 
 This song was written in one of the hardest moments we’ve faced—saying goodbye to our dog, Cami.
 

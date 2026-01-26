@@ -1,6 +1,6 @@
 <img src="COVER.jpg" alt="Album cover" style="width: 300px;">
 
-### Dedicated
+# Dedicated
 
 Some of these songs were written for friends.
 Others were inspired by them.

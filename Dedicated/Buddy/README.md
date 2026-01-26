@@ -1,7 +1,6 @@
+# Buddy
 
-### Buddy
-
-*Buddy and Sid*
+_Buddy and Sid_
 
 Some songs are written as memories. Others are written as thank-yous.
 This one is both.

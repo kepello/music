@@ -1,4 +1,4 @@
-### Digressions
+# Digressions
 
 Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.
 

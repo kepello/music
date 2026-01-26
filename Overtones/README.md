@@ -1,6 +1,6 @@
 <img src="COVER.jpg" alt="Album cover" style="width: 300px;">
 
-### Overtones
+# Overtones
 
 I am deeply moved by the beauty and depth of God's Word. I find that when scripture is set to music, it settles more firmly in my mind and heart. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.
 
