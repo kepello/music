@@ -1,3 +1,9 @@
 <img src="COVER.jpg" alt="Album cover" style="width: 300px;">
 
 ### Digressions
+
+Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.
+
+Some of these pieces grew out of small moments that struck me just enough that I wanted to catch them before they passed. Others are simply the result of noodling, messing around, and seeing what might happen. None of it is meant to be heavy or deliberate.
+
+That doesn't make these songs unimportant. In many ways, they may be the most essential. They're the ones I find myself returning to while driving, walking, or working—music that sits comfortably alongside everyday life rather than asking to be examined. These tracks aren't about depth or resolution; they're about accompaniment, curiosity, and the quiet joy of letting sound move along with the day.
