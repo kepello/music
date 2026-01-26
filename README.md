@@ -2,8 +2,6 @@
 
 # Inside Out
 
-_Once ignored, now Explored_
-
 For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.
 
 Music has always moved me, yet I only recently learned that this could be engaged with, not just felt.
