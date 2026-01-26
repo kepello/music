@@ -1,5 +1,3 @@
-<img src="COVER.jpg" alt="Album cover" style="width: 300px;">
-
 ### Deeply
 
 This music wasn't planned.

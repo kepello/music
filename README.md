@@ -13,7 +13,3 @@ The pieces here are uneven, exploratory, and sometimes unsure—and that is inte
 
 You're welcome to listen, and I hope you find something of value in them.
 
-[Overtones](Overtones/README.md)
-[Deeply](Deeply/README.md)
-[Digressions](Digressions/README.md)
-[Dedicated](Dedicated/README.md)
