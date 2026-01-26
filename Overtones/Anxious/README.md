@@ -1,4 +1,3 @@
-
 _Stop Being Anxious_
 
 This was one of the first songs I arranged.

@@ -1,4 +1,3 @@
-
 This music wasn't planned.
 
 I didn't expect songwriting to become a coping mechanism, or for it to arrive as suddenly and deeply as it did. But the timing, as painful as it is, feels strangely fortunate. We've just said goodbye to a dear pet—a family member and a special friend to my wife, Debra—and these songs have become a place where grief and gratitude can exist at the same time.

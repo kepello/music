@@ -1,4 +1,3 @@
-
 _Because He Hears My Voice_
 
 This song was created as a gift for a friend.

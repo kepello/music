@@ -1,4 +1,3 @@
-
 _If Only I Had Wings Like a Dove_
 
 This song draws its words from one of the Psalms that has stayed closest to me—Psalm 55.

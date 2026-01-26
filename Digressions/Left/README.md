@@ -1,5 +1,4 @@
-
-*Left-Brained Beginner Blues*
+_Left-Brained Beginner Blues_
 
 This song was written out of a very real—and very familiar—frustration.
 
@@ -13,4 +12,3 @@ The song doesn’t resolve the struggle—it just names it. Writing it helped me
 
 Sometimes the hardest part of learning isn’t technique.
 It’s permission.
-

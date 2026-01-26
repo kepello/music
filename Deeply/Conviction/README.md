@@ -1,4 +1,3 @@
-
 This song was written about my relationship with my mother—a relationship that shaped me deeply and unevenly, in ways both strong and painful.
 
 When I was very young, she did something that left a lasting impression on me: she removed my alcoholic father from our home and chose a harder path rather than a quieter one. As a single mother, she carried responsibilities few could see and fewer would choose. She continued making payments on our home even after the bank had written off the loan, insisting on honoring the debt—not because she was required to, but because she wanted her sons to understand what integrity looks like when no one is watching. Those early years impressed me more than I understood at the time.

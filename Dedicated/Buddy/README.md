@@ -1,4 +1,3 @@
-
 _Buddy and Sid_
 
 Some songs are written as memories. Others are written as thank-yous.

@@ -1,4 +1,3 @@
-
 _Happy Is The One Who Reads it Aloud_
 
 Most people don’t think of the Bible book of Revelation as a message of happiness. Yet that’s exactly how it begins—with a promise that those who read it, who hold on to it, and who live by it will be happy. That promise has always stood out to me.

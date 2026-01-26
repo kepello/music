@@ -1,4 +1,3 @@
-
 Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.
 
 Some of these pieces grew out of small moments that struck me just enough that I wanted to catch them before they passed. Others are simply the result of noodling, messing around, and seeing what might happen. None of it is meant to be heavy or deliberate.
