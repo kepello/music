@@ -1,0 +1,206 @@
+name: Build Album Packages
+
+on:
+  push:
+    paths:
+      - "**/*.mp3"
+      - "**/README.md"
+  workflow_dispatch:
+
+jobs:
+  build-albums:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build track playlists
+        run: |
+          #!/bin/bash
+          set -e
+
+          # Get repo info for URLs
+          GITHUB_REPO="${GITHUB_REPOSITORY:-owner/repo}"
+
+          # Function to create single track playlist
+          create_track_playlist() {
+            local track_path="$1"
+            local track_name=$(basename "$track_path")
+            
+            # Find MP3 file in track directory
+            mp3_file=$(find "$track_path" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
+            
+            if [ -n "$mp3_file" ]; then
+              playlist_file="$track_path/$track_name.m3u8"
+              
+              echo "#EXTM3U" > "$playlist_file"
+              echo "#EXTENC:UTF-8" >> "$playlist_file"
+              
+              # Get MP3 URL
+              mp3_relative_path="${mp3_file#./}"
+              mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
+              
+              echo "#EXTINF:-1,$track_name" >> "$playlist_file"
+              echo "$mp3_url" >> "$playlist_file"
+              
+              echo "Created playlist: $playlist_file"
+            fi
+          }
+
+          # Find all track directories
+          for collection_dir in */; do
+            collection=$(basename "$collection_dir")
+            
+            # Skip special directories
+            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]]; then
+              continue
+            fi
+            
+            # Check for albums
+            for album_dir in "$collection_dir"*/; do
+              if [ ! -d "$album_dir" ]; then
+                continue
+              fi
+              
+              # Process each track directory
+              for track_dir in "$album_dir"*/; do
+                if [ -d "$track_dir" ]; then
+                  if find "$track_dir" -maxdepth 1 -type f -iname "*.mp3" | grep -q .; then
+                    create_track_playlist "$track_dir"
+                  fi
+                fi
+              done
+            done
+          done
+
+      - name: Build album packages
+        run: |
+          #!/bin/bash
+          set -e
+
+          # Function to create album package
+          create_album_package() {
+            local collection="$1"
+            local album="$2"
+            local album_path="$collection/$album"
+            
+            echo "Processing: $album_path"
+            
+            # Create temp directory for this album
+            temp_dir=$(mktemp -d)
+            album_dir="$temp_dir/$album"
+            mkdir -p "$album_dir"
+            
+            # Find all track directories
+            track_num=1
+            playlist_file="$album_dir/$album.m3u8"
+            
+            # Create playlist header for bundled version (relative paths)
+            echo "#EXTM3U" > "$playlist_file"
+            echo "#EXTENC:UTF-8" >> "$playlist_file"
+            
+            # Create standalone playlist with URLs
+            standalone_playlist="$album_path/$album.m3u8"
+            echo "#EXTM3U" > "$standalone_playlist"
+            echo "#EXTENC:UTF-8" >> "$standalone_playlist"
+            
+            # Get repo info for URLs
+            GITHUB_REPO="${GITHUB_REPOSITORY:-owner/repo}"
+            
+            # Process each track directory in order
+            for track_dir in "$album_path"/*/; do
+              if [ ! -d "$track_dir" ]; then
+                continue
+              fi
+              
+              track_name=$(basename "$track_dir")
+              
+              # Find MP3 file in track directory
+              mp3_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
+              
+              if [ -n "$mp3_file" ]; then
+                # Pad track number
+                padded_num=$(printf "%02d" $track_num)
+                
+                # Copy MP3 with numbered prefix
+                output_name="${padded_num} - ${track_name}.mp3"
+                cp "$mp3_file" "$album_dir/$output_name"
+                
+                # Add to bundled playlist (relative path)
+                echo "#EXTINF:-1,$track_name" >> "$playlist_file"
+                echo "$output_name" >> "$playlist_file"
+                
+                # Add to standalone playlist (full URL)
+                mp3_relative_path="${mp3_file#./}"
+                mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
+                echo "#EXTINF:-1,$track_name" >> "$standalone_playlist"
+                echo "$mp3_url" >> "$standalone_playlist"
+                
+                track_num=$((track_num + 1))
+              fi
+            done
+            
+            # Only create zip if we found tracks
+            if [ $track_num -gt 1 ]; then
+              # Create zip file
+              output_zip="$album_path/$album.zip"
+              (cd "$temp_dir" && zip -r - "$album") > "$output_zip"
+              echo "Created: $output_zip ($(du -h "$output_zip" | cut -f1))"
+            fi
+            
+            # Cleanup
+            rm -rf "$temp_dir"
+          }
+
+          # Find all collections and albums
+          for collection_dir in */; do
+            collection=$(basename "$collection_dir")
+            
+            # Skip special directories
+            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]]; then
+              continue
+            fi
+            
+            # Check if this collection has albums (subdirectories with tracks)
+            for album_dir in "$collection_dir"*/; do
+              if [ ! -d "$album_dir" ]; then
+                continue
+              fi
+              
+              album=$(basename "$album_dir")
+              
+              # Check if album has track directories (containing MP3s)
+              has_tracks=false
+              for potential_track in "$album_dir"*/; do
+                if [ -d "$potential_track" ]; then
+                  if find "$potential_track" -maxdepth 1 -type f -iname "*.mp3" | grep -q .; then
+                    has_tracks=true
+                    break
+                  fi
+                fi
+              done
+              
+              if [ "$has_tracks" = true ]; then
+                create_album_package "$collection" "$album"
+              fi
+            done
+          done
+
+      - name: Commit album packages
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          git add "**/*.zip" "**/*.m3u8"
+
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-generate album packages [skip ci]"
+            git push
+          fi
