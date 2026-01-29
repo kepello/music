@@ -1,0 +1,192 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-01-29T23:26:53.177510+00:00",
+  "repository": {
+    "owner": "kepello",
+    "repo": "music",
+    "branch": "main"
+  },
+  "cover": "COVER.jpg",
+  "readme": "For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.\n\nMusic has always moved me, yet I only recently learned that this could be engaged with, not just felt.\nThe music I write now is an attempt to approach sound and song from a different direction: not analysis, polish, or achievement,\nbut expression. To feel, to experiment, and to allow emotional release without needing to justify it.\n\nThese are best thought of as personal collections—songs I’ve created primarily for myself, grouped by their tone, origin, and purpose rather than by style or polish.\n\nThe collections are Dedicated (songs for or about friends), Deeply (emotional songs written for my own processing), Digressions (light-hearted, curious, or playful detours), and Overtones (songs rooted in scripture and reflection). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.\n\nThese songs were created for personal reasons, but you’re welcome to listen—and if you find any value in them, I hope you enjoy them.\n\nCarl Lance\n",
+  "collections": [
+    {
+      "name": "Dedicated",
+      "path": "Dedicated",
+      "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nSome of these songs were written for friends.\nOthers were inspired by them.\n\nShared troubles are easier to bear. As Francis Bacon wrote, for those without true friends, “the world is but a wilderness.” Having real friends—and striving to be a good one in return—can make life more bearable. It can also make it deeply beautiful.\n\nThese songs come from that place.\nFrom friendships that steady us in hard moments, celebrate with us in joyful ones, and remind us that we do not walk alone.",
+      "cover": "Dedicated/cover.jpg",
+      "tracks": [
+        {
+          "name": "Buddy",
+          "path": "Dedicated/Buddy",
+          "readme": "_Buddy and Sid_\n\nSome songs are written as memories. Others are written as thank-yous.\nThis one is both.\n\n“Buddy and Sid” was written for a traveling overseer and his wife who served our circuit for a season—three short years that passed far too quickly. Their role takes them from place to place, strengthening congregations and then moving on, often without much fanfare. That’s the nature of the work, and it’s something I’ve always respected.\n\nDuring a particularly difficult period in my own life, Buddy took a genuine, personal interest in me. His kindness, encouragement, and steady support meant more than he probably realized at the time. He wasn’t just doing an assignment—he was being a friend. And that made all the difference.\n\nThis song is a simple expression of gratitude: for the roads they traveled, for the faith they helped strengthen, and for the care they showed along the way. Though they’ve moved on now to a new assignment, their kindness and service continue to bear fruit.\n\nSome friends are only with us for a chapter.\nSometimes that chapter changes everything.\n\nThis song is light-hearted, because they lightened my heavy heart.",
+          "mp3": "Dedicated/Buddy/Buddy.mp3",
+          "lyrics": "Dedicated/Buddy/LYRICS.txt"
+        },
+        {
+          "name": "Voice",
+          "path": "Dedicated/Voice",
+          "readme": "_Because He Hears My Voice_\n\nThis song was created as a gift for a friend.\n\nMy own musical instincts tend to lean toward blues, rock, country-rock, and acoustic folk. When I asked her what she enjoyed listening to, she told me—very kindly—that rock was her least favorite. Instead, she shared her love for smoother styles: jazz textures, gentle rhythms, expressive melody, and music that leaves room to breathe. She also shared a verse that’s especially meaningful to her—Psalm 116:1.\n\nSo this song was written with her ears and her heart in mind.  The lyrics are straight from scripture.\n\nIt was a treat stepping outside my usual habits and shaping something around her taste and the the verse she loves. While it may not be my natural style, that’s part of what made it special. This wasn’t about writing for myself—it was about listening, adapting, and offering something personal in response.",
+          "mp3": "Dedicated/Voice/Voice.mp3",
+          "lyrics": "Dedicated/Voice/LYRICS.txt"
+        }
+      ]
+    },
+    {
+      "name": "Deeply",
+      "path": "Deeply",
+      "readme": "This music wasn't planned.\n\nI didn't expect songwriting to become a coping mechanism, or for it to arrive as suddenly and deeply as it did. But the timing, as painful as it is, feels strangely fortunate. We've just said goodbye to a dear pet—a family member and a special friend to my wife, Debra—and these songs have become a place where grief and gratitude can exist at the same time.\n\nI've always processed things slowly and inwardly. Writing lyrics and music has opened a new path—one that's raw, imperfect, and honest. The songs here aren't polished, and they may not carry meaning for anyone else. They weren't written for an audience. They were written because they needed to be.\n\nThis hurt to write yet brought unexpected relief. It marks a moment of learning how to let feelings out instead of holding them quietly inside. This is simply that: a record of emotions finding a voice, and music doing what I didn't know it could do—help me heal.",
+      "cover": "Deeply/COVER.jpg",
+      "tracks": [
+        {
+          "name": "Cami",
+          "path": "Deeply/Cami",
+          "readme": "This song was written in one of the hardest moments we’ve faced—saying goodbye to our dog, Cami.\n\nShe was with us for seventeen years, woven into the daily fabric of our lives in ways that are hard to explain unless you’ve loved a dog that long. She was especially precious to my wife, Debra, steady and close through every season. As age and illness took their toll, we reached a moment where love had to speak louder than the desire to hold on. It was the right decision. And it hurt deeply.\n\nThese lyrics aren’t about loss alone—they’re about a life fully shared. The small habits, the stubborn joy, the miles traveled together, and the quiet comfort she gave without ever needing words. Cami didn’t just live with us; she shaped the rhythm of our days and the way our home felt.\n\nLetting her go was an act of mercy, but it didn’t feel merciful in the moment. Writing this song became a way to say thank you—for the years, for the companionship, and for the way she taught us how deeply love can settle into ordinary life.\n\nSome love never really leaves.\nIt simply changes the shape of the room.",
+          "mp3": "Deeply/Cami/Cami.mp3",
+          "lyrics": "Deeply/Cami/LYRICS.txt"
+        },
+        {
+          "name": "Conviction",
+          "path": "Deeply/Conviction",
+          "readme": "This song was written about my relationship with my mother—a relationship that shaped me deeply and unevenly, in ways both strong and painful.\n\nWhen I was very young, she did something that left a lasting impression on me: she removed my alcoholic father from our home and chose a harder path rather than a quieter one. As a single mother, she carried responsibilities few could see and fewer would choose. She continued making payments on our home even after the bank had written off the loan, insisting on honoring the debt—not because she was required to, but because she wanted her sons to understand what integrity looks like when no one is watching. Those early years impressed me more than I understood at the time.\n\nLater, when my life took a spiritual direction different from hers, that strength turned into division. She was deeply upset and it divided us. She handed me a box of my baby pictures and told me I was no longer her son. We didn’t speak for years. When that break came, it wasn’t only words. There was no shouting, no long explanation—just a quiet finality that made the separation unmistakable.\n\nYears later, when I told her I was engaged, she agreed to meet us at a restaurant—a kind of neutral ground—to meet Debra. She soon loved Debra, and from that moment, we began again. We never revisited the lost years. There was no apology, no accounting—only a quiet restart, as if the silence had never happened.\n\nDuring COVID, illness carried her from hospital to rehabilitation and then to a nursing home. We weren’t allowed to visit. When the call finally came saying we could—and should—come right away, we drove straight there. She was unconscious when we arrived and lived only a few hours after.\n\nHer passing unsettled me in ways I didn’t expect. This song became a place to hold the complicated truth—that a relationship can be both loving and damaging, formative and unfinished. Writing it didn’t solve everything, but it helped give shape to feelings that had lived without words for a long time.\n\nSometimes healing doesn’t come from answers,\nbut from simply naming what was always there.",
+          "mp3": "Deeply/Conviction/conviction.mp3",
+          "lyrics": "Deeply/Conviction/LYRICS.txt"
+        }
+      ]
+    },
+    {
+      "name": "Digressions",
+      "path": "Digressions",
+      "readme": "Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.\n\nSome of these pieces grew out of small moments that struck me just enough that I wanted to catch them before they passed. Others are simply the result of noodling, messing around, and seeing what might happen. None of it is meant to be heavy or deliberate.\n\nThat doesn't make these songs unimportant. In many ways, they may be the most essential. They're the ones I find myself returning to while driving, walking, or working—music that sits comfortably alongside everyday life rather than asking to be examined. These tracks aren't about depth or resolution; they're about accompaniment, curiosity, and the quiet joy of letting sound move along with the day.",
+      "cover": "Digressions/COVER.jpg",
+      "tracks": [
+        {
+          "name": "D",
+          "path": "Digressions/D",
+          "readme": "_The Key of D_\n\nThis song came from a small, slightly ridiculous moment.\n\nLate one evening, I nodded off while working on my laptop. When I startled awake, there was a long string of the letter D on the screen—my fingers, resting on the home row, had apparently kept typing while I slept. For whatever reason, the D key took the hit.\n\nThe next evening, the exact same thing happened.\n\nThat repetition felt odd, amusing, and just strange enough to stick with me. Why the letter D? What made it even funnier was the realization that “the D key” doesn’t just belong to a keyboard—it also happens to be the Key of D in music. That small overlap between muscle memory and musical instinct made the whole moment feel strangely appropriate.\n\nSo I leaned into the curiosity and the humor and wrote a song from it. No hidden meaning, no deeper message—just a lighthearted response to an accidental pattern and a grin-worthy connection. Not everything needs to be profound.\n\nSometimes a song exists simply because something made you smile.",
+          "mp3": "Digressions/D/D.mp3",
+          "lyrics": "Digressions/D/LYRICS.txt"
+        },
+        {
+          "name": "Jellybean",
+          "path": "Digressions/Jellybean",
+          "readme": "_The Last Jellybean_\n\nI didn’t really write this song.\n\nThe lyrics and topic were generated by artificial intelligence—chosen at random, playful to the point of absurdity. On the surface, it’s just a silly song about a runaway jellybean. And that’s exactly what it’s meant to be.\n\nBut this track belongs in this collection for a different reason.\n\nThis was the moment when I first connected the dots and truly understood what AI could do with music. Hearing a complete set of lyrics appear—structured, rhythmic, and oddly coherent—was eye-opening. More importantly, I realized that while the words weren’t mine, the choices still were. I could shape the arrangement, adjust the pacing, exaggerate the groove, and lean into the humor until the music landed exactly the way it needed to.\n\nAs I played with the arrangement, it started to make me laugh in the way the lyrics seemed to ask for. That was the pivot. The realization that AI could generate a spark, but I could mold it, bend it, and steer it toward expression—even when the expression was just playful nonsense.\n\nThis song marks the beginning of a new creative process for me. Not replacement. Collaboration. A new instrument, rather than an author.\n\nSo yes, it’s ridiculous.\nBut it opened a door.\n\nAnd once that door opened, everything that came after was possible.",
+          "mp3": "Digressions/Jellybean/Jellybean.mp3",
+          "lyrics": "Digressions/Jellybean/LYRICS.txt"
+        },
+        {
+          "name": "Left",
+          "path": "Digressions/Left",
+          "readme": "_Left-Brained Beginner Blues_\n\nThis song was written out of a very real—and very familiar—frustration.\n\nFor most of my life, I’ve leaned hard into the analytical side of my brain. Planning, structure, systems, measuring progress—those are places where I’ve been comfortable and confident. Guitar, it turns out, asks for something different.\n\nI’m taking lessons from an excellent teacher who also happens to be a friend. He models relaxation, feel, and listening—qualities that don’t neatly fit into spreadsheets or color-coded plans. I want to improve, so my instinct is to track everything: time spent, techniques attempted, mistakes made. Along the way, “practice” can crowd out “play.”\n\nThis song lives in that tension. It’s about the habit of overthinking, of turning music into metrics, and the quiet resistance that comes from the instrument itself. Fingers buzz. Timing slips. Progress refuses to be graphed. And underneath all of it is a simple question that keeps resurfacing: What if I stop measuring and just enjoy the sound coming out of the guitar?\n\nThe song doesn’t resolve the struggle—it just names it. Writing it helped me see that learning guitar isn’t only about developing skill, but about learning to loosen my grip, silence the running commentary, and trust something less orderly and more human.\n\nSometimes the hardest part of learning isn’t technique.\nIt’s permission.",
+          "mp3": "Digressions/Left/Left.mp3",
+          "lyrics": "Digressions/Left/LYRICS.txt"
+        }
+      ]
+    },
+    {
+      "name": "Overtones",
+      "path": "Overtones",
+      "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nI'm deeply moved by the beauty and depth of God's Word. For me, setting scripture to music helps it settle more firmly in my mind and heart—though I'm still learning how to do this well. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.\n\nPsalm 1 speaks of reading in an undertone — a quiet, continual meditation. These songs are my attempt to take that same meditation and give it voice. What begins inwardly becomes something spoken and sung — an overtone.\n",
+      "cover": "Overtones/COVER.jpg",
+      "tracks": [
+        {
+          "name": "Anxious",
+          "path": "Overtones/Anxious",
+          "readme": "_Stop Being Anxious_\n\nThis was one of the first songs I arranged.\n\nThe lyrics aren’t mine. They come directly from scripture, from Jesus’ simple and direct statement: “Stop being anxious.” That sentence matters to me because it doesn’t deny reality. It acknowledges it. It recognizes that anxiety is already present—that the listener is already carrying something heavy.\n\nThat has always been true for me.\n\nI overthink. I internalize. Anxiety comes easily, and panic attacks have been part of my life. If that instruction stood alone, I wouldn’t know how to follow it. The ability to live with anxiety—to manage it, to reduce its grip—has come through good doctors, better medication, and the steady encouragement and reminders found in the Bible. Not one thing instead of another. All of it together.\n\nThis song centers on one of those reminders: the picture of a bird that doesn’t worry about what it will eat tomorrow. Not because life is easy, but because its care isn’t its own responsibility. And then the quiet, personal reminder that follows—that God cares for us… for me… far more than He does for the birds.\n\nThis song isn’t a cure and it isn’t a command shouted from a distance. It’s a gentle interruption—a reminder to pause, breathe, and loosen the grip just a little. Sometimes that’s enough for the moment.",
+          "mp3": "Overtones/Anxious/Anxious.mp3",
+          "lyrics": "Overtones/Anxious/LYRICS.txt"
+        },
+        {
+          "name": "Bow",
+          "path": "Overtones/Bow",
+          "readme": "The Bible account of Shadrach, Meshach, and Abednego strikes me as a remarkable expression of faith.\n\nI’ve had to take stands for my beliefs, but never with my life on the line. These three men did. Separated from their parents and upbringing for years, standing in a foreign land under immense pressure, they refused to bow to the image King Nebuchadnezzar erected. What makes their stand so compelling is not just their courage, but their clarity. They believed God could save them—but they did not presume that He would. And that uncertainty didn’t weaken their resolve. It made it purer.\n\nRegardless of the outcome, they would not compromise.\n\nThat raises questions I can’t ignore. I wonder what the future holds. Will I ever be asked to stand so clearly and so publicly for my faith? And if that moment comes, will I have the same steadiness, the same trust, the same willingness to remain faithful without guarantees? This song isn’t written from a place of confidence in myself, but from admiration—and hope—that I could follow their example.\n\nBecause the account itself is intense and unyielding, I tried to make the music reflect that weight—though I'm still experimenting with how to do that effectively. I chose a heavier rock mood to match the gravity of the story. Through experimentation, I added a reggae influence and found that the fusion carried a kind of grounded resolve that fit the message—in tension rather than contradiction. It’s not a style I would normally reach for, but the blend felt right, and the experiment proved valuable. You’ll hear that influence show up in other songs as well, as I’ve come to enjoy exploring where genres intersect.\n\nAt its core, this song is about conviction without conditions.\n\nFaith that says:\nEven if He does not… I will not bow.\n",
+          "mp3": "Overtones/Bow/Bow.mp3",
+          "lyrics": "Overtones/Bow/LYRICS.txt"
+        },
+        {
+          "name": "Dove",
+          "path": "Overtones/Dove",
+          "readme": "_If Only I Had Wings Like a Dove_\n\nThis song draws its words from one of the Psalms that has stayed closest to me—Psalm 55.\n\nIn it, David is not calm or composed. He is distressed, pressed, and overwhelmed. He gives voice to a longing that feels instantly familiar: the desire to be like a bird and simply fly away from what is hurting him. Not to fix it. Not to confront it. Just to escape it.\n\nThese verses resonate with me deeply.\n\nDavid cried out to God, and Jehovah saved him—but that salvation didn't spare him from the emotions of the moment. The fear, the turmoil, the weight of betrayal and danger were still real. I notice that scripture doesn't sanitize that—it preserves David's humanity in full view, and that honesty is what gives his words their power, at least for me.\n\nDavid’s life was complicated. He made large, public mistakes, and the emotional cost of those choices followed him. Yet he continued to write, to pray, to trust, and to endure. He teaches us how to live through moments when escape isn’t possible—when you can’t fly away—by turning to God for refuge, safety, and concealment.\n\nThere is a tension here that feels very real: God can—and does—save us. And yet we may still struggle deeply within the reality we're standing in. In my experience, faith doesn't erase that struggle—it gives us somewhere to bring it.\n\nThese verses are poetic, raw, and unresolved in the best possible way. They remind us that scripture is not distant or theoretical—it is lived, felt, and painfully honest. And because of that, it becomes practical. It becomes relatable. It becomes something we can lean on when we feel overwhelmed ourselves.\n\nSometimes endurance isn’t about strength.\nIt’s about knowing where to turn when you can’t fly away.\n",
+          "mp3": "Overtones/Dove/Dove.mp3",
+          "lyrics": "Overtones/Dove/LYRICS.txt"
+        },
+        {
+          "name": "Endurance",
+          "path": "Overtones/Endurance",
+          "readme": "_Endurance To The End_\n\nMatthew 10:22 says:\n“You will be hated by all people on account of my name, but the one who has endured to the end will be saved.”\n\nAs I reflected on this verse, the example of Jeremiah came to mind. When God called him, he felt inadequate and reluctant. Yet he accepted his assignment and carried it out, even as opposition and suffering increased. He was rejected, beaten, imprisoned, and later thrown into a deep well and left to die. At one point, he resolved to stop speaking God’s words altogether—but he could not. God’s message burned within him like a fire he could not contain.\n\nWhat moves me about Jeremiah is how human he feels. He was overwhelmed, afraid, and at times exhausted by his calling, yet he endured. He was not appreciated or celebrated, but he remained faithful to the words he had been given to speak. His life shows that endurance is often quiet, costly, and unseen.\n\nI relate to that struggle. I often feel inadequate and overwhelmed, and I wonder whether faithfulness is still possible in those moments. This song is my reflection on that question—whether enduring to the end is less about strength, and more about continuing on when stopping feels easier.",
+          "mp3": "Overtones/Endurance/Endurance.mp3",
+          "lyrics": "Overtones/Endurance/LYRICS.txt"
+        },
+        {
+          "name": "Happy",
+          "path": "Overtones/Happy",
+          "readme": "_Happy Is The One Who Reads it Aloud_\n\nMost people don’t think of the Bible book of Revelation as a message of happiness. Yet that’s exactly how it begins—with a promise that those who read it, who hold on to it, and who live by it will be happy. That promise has always stood out to me.\n\nRevelation doesn’t ignore suffering or minimize it. Instead, it looks straight through it—past fear, past loss, past grief—and points prophetically to a future we long for. Some of the most encouraging words in all of scripture are found there.\n\nAmong them are Revelation 21:3, 4.\n\nFew promises are more deeply comforting: an end to pain, an end to death, and the assurance that the things which have wounded us will fade, no longer recalled, no longer shaping our days. It’s not just relief—it’s restoration. The idea of a future where suffering doesn’t merely stop, but loses its grip on memory, has always filled me with hope.\n\nI challenged myself with this song to focus on happiness. Not shallow cheerfulness, but genuine joy rooted in promise. I wanted the music itself to feel good—to move, to groove, to invite a smile. This one makes my toe tap. It lifts my mood every time I play it.\n\nThose verses have always made me happy. But somehow, setting them against a rhythmic pulse—yes, even imagining slap bass—transformed them into something fresh and alive for me. The message didn’t change. My experience of it did.\n\nThis song did what I hoped it would: it made me smile.",
+          "mp3": "Overtones/Happy/Happy.mp3",
+          "lyrics": "Overtones/Happy/LYRICS.txt"
+        },
+        {
+          "name": "Hope",
+          "path": "Overtones/Hope",
+          "readme": "_There Is Hope Even For A Tree_\n\nMy song “There Is Hope Even for a Tree” is based on Job chapter 14.\n\nJob comes across to me as a man of profound faith. He was battered by suffering without knowing its source, deeply wounded to the point where death felt like relief. Those feelings can resonate with us at times as well.\n\nWhat stands out most is not his pain, but his faith. Without most of the Bible yet written, without examples of resurrection, without the teachings of Jesus, Job was still convinced that his God would not forget him. He believed God had set a limit to death—and that life could return again. That confidence brings great comfort to us, reminding us that such faith is possible.\n\nOne verse in this chapter struck me in a new way during a recent reading—something I had previously overlooked. Job’s simple comparison to a tree:\n\n“For there is hope even for a tree.\nIf it is cut down, it will sprout again.”\n\nSuch a quiet image, and yet so powerful. Life returning where it seemed finished. Hope surviving even after loss.\n\nThat single illustration became the heart of this song.\n",
+          "mp3": "Overtones/Hope/Hope.mp3",
+          "lyrics": "Overtones/Hope/LYRICS.txt"
+        },
+        {
+          "name": "Love",
+          "path": "Overtones/Love",
+          "readme": "_1 Corinthians 13:1–8_\n\nI've never thought of Paul as a poet or lyricist in the way I think of David. But as I've spent more time with these verses, I'm starting to notice beauty not only in their content, but in their form as well—though I'm far from an expert in this.\n\nPaul places himself in the first person—not to accuse or confess himself or us, but to reason. He first imagines the highest forms of human goodness—eloquence, insight, sacrifice, faith—and then gently empties them of weight when love is absent. Even the most impressive gifts are revealed as sound without substance: nothing more than empty noise.\n\nBeginning in verse 4, he turns from hypotheticals and simply names what love is. The language becomes plain and simple, avoiding metaphor and self-reference. Love is patient. Love is kind. It does not exalt itself or delight in what is false. It bears, believes, hopes, and endures—not heroically, but steadily. Love is now allowed to stand firm in simplicity and contrast.\n\nThe song ends without crescendo or release. It doesn’t rise—it settles.\n",
+          "mp3": "Overtones/Love/Love.mp3",
+          "lyrics": "Overtones/Love/LYRICS.txt"
+        },
+        {
+          "name": "Mercy",
+          "path": "Overtones/Mercy",
+          "readme": "_(Jonah 1,2)_\n\nThis song sits with a familiar story and looks beyond the summary. Jonah is often remembered for running, but his story is really about fear, responsibility, correction, and compassion. He was chosen, overwhelmed, wrong at times — and still heard.\n\nThe distance Jonah runs is not measured in miles so much as uncertainty and fear. Between panic and obedience, between judgment and prayer, his story reminds us that even sincere faith can falter, and that faltering does not mean being abandoned.\n\nAs I understand it, mercy here is not approval or excuse. It doesn't rush, announce itself, or explain everything. It seems to meet us where we fall, correct us where we wander, and remain when fear makes obedience feel impossible—at least, that's how this story speaks to me.\n\nThis song is less about what Jonah did, and more about what God did — and continues to do — for imperfect people trying to obey under the weight of fear.\n",
+          "mp3": "Overtones/Mercy/Mercy.mp3",
+          "lyrics": "Overtones/Mercy/LYRICS.txt"
+        },
+        {
+          "name": "Ordinary",
+          "path": "Overtones/Ordinary",
+          "readme": "_Ordinary Ways_\n\nI love Peter. In the Gospels, he comes across as so unmistakably real—impetuous, outspoken, imperfect. And yet, we never doubt his love or his faith. He learned, sometimes the easy way, often the hard way. But he learned. And that is what makes him such a powerful example for us.\n\nOne moment that captures this so clearly is the account of Jesus washing the apostles’ feet. It reveals the masterful way Jesus taught—often through action.\n\nIn this song, I imagine that scene from Peter’s point of view. At first, he resists. Surely this work is beneath Jesus. Then, once corrected, Peter swings in the opposite direction—asking Jesus to wash him completely. In both responses, we see Peter learning in real time.\n\nThe lesson I see Peter learning is that greatness is shown through service rather than prominence—though I'm still trying to understand what that really means in practice. And that service, practiced quietly and consistently, speaks more powerfully than the grandest display.\n\nI want to imitate that example—and no doubt fail many times along the way. And that’s why I love Peter. He shows us that you can miss the lesson, stumble forward, and still keep trying until it finally takes root.\n",
+          "mp3": "Overtones/Ordinary/Ordinary.mp3",
+          "lyrics": "Overtones/Ordinary/LYRICS.txt"
+        },
+        {
+          "name": "Paradise",
+          "path": "Overtones/Paradise",
+          "readme": "",
+          "mp3": "Overtones/Paradise/Paradise.mp3",
+          "lyrics": "Overtones/Paradise/LYRICS.txt"
+        },
+        {
+          "name": "Planted",
+          "path": "Overtones/Planted",
+          "readme": "",
+          "mp3": "Overtones/Planted/Planted.mp3",
+          "lyrics": "Overtones/Planted/LYRICS.txt"
+        },
+        {
+          "name": "Valley",
+          "path": "Overtones/Valley",
+          "readme": "",
+          "m4a": "Overtones/Valley/Valley.m4a",
+          "lyrics": "Overtones/Valley/LYRICS.txt"
+        },
+        {
+          "name": "Where",
+          "path": "Overtones/Where",
+          "readme": "",
+          "mp3": "Overtones/Where/Where.mp3",
+          "lyrics": "Overtones/Where/LYRICS.txt"
+        },
+        {
+          "name": "Zac",
+          "path": "Overtones/Zac",
+          "readme": "",
+          "mp3": "Overtones/Zac/Zac.mp3",
+          "lyrics": "Overtones/Zac/LYRICS.txt"
+        }
+      ]
+    }
+  ]
+}
