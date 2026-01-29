@@ -40,6 +40,21 @@ def read_readme(directory: Path) -> Optional[str]:
     return None
 
 
+def read_lyrics(directory: Path) -> Optional[str]:
+    """Read lyrics file content if it exists."""
+    if not directory.is_dir():
+        return None
+    
+    for item in directory.iterdir():
+        if item.is_file() and item.suffix.lower() == '.txt' and 'lyric' in item.name.lower():
+            try:
+                with open(item, 'r', encoding='utf-8') as f:
+                    return f.read()
+            except Exception as e:
+                print(f"Warning: Could not read {item}: {e}")
+    return None
+
+
 def find_cover_image(directory: Path) -> Optional[str]:
     """Find cover image in directory."""
     if not directory.is_dir():
@@ -63,7 +78,6 @@ def process_track(track_dir: Path) -> Optional[Dict]:
     # Check if this directory contains audio files
     mp3_file = None
     m4a_file = None
-    lyrics_file = None
     playlist_file = None
     
     for item in track_dir.iterdir():
@@ -73,8 +87,6 @@ def process_track(track_dir: Path) -> Optional[Dict]:
                 mp3_file = str(item.relative_to(repo_root))
             elif ext == '.m4a':
                 m4a_file = str(item.relative_to(repo_root))
-            elif ext == '.txt' and 'lyric' in item.name.lower():
-                lyrics_file = str(item.relative_to(repo_root))
             elif ext == '.m3u8':
                 playlist_file = str(item.relative_to(repo_root))
     
@@ -90,50 +102,10 @@ def process_track(track_dir: Path) -> Optional[Dict]:
         "mp3": mp3_file,
         "m4a": m4a_file,
         "playlist": playlist_file,
-        "lyrics": lyrics_file
+        "lyrics": read_lyrics(track_dir)
     }
     
     return track
-
-
-    return album
-
-
-def process_collection(collection_dir: Path) -> Optional[Dict]:
-    """Process a collection directory and return collection object."""
-    if not collection_dir.is_dir() or collection_dir.name.startswith('.'):
-        return None
-    
-    albums = []
-    tracks = []
-    
-    # Look for subdirectories - they could be albums or tracks
-    for item in sorted(collection_dir.iterdir()):
-        if item.is_dir() and not item.name.startswith('.'):
-            # Try processing as album first
-            album = process_album(item)
-            if album:
-                albums.append(album)
-            else:
-                # Try processing as track (two-level hierarchy)
-                track = process_track(item)
-                if track:
-                    tracks.append(track)
-    
-    # Must have either albums or tracks to be a valid collection
-    if not albums and not tracks:
-        return None
-    
-    collection = {
-        "name": collection_dir.name,
-        "path": str(collection_dir.relative_to(repo_root)),
-        "readme": read_readme(collection_dir),
-        "cover": find_cover_image(collection_dir),
-        "albums": albums,
-        "tracks": tracks
-    }
-    
-    return collection
 
 
 def process_collection(collection_dir: Path) -> Optional[Dict]:
