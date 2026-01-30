@@ -63,7 +63,7 @@ jobs:
             else
               echo "M4A already exists: $m4a_file"
             fi
-          done < <(find . -type f -name "*.mp3" -o -name "*.MP3" | grep -v "/\.")
+          done < <(find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*")
 
           if [ "$conversions_made" = true ]; then
             echo "Conversions completed. New M4A files will be committed."
