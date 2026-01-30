@@ -35,22 +35,35 @@ jobs:
           echo "Checking for MP3 files that need M4A conversion..."
           conversions_made=false
 
-          # Find all MP3 files
+          # Find all MP3 files (more specific pattern)
           while IFS= read -r mp3_file; do
+            # Skip if file doesn't exist or is empty
+            if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
+              echo "Skipping invalid file: $mp3_file"
+              continue
+            fi
+            
+            # Verify it actually ends with .mp3 (case insensitive)
+            if [[ ! "$mp3_file" =~ \.(mp3|MP3)$ ]]; then
+              echo "Skipping non-MP3 file: $mp3_file"
+              continue
+            fi
+            
             # Get directory and base name without extension
             dir=$(dirname "$mp3_file")
             base=$(basename "$mp3_file" .mp3)
+            base=$(basename "$base" .MP3)
             m4a_file="$dir/$base.m4a"
 
             # Check if M4A already exists
             if [ ! -f "$m4a_file" ]; then
               echo "Converting: $mp3_file -> $m4a_file"
-              ffmpeg -i "$mp3_file" -c:a aac -b:a 256k -movflags +faststart "$m4a_file"
+              ffmpeg -i "$mp3_file" -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
               conversions_made=true
             else
               echo "M4A already exists: $m4a_file"
             fi
-          done < <(find . -type f -iname "*.mp3" ! -path "*/.*" ! -path "*/node_modules/*")
+          done < <(find . -type f -name "*.mp3" -o -name "*.MP3" | grep -v "/\.")
 
           if [ "$conversions_made" = true ]; then
             echo "Conversions completed. New M4A files will be committed."
