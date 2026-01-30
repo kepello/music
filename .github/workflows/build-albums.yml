@@ -279,7 +279,7 @@ jobs:
                 echo "$mp3_url" >> "$standalone_mp3_playlist"
               fi
               
-              track_num=2
+              track_num=1
             else
               # Multi-track album: process each track directory in order
               for track_dir in "$album_path"/*/; do
@@ -336,8 +336,8 @@ jobs:
               done
             fi
             
-            # Create separate ZIP files if we found tracks
-            if [ $track_num -gt 1 ]; then
+            # Create separate ZIP files only for multi-track collections (2 or more tracks)
+            if [ $track_num -gt 2 ]; then
               # Create M4A ZIP if we have M4A files
               if [ "$has_m4a" = true ]; then
                 output_zip="$album_path/${album}-M4A.zip"
