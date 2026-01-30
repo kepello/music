@@ -8,6 +8,7 @@ on:
       - "**/README.md"
       - "**/LYRICS.txt"
       - "generate-catalog.py"
+      - ".github/workflows/build-albums.yml"
   workflow_dispatch:
 
 jobs:
