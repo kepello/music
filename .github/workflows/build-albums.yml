@@ -21,7 +21,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 1
 
       - name: Install FFmpeg
         run: |
@@ -76,9 +76,9 @@ jobs:
         run: |
           #!/bin/bash
           set -e
-          
+
           echo "Cleaning metadata on all audio files..."
-          
+
           # Process all MP3 files
           while IFS= read -r mp3_file; do
             if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
@@ -96,7 +96,7 @@ jobs:
               echo "Failed to clean: $mp3_file"
             fi
           done < <(find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*")
-          
+
           # Process all M4A files
           while IFS= read -r m4a_file; do
             if [ ! -f "$m4a_file" ] || [ ! -s "$m4a_file" ]; then
@@ -114,7 +114,7 @@ jobs:
               echo "Failed to clean: $m4a_file"
             fi
           done < <(find . -type f -name "*.m4a" ! -path "*/.*")
-          
+
           echo "Metadata cleaning completed."
 
       - name: Build track playlists
@@ -236,17 +236,62 @@ jobs:
             has_m4a=false
             has_mp3=false
             
-            # Process each track directory in order
-            for track_dir in "$album_path"/*/; do
-              if [ ! -d "$track_dir" ]; then
-                continue
+            # Check if audio files are directly in album directory (single-track album)
+            album_m4a=$(find "$album_path" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
+            album_mp3=$(find "$album_path" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
+            
+            if [ -n "$album_m4a" ] || [ -n "$album_mp3" ]; then
+              # Single-track album: files are directly in album directory
+              track_name="$album"
+              padded_num="01"
+              
+              # Copy M4A if available
+              if [ -n "$album_m4a" ]; then
+                output_name="${padded_num} - ${track_name}.m4a"
+                cp "$album_m4a" "$m4a_album_dir/$output_name"
+                has_m4a=true
+                
+                # Add to M4A playlist (relative path)
+                echo "#EXTINF:-1,$track_name" >> "$m4a_playlist"
+                echo "$output_name" >> "$m4a_playlist"
+                
+                # Add to standalone M4A playlist (full URL)
+                m4a_relative_path="${album_m4a#./}"
+                m4a_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$m4a_relative_path"
+                echo "#EXTINF:-1,$track_name" >> "$standalone_m4a_playlist"
+                echo "$m4a_url" >> "$standalone_m4a_playlist"
               fi
               
-              track_name=$(basename "$track_dir")
+              # Copy MP3 if available
+              if [ -n "$album_mp3" ]; then
+                output_name="${padded_num} - ${track_name}.mp3"
+                cp "$album_mp3" "$mp3_album_dir/$output_name"
+                has_mp3=true
+                
+                # Add to MP3 playlist (relative path)
+                echo "#EXTINF:-1,$track_name" >> "$mp3_playlist"
+                echo "$output_name" >> "$mp3_playlist"
+                
+                # Add to standalone MP3 playlist (full URL)
+                mp3_relative_path="${album_mp3#./}"
+                mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
+                echo "#EXTINF:-1,$track_name" >> "$standalone_mp3_playlist"
+                echo "$mp3_url" >> "$standalone_mp3_playlist"
+              fi
               
-              # Find audio files in track directory
-              m4a_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
-              mp3_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
+              track_num=2
+            else
+              # Multi-track album: process each track directory in order
+              for track_dir in "$album_path"/*/; do
+                if [ ! -d "$track_dir" ]; then
+                  continue
+                fi
+                
+                track_name=$(basename "$track_dir")
+                
+                # Find audio files in track directory
+                m4a_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
+                mp3_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
               
               if [ -n "$m4a_file" ] || [ -n "$mp3_file" ]; then
                 # Pad track number
@@ -328,18 +373,25 @@ jobs:
               
               album=$(basename "$album_dir")
               
-              # Check if album has track directories (containing audio files)
-              has_tracks=false
-              for potential_track in "$album_dir"*/; do
-                if [ -d "$potential_track" ]; then
-                  if find "$potential_track" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
-                    has_tracks=true
-                    break
-                  fi
-                fi
-              done
+              # Check if album has audio files directly (single-track) or track subdirectories (multi-track)
+              has_audio=false
               
-              if [ "$has_tracks" = true ]; then
+              # Check for audio files directly in album directory
+              if find "$album_dir" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
+                has_audio=true
+              else
+                # Check if album has track directories (containing audio files)
+                for potential_track in "$album_dir"*/; do
+                  if [ -d "$potential_track" ]; then
+                    if find "$potential_track" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
+                      has_audio=true
+                      break
+                    fi
+                  fi
+                done
+              fi
+              
+              if [ "$has_audio" = true ]; then
                 create_album_package "$collection" "$album"
               fi
             done
