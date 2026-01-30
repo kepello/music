@@ -351,6 +351,7 @@ jobs:
                 echo "Created: $output_zip ($(du -h "$output_zip" | cut -f1))"
               fi
             fi
+            fi
             
             # Cleanup
             rm -rf "$temp_dir"
