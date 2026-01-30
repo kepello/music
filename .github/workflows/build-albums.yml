@@ -50,10 +50,10 @@ jobs:
               continue
             fi
             
-            # Get directory and base name without extension
+            # Get directory and base name without extension (preserve original case)
             dir=$(dirname "$mp3_file")
-            base=$(basename "$mp3_file" .mp3)
-            base=$(basename "$base" .MP3)
+            filename=$(basename "$mp3_file")
+            base="${filename%.[mM][pP]3}"
             m4a_file="$dir/$base.m4a"
 
             # Check if M4A already exists
@@ -117,7 +117,7 @@ jobs:
 
           echo "Metadata cleaning completed."
 
-      - name: Build track playlists
+      - name: Build collection packages
         run: |
           #!/bin/bash
           set -e
@@ -125,277 +125,101 @@ jobs:
           # Get repo info for URLs
           GITHUB_REPO="${GITHUB_REPOSITORY:-owner/repo}"
 
-          # Function to create single track playlist
-          create_track_playlist() {
-            local track_path="$1"
-            local track_name=$(basename "$track_path")
-            
-            # Find audio files in track directory (prefer M4A, fallback to MP3)
-            m4a_file=$(find "$track_path" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
-            mp3_file=$(find "$track_path" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
-            
-            if [ -n "$m4a_file" ] || [ -n "$mp3_file" ]; then
-              playlist_file="$track_path/$track_name.m3u8"
-              
-              echo "#EXTM3U" > "$playlist_file"
-              echo "#EXTENC:UTF-8" >> "$playlist_file"
-              
-              # Add M4A if available
-              if [ -n "$m4a_file" ]; then
-                m4a_relative_path="${m4a_file#./}"
-                m4a_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$m4a_relative_path"
-                echo "#EXTINF:-1,$track_name (AAC)" >> "$playlist_file"
-                echo "$m4a_url" >> "$playlist_file"
-              fi
-              
-              # Add MP3 if available
-              if [ -n "$mp3_file" ]; then
-                mp3_relative_path="${mp3_file#./}"
-                mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
-                echo "#EXTINF:-1,$track_name (MP3)" >> "$playlist_file"
-                echo "$mp3_url" >> "$playlist_file"
-              fi
-              
-              echo "Created playlist: $playlist_file"
-            fi
-          }
-
-          # Find all track directories
+          # Process each collection
           for collection_dir in */; do
             collection=$(basename "$collection_dir")
             
             # Skip special directories
-            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]]; then
+            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]] || [[ "$collection" == ".venv" ]]; then
               continue
             fi
             
-            # Check for albums
-            for album_dir in "$collection_dir"*/; do
-              if [ ! -d "$album_dir" ]; then
+            echo "Processing collection: $collection"
+            
+            # Create temp directories for ZIP packages
+            temp_dir=$(mktemp -d)
+            m4a_collection_dir="$temp_dir/${collection}-M4A/$collection"
+            mp3_collection_dir="$temp_dir/${collection}-MP3/$collection"
+            mkdir -p "$m4a_collection_dir"
+            mkdir -p "$mp3_collection_dir"
+            
+            # Create collection playlists
+            collection_m4a_playlist="$collection_dir/${collection}-M4A.m3u8"
+            collection_mp3_playlist="$collection_dir/${collection}-MP3.m3u8"
+            
+            echo "#EXTM3U" > "$collection_m4a_playlist"
+            echo "#EXTENC:UTF-8" >> "$collection_m4a_playlist"
+            
+            echo "#EXTM3U" > "$collection_mp3_playlist"
+            echo "#EXTENC:UTF-8" >> "$collection_mp3_playlist"
+            
+            # Track counts
+            m4a_count=0
+            mp3_count=0
+            track_num=1
+            
+            # Process each song/album in the collection
+            for song_dir in "$collection_dir"*/; do
+              if [ ! -d "$song_dir" ]; then
                 continue
               fi
               
-              # Process each track directory
-              for track_dir in "$album_dir"*/; do
-                if [ -d "$track_dir" ]; then
-                  if find "$track_dir" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
-                    create_track_playlist "$track_dir"
-                  fi
-                fi
-              done
-            done
-          done
-
-      - name: Build album packages
-        run: |
-          #!/bin/bash
-          set -e
-
-          # Function to create album package
-          create_album_package() {
-            local collection="$1"
-            local album="$2"
-            local album_path="$collection/$album"
-            
-            echo "Processing: $album_path"
-            
-            # Create temp directories for separate format packages
-            temp_dir=$(mktemp -d)
-            m4a_album_dir="$temp_dir/${album}-M4A/$album"
-            mp3_album_dir="$temp_dir/${album}-MP3/$album"
-            mkdir -p "$m4a_album_dir"
-            mkdir -p "$mp3_album_dir"
-            
-            # Find all track directories
-            track_num=1
-            
-            # Create playlists for both formats (for ZIP bundles)
-            m4a_playlist="$m4a_album_dir/$album.m3u8"
-            mp3_playlist="$mp3_album_dir/$album.m3u8"
-            
-            echo "#EXTM3U" > "$m4a_playlist"
-            echo "#EXTENC:UTF-8" >> "$m4a_playlist"
-            
-            echo "#EXTM3U" > "$mp3_playlist"
-            echo "#EXTENC:UTF-8" >> "$mp3_playlist"
-            
-            # Create separate standalone playlists with URLs for each format
-            standalone_m4a_playlist="$album_path/${album}-M4A.m3u8"
-            standalone_mp3_playlist="$album_path/${album}-MP3.m3u8"
-            
-            echo "#EXTM3U" > "$standalone_m4a_playlist"
-            echo "#EXTENC:UTF-8" >> "$standalone_m4a_playlist"
-            
-            echo "#EXTM3U" > "$standalone_mp3_playlist"
-            echo "#EXTENC:UTF-8" >> "$standalone_mp3_playlist"
-            
-            # Get repo info for URLs
-            GITHUB_REPO="${GITHUB_REPOSITORY:-owner/repo}"
-            
-            # Track if we have files for each format
-            has_m4a=false
-            has_mp3=false
-            
-            # Check if audio files are directly in album directory (single-track album)
-            album_m4a=$(find "$album_path" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
-            album_mp3=$(find "$album_path" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
-            
-            if [ -n "$album_m4a" ] || [ -n "$album_mp3" ]; then
-              # Single-track album: files are directly in album directory
-              track_name="$album"
-              padded_num="01"
+              song=$(basename "$song_dir")
+              
+              # Find audio files
+              m4a_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.m4a" | head -n 1)
+              mp3_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.mp3" | head -n 1)
+              
+              padded_num=$(printf "%02d" $track_num)
               
               # Copy M4A if available
-              if [ -n "$album_m4a" ]; then
-                output_name="${padded_num} - ${track_name}.m4a"
-                cp "$album_m4a" "$m4a_album_dir/$output_name"
-                has_m4a=true
+              if [ -n "$m4a_file" ] && [ -s "$m4a_file" ]; then
+                output_name="${padded_num} - ${song}.m4a"
+                cp "$m4a_file" "$m4a_collection_dir/$output_name"
+                m4a_count=$((m4a_count + 1))
                 
-                # Add to M4A playlist (relative path)
-                echo "#EXTINF:-1,$track_name" >> "$m4a_playlist"
-                echo "$output_name" >> "$m4a_playlist"
-                
-                # Add to standalone M4A playlist (full URL)
-                m4a_relative_path="${album_m4a#./}"
+                # Add to playlist with URL
+                m4a_relative_path="${m4a_file#./}"
                 m4a_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$m4a_relative_path"
-                echo "#EXTINF:-1,$track_name" >> "$standalone_m4a_playlist"
-                echo "$m4a_url" >> "$standalone_m4a_playlist"
+                echo "#EXTINF:-1,$song" >> "$collection_m4a_playlist"
+                echo "$m4a_url" >> "$collection_m4a_playlist"
               fi
               
               # Copy MP3 if available
-              if [ -n "$album_mp3" ]; then
-                output_name="${padded_num} - ${track_name}.mp3"
-                cp "$album_mp3" "$mp3_album_dir/$output_name"
-                has_mp3=true
+              if [ -n "$mp3_file" ] && [ -s "$mp3_file" ]; then
+                output_name="${padded_num} - ${song}.mp3"
+                cp "$mp3_file" "$mp3_collection_dir/$output_name"
+                mp3_count=$((mp3_count + 1))
                 
-                # Add to MP3 playlist (relative path)
-                echo "#EXTINF:-1,$track_name" >> "$mp3_playlist"
-                echo "$output_name" >> "$mp3_playlist"
-                
-                # Add to standalone MP3 playlist (full URL)
-                mp3_relative_path="${album_mp3#./}"
+                # Add to playlist with URL
+                mp3_relative_path="${mp3_file#./}"
                 mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
-                echo "#EXTINF:-1,$track_name" >> "$standalone_mp3_playlist"
-                echo "$mp3_url" >> "$standalone_mp3_playlist"
+                echo "#EXTINF:-1,$song" >> "$collection_mp3_playlist"
+                echo "$mp3_url" >> "$collection_mp3_playlist"
               fi
               
-              track_num=1
+              track_num=$((track_num + 1))
+            done
+            
+            # Create ZIP files only if we have multiple tracks (collections)
+            if [ $m4a_count -gt 1 ]; then
+              output_zip="$collection_dir/${collection}-M4A.zip"
+              (cd "$temp_dir/${collection}-M4A" && zip -r - "$collection") > "$output_zip"
+              echo "Created: $output_zip ($m4a_count tracks, $(du -h "$output_zip" | cut -f1))"
             else
-              # Multi-track album: process each track directory in order
-              for track_dir in "$album_path"/*/; do
-                if [ ! -d "$track_dir" ]; then
-                  continue
-                fi
-                
-                track_name=$(basename "$track_dir")
-                
-                # Find audio files in track directory
-                m4a_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.m4a" | head -n 1)
-                mp3_file=$(find "$track_dir" -maxdepth 1 -type f -iname "*.mp3" | head -n 1)
-              
-              if [ -n "$m4a_file" ] || [ -n "$mp3_file" ]; then
-                # Pad track number
-                padded_num=$(printf "%02d" $track_num)
-                
-                # Copy M4A if available
-                if [ -n "$m4a_file" ]; then
-                  output_name="${padded_num} - ${track_name}.m4a"
-                  cp "$m4a_file" "$m4a_album_dir/$output_name"
-                  has_m4a=true
-                  
-                  # Add to M4A playlist (relative path)
-                  echo "#EXTINF:-1,$track_name" >> "$m4a_playlist"
-                  echo "$output_name" >> "$m4a_playlist"
-                  
-                  # Add to standalone M4A playlist (full URL)
-                  m4a_relative_path="${m4a_file#./}"
-                  m4a_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$m4a_relative_path"
-                  echo "#EXTINF:-1,$track_name" >> "$standalone_m4a_playlist"
-                  echo "$m4a_url" >> "$standalone_m4a_playlist"
-                fi
-                
-                # Copy MP3 if available
-                if [ -n "$mp3_file" ]; then
-                  output_name="${padded_num} - ${track_name}.mp3"
-                  cp "$mp3_file" "$mp3_album_dir/$output_name"
-                  has_mp3=true
-                  
-                  # Add to MP3 playlist (relative path)
-                  echo "#EXTINF:-1,$track_name" >> "$mp3_playlist"
-                  echo "$output_name" >> "$mp3_playlist"
-                  
-                  # Add to standalone MP3 playlist (full URL)
-                  mp3_relative_path="${mp3_file#./}"
-                  mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
-                  echo "#EXTINF:-1,$track_name" >> "$standalone_mp3_playlist"
-                  echo "$mp3_url" >> "$standalone_mp3_playlist"
-                fi
-                
-                track_num=$((track_num + 1))
-              fi
-              done
+              rm -f "$collection_m4a_playlist"
             fi
             
-            # Create separate ZIP files only for multi-track collections (2 or more tracks)
-            if [ $track_num -gt 2 ]; then
-              # Create M4A ZIP if we have M4A files
-              if [ "$has_m4a" = true ]; then
-                output_zip="$album_path/${album}-M4A.zip"
-                (cd "$temp_dir/${album}-M4A" && zip -r - "$album") > "$output_zip"
-                echo "Created: $output_zip ($(du -h "$output_zip" | cut -f1))"
-              fi
-              
-              # Create MP3 ZIP if we have MP3 files
-              if [ "$has_mp3" = true ]; then
-                output_zip="$album_path/${album}-MP3.zip"
-                (cd "$temp_dir/${album}-MP3" && zip -r - "$album") > "$output_zip"
-                echo "Created: $output_zip ($(du -h "$output_zip" | cut -f1))"
-              fi
+            if [ $mp3_count -gt 1 ]; then
+              output_zip="$collection_dir/${collection}-MP3.zip"
+              (cd "$temp_dir/${collection}-MP3" && zip -r - "$collection") > "$output_zip"
+              echo "Created: $output_zip ($mp3_count tracks, $(du -h "$output_zip" | cut -f1))"
+            else
+              rm -f "$collection_mp3_playlist"
             fi
             
             # Cleanup
             rm -rf "$temp_dir"
-          }
-
-          # Find all collections and albums
-          for collection_dir in */; do
-            collection=$(basename "$collection_dir")
-            
-            # Skip special directories
-            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]]; then
-              continue
-            fi
-            
-            # Check if this collection has albums (subdirectories with tracks)
-            for album_dir in "$collection_dir"*/; do
-              if [ ! -d "$album_dir" ]; then
-                continue
-              fi
-              
-              album=$(basename "$album_dir")
-              
-              # Check if album has audio files directly (single-track) or track subdirectories (multi-track)
-              has_audio=false
-              
-              # Check for audio files directly in album directory
-              if find "$album_dir" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
-                has_audio=true
-              else
-                # Check if album has track directories (containing audio files)
-                for potential_track in "$album_dir"*/; do
-                  if [ -d "$potential_track" ]; then
-                    if find "$potential_track" -maxdepth 1 -type f \( -iname "*.mp3" -o -iname "*.m4a" \) | grep -q .; then
-                      has_audio=true
-                      break
-                    fi
-                  fi
-                done
-              fi
-              
-              if [ "$has_audio" = true ]; then
-                create_album_package "$collection" "$album"
-              fi
-            done
           done
 
       - name: Set up Python
