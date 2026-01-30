@@ -59,7 +59,7 @@ jobs:
             # Check if M4A already exists
             if [ ! -f "$m4a_file" ]; then
               echo "Converting: $mp3_file -> $m4a_file"
-              ffmpeg -nostdin -i "$mp3_file" -vn -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
+              ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
               conversions_made=true
             else
               echo "M4A already exists: $m4a_file"
@@ -71,6 +71,51 @@ jobs:
           else
             echo "No conversions needed."
           fi
+
+      - name: Clean metadata on all audio files
+        run: |
+          #!/bin/bash
+          set -e
+          
+          echo "Cleaning metadata on all audio files..."
+          
+          # Process all MP3 files
+          while IFS= read -r mp3_file; do
+            if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
+              continue
+            fi
+            
+            echo "Cleaning metadata: $mp3_file"
+            temp_file="${mp3_file}.tmp"
+            ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy "$temp_file" 2>&1 | grep -v "^frame=" || true
+            
+            if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
+              mv "$temp_file" "$mp3_file"
+            else
+              rm -f "$temp_file"
+              echo "Failed to clean: $mp3_file"
+            fi
+          done < <(find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*")
+          
+          # Process all M4A files
+          while IFS= read -r m4a_file; do
+            if [ ! -f "$m4a_file" ] || [ ! -s "$m4a_file" ]; then
+              continue
+            fi
+            
+            echo "Cleaning metadata: $m4a_file"
+            temp_file="${m4a_file}.tmp"
+            ffmpeg -nostdin -i "$m4a_file" -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
+            
+            if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
+              mv "$temp_file" "$m4a_file"
+            else
+              rm -f "$temp_file"
+              echo "Failed to clean: $m4a_file"
+            fi
+          done < <(find . -type f -name "*.m4a" ! -path "*/.*")
+          
+          echo "Metadata cleaning completed."
 
       - name: Build track playlists
         run: |
