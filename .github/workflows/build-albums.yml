@@ -59,7 +59,7 @@ jobs:
             # Check if M4A already exists
             if [ ! -f "$m4a_file" ]; then
               echo "Converting: $mp3_file -> $m4a_file"
-              ffmpeg -nostdin -i "$mp3_file" -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
+              ffmpeg -nostdin -i "$mp3_file" -vn -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
               conversions_made=true
             else
               echo "M4A already exists: $m4a_file"
