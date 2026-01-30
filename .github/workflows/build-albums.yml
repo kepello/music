@@ -87,7 +87,7 @@ jobs:
             
             echo "Cleaning metadata: $mp3_file"
             temp_file="${mp3_file}.tmp"
-            ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy "$temp_file" 2>&1 | grep -v "^frame=" || true
+            ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$mp3_file"
@@ -105,7 +105,7 @@ jobs:
             
             echo "Cleaning metadata: $m4a_file"
             temp_file="${m4a_file}.tmp"
-            ffmpeg -nostdin -i "$m4a_file" -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
+            ffmpeg -nostdin -i "$m4a_file" -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$m4a_file"
