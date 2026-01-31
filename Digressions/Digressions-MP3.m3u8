@@ -1,0 +1,8 @@
+#EXTM3U
+#EXTENC:UTF-8
+#EXTINF:-1,D
+https://raw.githubusercontent.com/kepello/music/main/Digressions/D/D.mp3
+#EXTINF:-1,Jellybean
+https://raw.githubusercontent.com/kepello/music/main/Digressions/Jellybean/Jellybean.mp3
+#EXTINF:-1,Left
+https://raw.githubusercontent.com/kepello/music/main/Digressions/Left/Left.mp3
