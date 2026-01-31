@@ -242,6 +242,39 @@ jobs:
             **/*.m3u8
           retention-days: 90
 
+      - name: Create or Update Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          #!/bin/bash
+          set -e
+          
+          RELEASE_TAG="latest"
+          RELEASE_NAME="Latest Album Packages"
+          
+          # Check if release exists
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG exists, deleting old assets..."
+            gh release delete "$RELEASE_TAG" --yes --cleanup-tag
+          fi
+          
+          echo "Creating new release $RELEASE_TAG..."
+          gh release create "$RELEASE_TAG" \
+            --title "$RELEASE_NAME" \
+            --notes "Automatically generated album packages. Updated on $(date -u +'%Y-%m-%d %H:%M:%S UTC')" \
+            --latest
+          
+          # Upload all ZIP files
+          echo "Uploading ZIP files..."
+          find . -name "*.zip" -type f ! -path "*/.*" | while read -r zip_file; do
+            if [ -f "$zip_file" ]; then
+              echo "Uploading: $zip_file"
+              gh release upload "$RELEASE_TAG" "$zip_file" --clobber
+            fi
+          done
+          
+          echo "Release updated successfully!"
+
       - name: Commit M4A conversions and catalog
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
