@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-01-31T13:03:56.241911+00:00",
+  "generatedAt": "2026-01-31T13:06:41.491846+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -14,8 +14,8 @@
       "path": "Dedicated",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nSome of these songs were written for friends.\nOthers were inspired by them.\n\nShared troubles are easier to bear. As Francis Bacon wrote, for those without true friends, “the world is but a wilderness.” Having real friends—and striving to be a good one in return—can make life more bearable. It can also make it deeply beautiful.\n\nThese songs come from that place.\nFrom friendships that steady us in hard moments, celebrate with us in joyful ones, and remind us that we do not walk alone.",
       "cover": "Dedicated/cover.jpg",
-      "zipM4A": "Dedicated/Dedicated-M4A.zip",
-      "zipMP3": "Dedicated/Dedicated-MP3.zip",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Dedicated-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Dedicated-MP3.zip",
       "playlistM4A": "Dedicated/Dedicated-M4A.m3u8",
       "playlistMP3": "Dedicated/Dedicated-MP3.m3u8",
       "tracks": [
@@ -42,8 +42,8 @@
       "path": "Deeply",
       "readme": "This music wasn't planned.\n\nI didn't expect songwriting to become a coping mechanism, or for it to arrive as suddenly and deeply as it did. But the timing, as painful as it is, feels strangely fortunate. We've just said goodbye to a dear pet—a family member and a special friend to my wife, Debra—and these songs have become a place where grief and gratitude can exist at the same time.\n\nI've always processed things slowly and inwardly. Writing lyrics and music has opened a new path—one that's raw, imperfect, and honest. The songs here aren't polished, and they may not carry meaning for anyone else. They weren't written for an audience. They were written because they needed to be.\n\nThis hurt to write yet brought unexpected relief. It marks a moment of learning how to let feelings out instead of holding them quietly inside. This is simply that: a record of emotions finding a voice, and music doing what I didn't know it could do—help me heal.",
       "cover": "Deeply/COVER.jpg",
-      "zipM4A": "Deeply/Deeply-M4A.zip",
-      "zipMP3": "Deeply/Deeply-MP3.zip",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Deeply-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Deeply-MP3.zip",
       "playlistM4A": "Deeply/Deeply-M4A.m3u8",
       "playlistMP3": "Deeply/Deeply-MP3.m3u8",
       "tracks": [
@@ -70,8 +70,8 @@
       "path": "Digressions",
       "readme": "Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.\n\nSome of these pieces grew out of small moments that struck me just enough that I wanted to catch them before they passed. Others are simply the result of noodling, messing around, and seeing what might happen. None of it is meant to be heavy or deliberate.\n\nThat doesn't make these songs unimportant. In many ways, they may be the most essential. They're the ones I find myself returning to while driving, walking, or working—music that sits comfortably alongside everyday life rather than asking to be examined. These tracks aren't about depth or resolution; they're about accompaniment, curiosity, and the quiet joy of letting sound move along with the day.",
       "cover": "Digressions/COVER.jpg",
-      "zipM4A": "Digressions/Digressions-M4A.zip",
-      "zipMP3": "Digressions/Digressions-MP3.zip",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Digressions-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Digressions-MP3.zip",
       "playlistM4A": "Digressions/Digressions-M4A.m3u8",
       "playlistMP3": "Digressions/Digressions-MP3.m3u8",
       "tracks": [
@@ -106,8 +106,8 @@
       "path": "Overtones",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nI'm deeply moved by the beauty and depth of God's Word. For me, setting scripture to music helps it settle more firmly in my mind and heart—though I'm still learning how to do this well. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.\n\nPsalm 1 speaks of reading in an undertone — a quiet, continual meditation. These songs are my attempt to take that same meditation and give it voice. What begins inwardly becomes something spoken and sung — an overtone.\n",
       "cover": "Overtones/COVER.jpg",
-      "zipM4A": "Overtones/Overtones-M4A.zip",
-      "zipMP3": "Overtones/Overtones-MP3.zip",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Overtones-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Overtones-MP3.zip",
       "playlistM4A": "Overtones/Overtones-M4A.m3u8",
       "playlistMP3": "Overtones/Overtones-MP3.m3u8",
       "tracks": [
