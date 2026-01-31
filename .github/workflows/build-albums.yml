@@ -233,13 +233,22 @@ jobs:
           python generate-catalog.py
           echo "Catalog generation completed!"
 
-      - name: Commit album packages and conversions
+      - name: Upload album packages as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: album-packages
+          path: |
+            **/*.zip
+            **/*.m3u8
+          retention-days: 90
+
+      - name: Commit M4A conversions and catalog
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add files if they exist (using find to avoid pathspec errors)
-          find . -name "*.zip" -o -name "*.m3u8" -o -name "*.m4a" | grep -v ".git" | xargs -r git add
+          # Add M4A files and playlists (but NOT zip files)
+          find . -name "*.m3u8" -o -name "*.m4a" | grep -v ".git" | xargs -r git add
 
           # Add catalog.json if it exists
           [ -f catalog.json ] && git add catalog.json || true
@@ -247,6 +256,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-generate album packages, catalog, and M4A conversions [skip ci]"
+            git commit -m "Auto-generate catalog and M4A conversions [skip ci]"
             git push
           fi
