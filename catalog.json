@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-01-31T13:31:16.248047+00:00",
+  "generatedAt": "2026-02-05T07:33:09.998760+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -14,6 +14,8 @@
       "path": "Dedicated",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nSome of these songs were written for friends.\nOthers were inspired by them.\n\nShared troubles are easier to bear. As Francis Bacon wrote, for those without true friends, “the world is but a wilderness.” Having real friends—and striving to be a good one in return—can make life more bearable. It can also make it deeply beautiful.\n\nThese songs come from that place.\nFrom friendships that steady us in hard moments, celebrate with us in joyful ones, and remind us that we do not walk alone.",
       "cover": "Dedicated/cover.jpg",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Dedicated-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Dedicated-MP3.zip",
       "playlistM4A": "Dedicated/Dedicated-M4A.m3u8",
       "playlistMP3": "Dedicated/Dedicated-MP3.m3u8",
       "tracks": [
@@ -40,6 +42,8 @@
       "path": "Deeply",
       "readme": "This music wasn't planned.\n\nI didn't expect songwriting to become a coping mechanism, or for it to arrive as suddenly and deeply as it did. But the timing, as painful as it is, feels strangely fortunate. We've just said goodbye to a dear pet—a family member and a special friend to my wife, Debra—and these songs have become a place where grief and gratitude can exist at the same time.\n\nI've always processed things slowly and inwardly. Writing lyrics and music has opened a new path—one that's raw, imperfect, and honest. The songs here aren't polished, and they may not carry meaning for anyone else. They weren't written for an audience. They were written because they needed to be.\n\nThis hurt to write yet brought unexpected relief. It marks a moment of learning how to let feelings out instead of holding them quietly inside. This is simply that: a record of emotions finding a voice, and music doing what I didn't know it could do—help me heal.",
       "cover": "Deeply/COVER.jpg",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Deeply-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Deeply-MP3.zip",
       "playlistM4A": "Deeply/Deeply-M4A.m3u8",
       "playlistMP3": "Deeply/Deeply-MP3.m3u8",
       "tracks": [
@@ -47,7 +51,7 @@
           "name": "Cami",
           "path": "Deeply/Cami",
           "readme": "This song was written in one of the hardest moments we’ve faced—saying goodbye to our dog, Cami.\n\nShe was with us for seventeen years, woven into the daily fabric of our lives in ways that are hard to explain unless you’ve loved a dog that long. She was especially precious to my wife, Debra, steady and close through every season. As age and illness took their toll, we reached a moment where love had to speak louder than the desire to hold on. It was the right decision. And it hurt deeply.\n\nThese lyrics aren’t about loss alone—they’re about a life fully shared. The small habits, the stubborn joy, the miles traveled together, and the quiet comfort she gave without ever needing words. Cami didn’t just live with us; she shaped the rhythm of our days and the way our home felt.\n\nLetting her go was an act of mercy, but it didn’t feel merciful in the moment. Writing this song became a way to say thank you—for the years, for the companionship, and for the way she taught us how deeply love can settle into ordinary life.\n\nSome love never really leaves.\nIt simply changes the shape of the room.",
-          "mp3": "Deeply/Cami/Cami.mp3",
+          "mp3": "Deeply/Cami/cami.mp3",
           "m4a": "Deeply/Cami/cami.m4a",
           "lyrics": "\nSeventeen years of time we trace\nSoft white curls, her adorable face\nScratch her back, she’d dance and spin\nLittle hops that made us grin\n\nShe had her say, her own small tone\nA little bark to claim her own\nStubborn joy on tiny feet\nA little stinker, firm and sweet\n\nFrom the passenger side, the miles rolled slow\nShe slept with me while Debra drove\nWhen Debra had her harder days, she’d stay\nCurled in close, she’d lay that way\n\nYou don’t measure a life by years\nYou count the smiles, you count the tears\nThose seventeen years aren’t lost today\nShe just taught us to love this way\n\nThe hardest mercy we ever gave\nWas letting love be more than stay\nHeld her close, said thank you then\nFor every mile, every when\n\nIf love could linger, she’d still be here\nIn quiet ways we still hold near\nEvery room still knows her name\nOur days will never be the same"
         },
@@ -66,6 +70,8 @@
       "path": "Digressions",
       "readme": "Not all emotions are deep or painful. Some of the best ones are lighter—the kind that make you smile, chuckle, or tap your foot without realizing it. This collection lives in that space.\n\nSome of these pieces grew out of small moments that struck me just enough that I wanted to catch them before they passed. Others are simply the result of noodling, messing around, and seeing what might happen. None of it is meant to be heavy or deliberate.\n\nThat doesn't make these songs unimportant. In many ways, they may be the most essential. They're the ones I find myself returning to while driving, walking, or working—music that sits comfortably alongside everyday life rather than asking to be examined. These tracks aren't about depth or resolution; they're about accompaniment, curiosity, and the quiet joy of letting sound move along with the day.",
       "cover": "Digressions/COVER.jpg",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Digressions-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Digressions-MP3.zip",
       "playlistM4A": "Digressions/Digressions-M4A.m3u8",
       "playlistMP3": "Digressions/Digressions-MP3.m3u8",
       "tracks": [
@@ -100,6 +106,8 @@
       "path": "Overtones",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nI'm deeply moved by the beauty and depth of God's Word. For me, setting scripture to music helps it settle more firmly in my mind and heart—though I'm still learning how to do this well. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.\n\nPsalm 1 speaks of reading in an undertone — a quiet, continual meditation. These songs are my attempt to take that same meditation and give it voice. What begins inwardly becomes something spoken and sung — an overtone.\n",
       "cover": "Overtones/COVER.jpg",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Overtones-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Overtones-MP3.zip",
       "playlistM4A": "Overtones/Overtones-M4A.m3u8",
       "playlistMP3": "Overtones/Overtones-MP3.m3u8",
       "tracks": [
@@ -150,6 +158,14 @@
           "mp3": "Overtones/Hope/Hope.mp3",
           "m4a": "Overtones/Hope/Hope.m4a",
           "lyrics": "For there is hope even for a tree.\nIf it is cut down, it will sprout again,\nAnd its twigs will continue to grow.\n\nIf its root grows old in the ground\nAnd its stump dies in the soil,\nAt the scent of water it will sprout;\nAnd it will produce branches like a new plant.\n\nFor there is hope even for a tree.\nIf it is cut down, it will sprout again,\nAnd its twigs will continue to grow.\n\nBut a man dies and lies powerless;\nWhen a human expires, where is he?\nWaters disappear from the sea,\nAnd a river drains away and dries up.\n\nFor there is hope even for a tree.\nIf it is cut down, it will sprout again,\nAnd its twigs will continue to grow.\n\nMan also lies down and does not get up.\nUntil heaven is no more, they will not wake up,\nNor will they be aroused from their sleep.\n\nFor there is hope even for a tree.\nIf it is cut down, it will sprout again,\nAnd its twigs will continue to grow.\n\nO that in the Grave you would conceal me,\nThat you would hide me until your anger passes by,\nThat you would set a time limit for me and remember me!\n\nFor there is hope even for a tree.\nIf it is cut down, it will sprout again,\nAnd its twigs will continue to grow.\n\nThat you would set a time limit for me and remember me!\n\n"
+        },
+        {
+          "name": "Lamp",
+          "path": "Overtones/Lamp",
+          "readme": "_Lamp and Light_\n\n“Your word is a lamp to my foot, and a light for my path.”\nI’ve returned to that line many times. Each time, it seems to speak a little differently, yet always with the same quiet clarity.\n\nWhen I read it, I think first about darkness—not always loud or frightening, but the kind that dulls the edges of things. A darkness where shapes exist without definition, where movement becomes careful and uncertain. In that kind of world, it’s easy to keep moving and still not truly know where you are going.\n\nThe image of a lamp feels close and intimate to me. A small circle of light, just enough to see the ground at my feet. Not a grand reveal—just what I need for the next step. In that light, dangers that once felt invisible begin to show themselves. Choices become clearer, not because everything is known, but because enough is known.\n\nThen there is the light—something broader, reaching farther ahead. When I linger on that word, I picture direction rather than safety. Not just avoiding what is near, but seeing where the way is leading. The path begins to take shape. Movement gains purpose. The future, once indistinct, starts to feel real.\n\nTogether, those images speak to me of a quiet change:\nfrom stumbling to walking,\nfrom reacting to choosing,\nfrom moving forward blindly to moving forward with intention.\n\nI don’t hear these words as a promise of knowing everything at once, but as an invitation—to walk with just enough light, step by step, toward something clearer, steadier, and filled with hope.",
+          "mp3": "Overtones/Lamp/Lamp.mp3",
+          "m4a": "Overtones/Lamp/Lamp.m4a",
+          "lyrics": "Men stumble on through half-lit sight\nWhere shapes are drawn but stripped of light\nHands stretched out, they grope and feel\nMistaking what's false for what is real\n\nThe world moves fast but does not see.\nIt trusts the dark, walking blindly.\nIt's met an end it had not sought,\nand bears the weight of what it wrought\n\nI’ve walked that way, I know that place.\nI've reached for help in empty space.\nI've missed a step,  and stricken stone\nI've felt how far the dark has grown\n\nYour word is a lamp, to guide the feet\nIt shows the ground where next steps meet\nYour word is a light, shining far ahead\nIt guards the way from paths misled\n\nEach one must choose which way to go\nThe path made clear, or one we know\nTo trust the way His wisdom shows\nOr chase the one our wanting chose\n\nIt lifts the veil that clouds our sight\nAnd cuts through darkness, shows things right\nIt guards our steps from hidden harm\nAnd keeps our hope both clear and firm\n\nYour word is a lamp to guide the feet\nIt shows the ground where next steps meet\nYour word is a light shining far ahead\nIt guards the way from paths misled\n\nIn open light the way takes form\nThe path feels whole, the heart made calm\nWhat once was feared is now made clear\nThe ground feels firm, no threat draws near\n\nYour word is a lamp to guide my feet\nIt shows the ground my next steps meet\nYour word is a light shining far ahead\nIt guards my way from paths misled\n\nThe lamp now shows each step made sure\nThe light ahead makes hope secure\nNo grasping dark, no shaken ground\nI walk in peace, on footing sound\n\nYour word is a lamp to guide my feet\nIt shows the ground my next steps meet\nYour word is a light shining far ahead\nIt guards my way from paths misled"
         },
         {
           "name": "Love",
