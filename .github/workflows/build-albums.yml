@@ -59,6 +59,7 @@ jobs:
             # Check if M4A already exists
             if [ ! -f "$m4a_file" ]; then
               echo "Converting: $mp3_file -> $m4a_file"
+              # Convert with no embedded images, strip all metadata, then add artist and comment
               ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
               conversions_made=true
             else
@@ -72,7 +73,7 @@ jobs:
             echo "No conversions needed."
           fi
 
-      - name: Clean metadata on all audio files
+      - name: Clean metadata on all audio files (remove images, keep artist and comment)
         run: |
           #!/bin/bash
           set -e
@@ -87,7 +88,8 @@ jobs:
             
             echo "Cleaning metadata: $mp3_file"
             temp_file="${mp3_file}.tmp"
-            ffmpeg -nostdin -i "$mp3_file" -map 0:a -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
+            # Strip all metadata and embedded images, then add back artist and comment
+            ffmpeg -nostdin -i "$mp3_file" -map 0:a -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$mp3_file"
@@ -105,7 +107,8 @@ jobs:
             
             echo "Cleaning metadata: $m4a_file"
             temp_file="${m4a_file}.tmp"
-            ffmpeg -nostdin -i "$m4a_file" -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
+            # Strip all metadata, then add back artist and comment
+            ffmpeg -nostdin -i "$m4a_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$m4a_file"
