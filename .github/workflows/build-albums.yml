@@ -293,5 +293,13 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Auto-generate catalog and M4A conversions [skip ci]"
+            
+            # Pull with rebase before pushing to handle any race conditions
+            echo "Pulling latest changes before push..."
+            git pull --rebase origin main || {
+              echo "Failed to rebase, attempting to continue..."
+              git rebase --continue || git rebase --skip || true
+            }
+            
             git push
           fi
