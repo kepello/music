@@ -6,7 +6,7 @@ but expression. To feel, to experiment, and to allow emotional release without n
 
 These are best thought of as personal collections—songs I’ve created primarily for myself, grouped by their tone, origin, and purpose rather than by style or polish.
 
-The collections are Dedicated (songs for or about friends), Deeply (emotional songs written for my own processing), Digressions (light-hearted, curious, or playful detours), and Overtones (songs rooted in scripture and reflection). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.
+The collections are Digressions (personal songs spanning friendship, loss, and everyday moments) and Overtones (songs rooted in scripture and reflection). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.
 
 These songs were created for personal reasons, but you’re welcome to listen—and if you find any value in them, I hope you enjoy them.
 
