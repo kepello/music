@@ -40,6 +40,21 @@ def read_readme(directory: Path) -> Optional[str]:
     return None
 
 
+def extract_friendly_name(directory: Path) -> Optional[str]:
+    """Extract friendly name from first line of README.md (text between underscores)."""
+    readme_path = directory / "README.md"
+    if readme_path.is_file():
+        try:
+            with open(readme_path, 'r', encoding='utf-8') as f:
+                first_line = f.readline().strip()
+                # Extract text between underscores: _Title Here_
+                if first_line.startswith('_') and first_line.endswith('_'):
+                    return first_line[1:-1]
+        except Exception as e:
+            print(f"Warning: Could not read {readme_path}: {e}")
+    return None
+
+
 def read_lyrics(directory: Path) -> Optional[str]:
     """Read lyrics file content if it exists."""
     if not directory.is_dir():
@@ -96,6 +111,7 @@ def process_track(track_dir: Path) -> Optional[Dict]:
     
     track = {
         "name": track_dir.name,
+        "title": extract_friendly_name(track_dir),
         "path": str(track_dir.relative_to(repo_root)),
         "readme": read_readme(track_dir),
         "cover": find_cover_image(track_dir),

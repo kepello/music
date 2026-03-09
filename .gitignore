@@ -1,2 +1,6 @@
 .DS_Store
 *.zip
+
+# Auto-generated audio files (kept only in releases)
+*.mp3
+*.m4a
