@@ -25,25 +25,26 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Install FFmpeg
+      - name: Install FFmpeg and GNU Parallel
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg
+          sudo apt-get install -y ffmpeg parallel
 
-      - name: Convert WAV to MP3 and M4A
+      - name: Convert WAV to MP3 and M4A (Parallel)
         run: |
           #!/bin/bash
           set -e
 
-          echo "Converting WAV files to MP3 and M4A (only if needed)..."
-          conversions_made=false
-
-          # Find all WAV files
-          while IFS= read -r wav_file; do
+          echo "Converting WAV files to MP3 and M4A in parallel (only if needed)..."
+          
+          # Define conversion function
+          convert_wav_file() {
+            wav_file="$1"
+            
             # Skip if file doesn't exist or is empty
             if [ ! -f "$wav_file" ] || [ ! -s "$wav_file" ]; then
               echo "Skipping invalid file: $wav_file"
-              continue
+              return 0
             fi
             
             # Get directory and base name without extension
@@ -52,12 +53,14 @@ jobs:
             base="${filename%.[wW][aA][vV]}"
             mp3_file="$dir/$base.mp3"
             m4a_file="$dir/$base.m4a"
+            
+            local converted=0
 
             # Convert to MP3 if it doesn't exist or WAV is newer
             if [ ! -f "$mp3_file" ] || [ "$wav_file" -nt "$mp3_file" ]; then
               echo "Converting: $wav_file -> $mp3_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame="
-              conversions_made=true
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame=" || true
+              converted=1
             else
               echo "MP3 is up to date: $mp3_file"
             fi
@@ -65,30 +68,36 @@ jobs:
             # Convert to M4A if it doesn't exist or WAV is newer
             if [ ! -f "$m4a_file" ] || [ "$wav_file" -nt "$m4a_file" ]; then
               echo "Converting: $wav_file -> $m4a_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
-              conversions_made=true
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame=" || true
+              converted=1
             else
               echo "M4A is up to date: $m4a_file"
             fi
-          done < <(find . -type f \( -name "*.wav" -o -name "*.WAV" \) ! -path "*/.*")
+            
+            return $converted
+          }
+          
+          # Export function for parallel
+          export -f convert_wav_file
+          
+          # Find all WAV files and process in parallel (using number of CPU cores)
+          find . -type f \( -name "*.wav" -o -name "*.WAV" \) ! -path "*/.*" | \
+            parallel --will-cite --jobs 0 --line-buffer convert_wav_file {}
+          
+          echo "Parallel conversions completed."
 
-          if [ "$conversions_made" = true ]; then
-            echo "Conversions completed. New MP3/M4A files will be committed."
-          else
-            echo "No conversions needed."
-          fi
-
-      - name: Clean metadata on all audio files (remove images, keep artist and comment)
+      - name: Clean metadata on all audio files (Parallel)
         run: |
           #!/bin/bash
           set -e
 
-          echo "Cleaning metadata on all audio files..."
+          echo "Cleaning metadata on all audio files in parallel..."
 
-          # Process all MP3 files
-          while IFS= read -r mp3_file; do
+          # Function to clean MP3 metadata
+          clean_mp3() {
+            mp3_file="$1"
             if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
-              continue
+              return 0
             fi
             
             echo "Cleaning metadata: $mp3_file"
@@ -102,12 +111,13 @@ jobs:
               rm -f "$temp_file"
               echo "Failed to clean: $mp3_file"
             fi
-          done < <(find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*")
+          }
 
-          # Process all M4A files
-          while IFS= read -r m4a_file; do
+          # Function to clean M4A metadata
+          clean_m4a() {
+            m4a_file="$1"
             if [ ! -f "$m4a_file" ] || [ ! -s "$m4a_file" ]; then
-              continue
+              return 0
             fi
             
             echo "Cleaning metadata: $m4a_file"
@@ -121,7 +131,19 @@ jobs:
               rm -f "$temp_file"
               echo "Failed to clean: $m4a_file"
             fi
-          done < <(find . -type f -name "*.m4a" ! -path "*/.*")
+          }
+
+          # Export functions for parallel
+          export -f clean_mp3
+          export -f clean_m4a
+
+          # Process all MP3 files in parallel
+          find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*" | \
+            parallel --will-cite --jobs 0 --line-buffer clean_mp3 {}
+
+          # Process all M4A files in parallel
+          find . -type f -name "*.m4a" ! -path "*/.*" | \
+            parallel --will-cite --jobs 0 --line-buffer clean_m4a {}
 
           echo "Metadata cleaning completed."
 
