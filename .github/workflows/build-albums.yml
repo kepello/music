@@ -11,6 +11,7 @@ on:
       - "scripts/generate-catalog.py"
       - ".github/workflows/build-albums.yml"
   workflow_dispatch:
+    # Manual trigger enabled
 
 jobs:
   build-albums:
