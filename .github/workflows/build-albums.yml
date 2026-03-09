@@ -3,11 +3,12 @@ name: Build Album Packages
 on:
   push:
     paths:
+      - "**/*.wav"
       - "**/*.mp3"
       - "**/*.m4a"
       - "**/README.md"
       - "**/LYRICS.txt"
-      - "generate-catalog.py"
+      - "scripts/generate-catalog.py"
       - ".github/workflows/build-albums.yml"
   workflow_dispatch:
 
@@ -28,47 +29,50 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y ffmpeg
 
-      - name: Convert MP3 to M4A
+      - name: Convert WAV to MP3 and M4A
         run: |
           #!/bin/bash
           set -e
 
-          echo "Checking for MP3 files that need M4A conversion..."
+          echo "Converting WAV files to MP3 and M4A (only if needed)..."
           conversions_made=false
 
-          # Find all MP3 files (more specific pattern)
-          while IFS= read -r mp3_file; do
+          # Find all WAV files
+          while IFS= read -r wav_file; do
             # Skip if file doesn't exist or is empty
-            if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
-              echo "Skipping invalid file: $mp3_file"
+            if [ ! -f "$wav_file" ] || [ ! -s "$wav_file" ]; then
+              echo "Skipping invalid file: $wav_file"
               continue
             fi
             
-            # Verify it actually ends with .mp3 (case insensitive)
-            if [[ ! "$mp3_file" =~ \.(mp3|MP3)$ ]]; then
-              echo "Skipping non-MP3 file: $mp3_file"
-              continue
-            fi
-            
-            # Get directory and base name without extension (preserve original case)
-            dir=$(dirname "$mp3_file")
-            filename=$(basename "$mp3_file")
-            base="${filename%.[mM][pP]3}"
+            # Get directory and base name without extension
+            dir=$(dirname "$wav_file")
+            filename=$(basename "$wav_file")
+            base="${filename%.[wW][aA][vV]}"
+            mp3_file="$dir/$base.mp3"
             m4a_file="$dir/$base.m4a"
 
-            # Check if M4A already exists
-            if [ ! -f "$m4a_file" ]; then
-              echo "Converting: $mp3_file -> $m4a_file"
-              # Convert with no embedded images, strip all metadata, then add artist and comment
-              ffmpeg -nostdin -i "$mp3_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 256k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
+            # Convert to MP3 if it doesn't exist or WAV is newer
+            if [ ! -f "$mp3_file" ] || [ "$wav_file" -nt "$mp3_file" ]; then
+              echo "Converting: $wav_file -> $mp3_file"
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame="
               conversions_made=true
             else
-              echo "M4A already exists: $m4a_file"
+              echo "MP3 is up to date: $mp3_file"
             fi
-          done < <(find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*")
+
+            # Convert to M4A if it doesn't exist or WAV is newer
+            if [ ! -f "$m4a_file" ] || [ "$wav_file" -nt "$m4a_file" ]; then
+              echo "Converting: $wav_file -> $m4a_file"
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame="
+              conversions_made=true
+            else
+              echo "M4A is up to date: $m4a_file"
+            fi
+          done < <(find . -type f \( -name "*.wav" -o -name "*.WAV" \) ! -path "*/.*")
 
           if [ "$conversions_made" = true ]; then
-            echo "Conversions completed. New M4A files will be committed."
+            echo "Conversions completed. New MP3/M4A files will be committed."
           else
             echo "No conversions needed."
           fi
@@ -149,6 +153,7 @@ jobs:
             # Create collection playlists
             collection_m4a_playlist="$collection_dir/${collection}-M4A.m3u8"
             collection_mp3_playlist="$collection_dir/${collection}-MP3.m3u8"
+            collection_wav_playlist="$collection_dir/${collection}-WAV.m3u8"
             
             echo "#EXTM3U" > "$collection_m4a_playlist"
             echo "#EXTENC:UTF-8" >> "$collection_m4a_playlist"
@@ -156,9 +161,13 @@ jobs:
             echo "#EXTM3U" > "$collection_mp3_playlist"
             echo "#EXTENC:UTF-8" >> "$collection_mp3_playlist"
             
+            echo "#EXTM3U" > "$collection_wav_playlist"
+            echo "#EXTENC:UTF-8" >> "$collection_wav_playlist"
+            
             # Track counts
             m4a_count=0
             mp3_count=0
+            wav_count=0
             track_num=1
             
             # Process each song/album in the collection
@@ -172,6 +181,7 @@ jobs:
               # Find audio files
               m4a_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.m4a" | head -n 1)
               mp3_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.mp3" | head -n 1)
+              wav_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.wav" -o -name "*.WAV" | head -n 1)
               
               padded_num=$(printf "%02d" $track_num)
               
@@ -201,6 +211,17 @@ jobs:
                 echo "$mp3_url" >> "$collection_mp3_playlist"
               fi
               
+              # Add WAV to playlist if available
+              if [ -n "$wav_file" ] && [ -s "$wav_file" ]; then
+                wav_count=$((wav_count + 1))
+                
+                # Add to WAV playlist with URL
+                wav_relative_path="${wav_file#./}"
+                wav_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$wav_relative_path"
+                echo "#EXTINF:-1,$song" >> "$collection_wav_playlist"
+                echo "$wav_url" >> "$collection_wav_playlist"
+              fi
+              
               track_num=$((track_num + 1))
             done
             
@@ -221,6 +242,11 @@ jobs:
               rm -f "$collection_mp3_playlist"
             fi
             
+            # Remove WAV playlist if not enough tracks
+            if [ $wav_count -le 1 ]; then
+              rm -f "$collection_wav_playlist"
+            fi
+            
             # Cleanup
             rm -rf "$temp_dir"
           done
@@ -233,7 +259,7 @@ jobs:
       - name: Generate catalog.json
         run: |
           echo "Generating catalog.json..."
-          python generate-catalog.py
+          python scripts/generate-catalog.py
           echo "Catalog generation completed!"
 
       - name: Upload album packages as artifacts
@@ -278,13 +304,13 @@ jobs:
 
           echo "Release updated successfully!"
 
-      - name: Commit M4A conversions and catalog
+      - name: Commit MP3/M4A conversions and catalog
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add M4A files and playlists (but NOT zip files)
-          find . -name "*.m3u8" -o -name "*.m4a" | grep -v ".git" | xargs -r git add
+          # Add MP3, M4A files and playlists (but NOT zip files)
+          find . -name "*.m3u8" -o -name "*.m4a" -o -name "*.mp3" | grep -v ".git" | xargs -r git add
 
           # Add catalog.json if it exists
           [ -f catalog.json ] && git add catalog.json || true
@@ -292,7 +318,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-generate catalog and M4A conversions [skip ci]"
+            git commit -m "Auto-generate catalog and MP3/M4A conversions [skip ci]"
             
             # Pull with rebase before pushing to handle any race conditions
             echo "Pulling latest changes before push..."
