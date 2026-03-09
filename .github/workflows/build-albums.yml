@@ -191,9 +191,9 @@ jobs:
                 cp "$m4a_file" "$m4a_collection_dir/$output_name"
                 m4a_count=$((m4a_count + 1))
                 
-                # Add to playlist with URL
-                m4a_relative_path="${m4a_file#./}"
-                m4a_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$m4a_relative_path"
+                # Add to playlist with release URL
+                m4a_filename=$(basename "$m4a_file")
+                m4a_url="https://github.com/$GITHUB_REPO/releases/download/latest/$m4a_filename"
                 echo "#EXTINF:-1,$song" >> "$collection_m4a_playlist"
                 echo "$m4a_url" >> "$collection_m4a_playlist"
               fi
@@ -204,9 +204,9 @@ jobs:
                 cp "$mp3_file" "$mp3_collection_dir/$output_name"
                 mp3_count=$((mp3_count + 1))
                 
-                # Add to playlist with URL
-                mp3_relative_path="${mp3_file#./}"
-                mp3_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$mp3_relative_path"
+                # Add to playlist with release URL
+                mp3_filename=$(basename "$mp3_file")
+                mp3_url="https://github.com/$GITHUB_REPO/releases/download/latest/$mp3_filename"
                 echo "#EXTINF:-1,$song" >> "$collection_mp3_playlist"
                 echo "$mp3_url" >> "$collection_mp3_playlist"
               fi
@@ -302,15 +302,32 @@ jobs:
             fi
           done
 
+          # Upload all MP3 and M4A files individually
+          echo "Uploading individual MP3 files..."
+          find . -name "*.mp3" -type f ! -path "*/.*" | while read -r mp3_file; do
+            if [ -f "$mp3_file" ]; then
+              echo "Uploading: $mp3_file"
+              gh release upload "$RELEASE_TAG" "$mp3_file" --clobber
+            fi
+          done
+
+          echo "Uploading individual M4A files..."
+          find . -name "*.m4a" -type f ! -path "*/.*" | while read -r m4a_file; do
+            if [ -f "$m4a_file" ]; then
+              echo "Uploading: $m4a_file"
+              gh release upload "$RELEASE_TAG" "$m4a_file" --clobber
+            fi
+          done
+
           echo "Release updated successfully!"
 
-      - name: Commit MP3/M4A conversions and catalog
+      - name: Commit WAV playlists and catalog
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add MP3, M4A files and playlists (but NOT zip files)
-          find . -name "*.m3u8" -o -name "*.m4a" -o -name "*.mp3" | grep -v ".git" | xargs -r git add
+          # Add playlists and catalog (but NOT mp3/m4a/zip files)
+          find . -name "*.m3u8" | grep -v ".git" | xargs -r git add
 
           # Add catalog.json if it exists
           [ -f catalog.json ] && git add catalog.json || true
@@ -318,7 +335,7 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Auto-generate catalog and MP3/M4A conversions [skip ci]"
+            git commit -m "Update catalog and playlists [skip ci]"
             
             # Pull with rebase before pushing to handle any race conditions
             echo "Pulling latest changes before push..."

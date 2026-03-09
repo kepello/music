@@ -117,7 +117,7 @@ def find_cover_image(directory: Path) -> Optional[str]:
     return None
 
 
-def process_track(track_dir: Path, collection_name: str = None) -> Optional[Dict]:
+def process_track(track_dir: Path, collection_name: str = None, owner: str = "kepello", repo: str = "music") -> Optional[Dict]:
     """Process a track directory and return track object."""
     if not track_dir.is_dir():
         return None
@@ -131,10 +131,13 @@ def process_track(track_dir: Path, collection_name: str = None) -> Optional[Dict
         if item.is_file():
             ext = item.suffix.lower()
             if ext == '.mp3':
-                mp3_file = str(item.relative_to(repo_root))
+                # MP3 files are in GitHub Releases, construct release URL
+                mp3_file = f"https://github.com/{owner}/{repo}/releases/download/latest/{item.name}"
             elif ext == '.m4a':
-                m4a_file = str(item.relative_to(repo_root))
+                # M4A files are in GitHub Releases, construct release URL
+                m4a_file = f"https://github.com/{owner}/{repo}/releases/download/latest/{item.name}"
             elif ext == '.wav':
+                # WAV files are in git, use relative path
                 wav_file = str(item.relative_to(repo_root))
     
     # Must have at least one audio file to be considered a track
@@ -173,7 +176,7 @@ def process_collection(collection_dir: Path, owner: str, repo: str) -> Optional[
     # Look for track subdirectories
     for item in sorted(collection_dir.iterdir()):
         if item.is_dir() and not item.name.startswith('.'):
-            track = process_track(item, collection_name)
+            track = process_track(item, collection_name, owner, repo)
             if track:
                 tracks.append(track)
     
