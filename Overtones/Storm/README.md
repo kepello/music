@@ -1,4 +1,4 @@
-_A True Friend Born For The Storm_
+_Friends Born for the Storm_
 
 This song grew out of the thought expressed at Proverbs 17:17:
 “A true friend shows love at all times, and is a brother who is born for times of distress.”

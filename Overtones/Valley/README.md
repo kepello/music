@@ -1,3 +1,4 @@
+_In the Valley_
 “The Philistines occupied the mountain on one side, and the Israelites occupied the mountain on the other side, with the valley between them.”
 — 1 Samuel 17:3
 

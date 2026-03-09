@@ -1,3 +1,6 @@
+_We Will Not Bow_
+
+
 The Bible account of Shadrach, Meshach, and Abednego strikes me as a remarkable expression of faith.
 
 I’ve had to take stands for my beliefs, but never with my life on the line. These three men did. Separated from their parents and upbringing for years, standing in a foreign land under immense pressure, they refused to bow to the image King Nebuchadnezzar erected. What makes their stand so compelling is not just their courage, but their clarity. They believed God could save them—but they did not presume that He would. And that uncertainty didn’t weaken their resolve. It made it purer.

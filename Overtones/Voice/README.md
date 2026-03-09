@@ -1,4 +1,4 @@
-_Because He Hears My Voice_
+_He Hears My Voice_
 
 This song was created as a gift for a friend.
 

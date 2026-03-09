@@ -1,4 +1,4 @@
-_Endurance To The End_
+_Endure to the End_
 
 Matthew 10:22 says:
 “You will be hated by all people on account of my name, but the one who has endured to the end will be saved.”

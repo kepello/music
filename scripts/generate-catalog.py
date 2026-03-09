@@ -13,6 +13,32 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 
+# Track number mappings for collections (based on official sequencing)
+TRACK_NUMBERS = {
+    "Overtones": {
+        "Love": 1,
+        "Bow": 2,
+        "Dove": 3,
+        "Endurance": 4,
+        "Happy": 5,
+        "Hope": 6,
+        "Lamp": 7,
+        "Mercy": 8,
+        "Ordinary": 9,
+        "Overtone": 10,
+        "Paradise": 11,
+        "Planted": 12,
+        "Valley": 13,
+        "Where": 14,
+        "Zac": 15,
+        "Anxious": 16,
+        "Storm": 17,
+        "Exquisite": 18,
+        "Voice": 19
+    }
+}
+
+
 def find_file_by_pattern(directory: Path, patterns: List[str]) -> Optional[str]:
     """Find a file matching any of the given patterns (case-insensitive)."""
     if not directory.is_dir():
@@ -46,10 +72,16 @@ def extract_friendly_name(directory: Path) -> Optional[str]:
     if readme_path.is_file():
         try:
             with open(readme_path, 'r', encoding='utf-8') as f:
-                first_line = f.readline().strip()
-                # Extract text between underscores: _Title Here_
-                if first_line.startswith('_') and first_line.endswith('_'):
-                    return first_line[1:-1]
+                # Read first few lines to find title (skip empty lines)
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    # Extract text between underscores: _Title Here_
+                    if line.startswith('_') and line.endswith('_'):
+                        return line[1:-1]
+                    # If we find a non-empty line that's not a title, stop looking
+                    break
         except Exception as e:
             print(f"Warning: Could not read {readme_path}: {e}")
     return None
@@ -85,7 +117,7 @@ def find_cover_image(directory: Path) -> Optional[str]:
     return None
 
 
-def process_track(track_dir: Path) -> Optional[Dict]:
+def process_track(track_dir: Path, collection_name: str = None) -> Optional[Dict]:
     """Process a track directory and return track object."""
     if not track_dir.is_dir():
         return None
@@ -109,9 +141,15 @@ def process_track(track_dir: Path) -> Optional[Dict]:
     if not mp3_file and not m4a_file and not wav_file:
         return None
     
+    # Get track number if available
+    track_number = None
+    if collection_name and collection_name in TRACK_NUMBERS:
+        track_number = TRACK_NUMBERS[collection_name].get(track_dir.name)
+    
     track = {
         "name": track_dir.name,
         "title": extract_friendly_name(track_dir),
+        "trackNumber": track_number,
         "path": str(track_dir.relative_to(repo_root)),
         "readme": read_readme(track_dir),
         "cover": find_cover_image(track_dir),
@@ -129,14 +167,18 @@ def process_collection(collection_dir: Path, owner: str, repo: str) -> Optional[
     if not collection_dir.is_dir() or collection_dir.name.startswith('.'):
         return None
     
+    collection_name = collection_dir.name
     tracks = []
     
     # Look for track subdirectories
     for item in sorted(collection_dir.iterdir()):
         if item.is_dir() and not item.name.startswith('.'):
-            track = process_track(item)
+            track = process_track(item, collection_name)
             if track:
                 tracks.append(track)
+    
+    # Sort tracks by track number if available, otherwise by name
+    tracks.sort(key=lambda t: (t.get('trackNumber') is None, t.get('trackNumber'), t['name']))
     
     # Must have tracks to be a valid collection
     if not tracks:

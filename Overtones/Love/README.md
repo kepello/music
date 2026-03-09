@@ -1,4 +1,4 @@
-_1 Corinthians 13:1–8_
+_Love_
 
 I've never thought of Paul as a poet or lyricist in the way I think of David. But as I've spent more time with these verses, I'm starting to notice beauty not only in their content, but in their form as well—though I'm far from an expert in this.
 
