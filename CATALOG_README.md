@@ -10,8 +10,8 @@ The music library has a simple three-level hierarchy:
 
 **Library (Root)** → **Collections (Albums)** → **Tracks**
 
-- **Library**: The root level with optional cover image (800×800) and README
-- **Collections**: Albums/folders containing tracks, each with a cover image (800×800) and README
+- **Library**: The root level with optional cover image and README
+- **Collections**: Albums/folders containing tracks, each with a cover image and README
 - **Tracks**: Individual audio files within collections
 
 Note: Collections and albums are the same thing - collections ARE albums.
@@ -134,7 +134,7 @@ ver": "cover.jpg",
 | `repository.owner`  | string      | Yes      | GitHub repository owner                               |
 | `repository.repo`   | string      | Yes      | GitHub repository name                                |
 | `repository.branch` | string      | Yes      | Branch name (typically "main")                        |
-| `cover`             | string      | No       | Relative path to library cover image (800×800 pixels) |
+| `cover`             | string      | No       | Relative path to library cover image                  |
 | `readme`            | string      | No       | Full markdown content of library README.md            |
 | `collections`       | arr (Album) |
 
@@ -145,26 +145,27 @@ Collections and albums are the same thing. Each collection is an album containin
 | `name`        | string | Yes      | Folder name (display name)                     |
 | `path`        | string | Yes      | Relative path from repository root             |
 | `readme`      | string | No       | Full markdown content of README.md if exists   |
-| `cover`       | string | No       | Relative path to cover image (800×800 pixels)  |
-| `zipM4A`      | string | No       | Relative path to M4A format ZIP file           |
-| `zipMP3`      | string | No       | Relative path to MP3 format ZIP file           |
+| `cover`       | string | No       | Relative path to cover image                   |
 | `playlistM4A` | string | No       | Relative path to M4A format M3U8 playlist file |
 | `playlistMP3` | string | No       | Relative path to MP3 format M3U8 playlist file |
+| `playlistWAV` | string | No       | Relative path to WAV format M3U8 playlist file |
 | `tracks`      | array  | Yes      | Array of track objects                         |
 
 ### Track Object
 
 Represents an individual track folder.
 
-| Field      | Type   | Required | Description                                  |
-| ---------- | ------ | -------- | -------------------------------------------- |
-| `name`     | string | Yes      | Folder name (display name)                   |
-| `path`     | string | Yes      | Relative path from repository root           |
-| `readme`   | string | No       | Full markdown content of README.md if exists |
-| `mp3`      | string | No       | Relative path to MP3 audio file              |
-| `m4a`      | string | No       | Relative path to M4A audio file              |
-| `playlist` | string | No       | Relative path to M3U8 playlist file          |
-| `lyrics`   | string | No       | Relative path to lyrics text file            |
+| Field         | Type   | Required | Description                                                |
+| ------------- | ------ | -------- | ---------------------------------------------------------- |
+| `name`        | string | Yes      | Folder name (unique identifier)                            |
+| `title`       | string | No       | Display title extracted from README.md (text between \_\_) |
+| `trackNumber` | number | No       | Track sequence number within the collection                |
+| `path`        | string | Yes      | Relative path from repository root                         |
+| `readme`      | string | No       | Full markdown content of README.md if exists               |
+| `mp3`         | string | No       | Relative path to MP3 audio file                            |
+| `m4a`         | string | No       | Relative path to M4A audio file                            |
+| `wav`         | string | No       | Relative path to WAV audio file (master source)            |
+| `lyrics`      | string | No       | Full text content of lyrics file                           |
 
 ## Important Notes
 
@@ -244,9 +245,8 @@ The `generatedAt` timestamp allows the app to:
 - Lyrics: Any name ending in `.txt`
 
 **Cover images:**
-- Library: `cover.jpg` at repository root (800×800 pixels)
-- Collections: `{collection-name}/cover.jpg` (800×800 pixels)
-- All images should be 800×800 pixels for optimal display and file size
+- Library: `cover.jpg` at repository root
+- Collections: `{collection-name}/cover.jpg`
 git add catalog.json
 git commit -m "Update catalog"
 git push
@@ -304,5 +304,4 @@ The `version` field allows for future schema changes. If the schema needs to be 
 - Update generation scripts and app code accordingly
 - Consider supporting multiple versions for backward compatibility
 
-✅ **Simple Structure**: Library → Collections (Albums) → Tracks  
-✅ **Optimized Images**: All cover images are 800×800 pixels
+✅ **Simple Structure**: Library → Collections (Albums) → Tracks
