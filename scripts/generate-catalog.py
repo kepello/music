@@ -193,11 +193,13 @@ def process_collection(collection_dir: Path, owner: str, repo: str) -> Optional[
     # Check if ZIP files exist locally
     zip_m4a_local = find_file_by_pattern(collection_dir, [f"{collection_name}-M4A.zip", f"{collection_name}-m4a.zip"])
     zip_mp3_local = find_file_by_pattern(collection_dir, [f"{collection_name}-MP3.zip", f"{collection_name}-mp3.zip"])
+    zip_wav_local = find_file_by_pattern(collection_dir, [f"{collection_name}-WAV.zip", f"{collection_name}-wav.zip"])
     
     # Generate GitHub release URLs for ZIP files
     release_base_url = f"https://github.com/{owner}/{repo}/releases/download/latest"
     zip_m4a = f"{release_base_url}/{collection_name}-M4A.zip" if zip_m4a_local else None
     zip_mp3 = f"{release_base_url}/{collection_name}-MP3.zip" if zip_mp3_local else None
+    zip_wav = f"{release_base_url}/{collection_name}-WAV.zip" if zip_wav_local else None
     
     playlist_m4a = find_file_by_pattern(collection_dir, [f"{collection_name}-M4A.m3u8", f"{collection_name}-m4a.m3u8"])
     playlist_mp3 = find_file_by_pattern(collection_dir, [f"{collection_name}-MP3.m3u8", f"{collection_name}-mp3.m3u8"])
@@ -210,6 +212,7 @@ def process_collection(collection_dir: Path, owner: str, repo: str) -> Optional[
         "cover": find_cover_image(collection_dir),
         "zipM4A": zip_m4a,
         "zipMP3": zip_mp3,
+        "zipWAV": zip_wav,
         "playlistM4A": playlist_m4a,
         "playlistMP3": playlist_mp3,
         "playlistWAV": playlist_wav,

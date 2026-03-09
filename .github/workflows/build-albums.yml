@@ -147,8 +147,10 @@ jobs:
             temp_dir=$(mktemp -d)
             m4a_collection_dir="$temp_dir/${collection}-M4A/$collection"
             mp3_collection_dir="$temp_dir/${collection}-MP3/$collection"
+            wav_collection_dir="$temp_dir/${collection}-WAV/$collection"
             mkdir -p "$m4a_collection_dir"
             mkdir -p "$mp3_collection_dir"
+            mkdir -p "$wav_collection_dir"
             
             # Create collection playlists
             collection_m4a_playlist="$collection_dir/${collection}-M4A.m3u8"
@@ -191,7 +193,7 @@ jobs:
                 cp "$m4a_file" "$m4a_collection_dir/$output_name"
                 m4a_count=$((m4a_count + 1))
                 
-                # Add to playlist with release URL
+                # Add to online playlist with release URL
                 m4a_filename=$(basename "$m4a_file")
                 m4a_url="https://github.com/$GITHUB_REPO/releases/download/latest/$m4a_filename"
                 echo "#EXTINF:-1,$song" >> "$collection_m4a_playlist"
@@ -204,7 +206,7 @@ jobs:
                 cp "$mp3_file" "$mp3_collection_dir/$output_name"
                 mp3_count=$((mp3_count + 1))
                 
-                # Add to playlist with release URL
+                # Add to online playlist with release URL
                 mp3_filename=$(basename "$mp3_file")
                 mp3_url="https://github.com/$GITHUB_REPO/releases/download/latest/$mp3_filename"
                 echo "#EXTINF:-1,$song" >> "$collection_mp3_playlist"
@@ -213,9 +215,12 @@ jobs:
               
               # Add WAV to playlist if available
               if [ -n "$wav_file" ] && [ -s "$wav_file" ]; then
+                # Copy WAV for ZIP package
+                output_name="${padded_num} - ${song}.wav"
+                cp "$wav_file" "$wav_collection_dir/$output_name"
                 wav_count=$((wav_count + 1))
                 
-                # Add to WAV playlist with URL
+                # Add to online WAV playlist with URL
                 wav_relative_path="${wav_file#./}"
                 wav_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$wav_relative_path"
                 echo "#EXTINF:-1,$song" >> "$collection_wav_playlist"
@@ -224,6 +229,58 @@ jobs:
               
               track_num=$((track_num + 1))
             done
+            
+            # Create local playlists for ZIP packages (with relative paths)
+            if [ $m4a_count -gt 1 ]; then
+              local_m4a_playlist="$m4a_collection_dir/${collection}.m3u8"
+              echo "#EXTM3U" > "$local_m4a_playlist"
+              echo "#EXTENC:UTF-8" >> "$local_m4a_playlist"
+              
+              # Add tracks with relative paths
+              for file in "$m4a_collection_dir"/*.m4a; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  # Extract song name from "01 - SongName.m4a"
+                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.m4a$//')
+                  echo "#EXTINF:-1,$songname" >> "$local_m4a_playlist"
+                  echo "$filename" >> "$local_m4a_playlist"
+                fi
+              done
+            fi
+            
+            if [ $mp3_count -gt 1 ]; then
+              local_mp3_playlist="$mp3_collection_dir/${collection}.m3u8"
+              echo "#EXTM3U" > "$local_mp3_playlist"
+              echo "#EXTENC:UTF-8" >> "$local_mp3_playlist"
+              
+              # Add tracks with relative paths
+              for file in "$mp3_collection_dir"/*.mp3; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  # Extract song name from "01 - SongName.mp3"
+                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.mp3$//')
+                  echo "#EXTINF:-1,$songname" >> "$local_mp3_playlist"
+                  echo "$filename" >> "$local_mp3_playlist"
+                fi
+              done
+            fi
+            
+            if [ $wav_count -gt 1 ]; then
+              local_wav_playlist="$wav_collection_dir/${collection}.m3u8"
+              echo "#EXTM3U" > "$local_wav_playlist"
+              echo "#EXTENC:UTF-8" >> "$local_wav_playlist"
+              
+              # Add tracks with relative paths
+              for file in "$wav_collection_dir"/*.wav; do
+                if [ -f "$file" ]; then
+                  filename=$(basename "$file")
+                  # Extract song name from "01 - SongName.wav"
+                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.wav$//')
+                  echo "#EXTINF:-1,$songname" >> "$local_wav_playlist"
+                  echo "$filename" >> "$local_wav_playlist"
+                fi
+              done
+            fi
             
             # Create ZIP files only if we have multiple tracks (collections)
             if [ $m4a_count -gt 1 ]; then
@@ -242,8 +299,11 @@ jobs:
               rm -f "$collection_mp3_playlist"
             fi
             
-            # Remove WAV playlist if not enough tracks
-            if [ $wav_count -le 1 ]; then
+            if [ $wav_count -gt 1 ]; then
+              output_zip="$collection_dir/${collection}-WAV.zip"
+              (cd "$temp_dir/${collection}-WAV" && zip -r - "$collection") > "$output_zip"
+              echo "Created: $output_zip ($wav_count tracks, $(du -h "$output_zip" | cut -f1))"
+            else
               rm -f "$collection_wav_playlist"
             fi
             
