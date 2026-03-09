@@ -53,14 +53,11 @@ jobs:
             base="${filename%.[wW][aA][vV]}"
             mp3_file="$dir/$base.mp3"
             m4a_file="$dir/$base.m4a"
-            
-            local converted=0
 
             # Convert to MP3 if it doesn't exist or WAV is newer
             if [ ! -f "$mp3_file" ] || [ "$wav_file" -nt "$mp3_file" ]; then
               echo "Converting: $wav_file -> $mp3_file"
               ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame=" || true
-              converted=1
             else
               echo "MP3 is up to date: $mp3_file"
             fi
@@ -69,12 +66,11 @@ jobs:
             if [ ! -f "$m4a_file" ] || [ "$wav_file" -nt "$m4a_file" ]; then
               echo "Converting: $wav_file -> $m4a_file"
               ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame=" || true
-              converted=1
             else
               echo "M4A is up to date: $m4a_file"
             fi
             
-            return $converted
+            return 0
           }
           
           # Export function for parallel
