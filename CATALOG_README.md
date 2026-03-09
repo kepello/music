@@ -56,63 +56,48 @@ ver": "cover.jpg",
 ```json
 {
   "version": "1.0",
-  "generatedAt": "2026-01-29T12:00:00Z",
+  "generatedAt": "2026-03-09T12:00:00Z",
   "repository": {
     "owner": "kepello",
     "repo": "music",
-    "ver": "cover.jpg",
+    "branch": "main"
+  },
+  "cover": "COVER.jpg",
   "readme": "# My Music Library\n\nWelcome to my music collection...",
   "collections": [
     {
-      "name": "Beethoven-Symphony-No-9",
-      "path": "Beethoven-Symphony-No-9",
-      "readme": "# Symphony No. 9\n\nBeethoven's final symphony...",
-      "cover": "Beethoven-Symphony-No-9/cover.jpg",
-      "zipM4A": "Beethoven-Symphony-No-9/Beethoven-Symphony-No-9-m4a.zip",
-      "zipMP3": "Beethoven-Symphony-No-9/Beethoven-Symphony-No-9-mp3.zip",
-      "playlistM4A": "Beethoven-Symphony-No-9/Beethoven-Symphony-No-9-m4a.m3u8",
-      "playlistMP3": "Beethoven-Symphony-No-9/Beethoven-Symphony-No-9-mp3.m3u8",
+      "name": "Overtones",
+      "path": "Overtones",
+      "readme": "# Overtones\n\nScripture-based songs...",
+      "cover": "Overtones/COVER.png",
+      "zipM4A": "https://github.com/kepello/music/releases/download/latest/Overtones-M4A.zip",
+      "zipMP3": "https://github.com/kepello/music/releases/download/latest/Overtones-MP3.zip",
+      "zipWAV": "https://github.com/kepello/music/releases/download/latest/Overtones-WAV.zip",
+      "playlistM4A": "Overtones/Overtones-M4A.m3u8",
+      "playlistMP3": "Overtones/Overtones-MP3.m3u8",
+      "playlistWAV": "Overtones/Overtones-WAV.m3u8",
       "tracks": [
         {
-          "name": "01-Allegro-ma-non-troppo",
-          "path": "Beethoven-Symphony-No-9/01-Allegro-ma-non-troppo",
-          "readme": "# Allegro ma non troppo, un poco maestoso\n\nThe first movement...",
-          "mp3": "Beethoven-Symphony-No-9/01-Allegro-ma-non-troppo/track.mp3",
-          "m4a": "Beethoven-Symphony-No-9/01-Allegro-ma-non-troppo/track.m4a",
-          "playlist": "Beethoven-Symphony-No-9/01-Allegro-ma-non-troppo/01-Allegro-ma-non-troppo.m3u8",
-          "lyrics": "Beethoven-Symphony-No-9/01-Allegro-ma-non-troppo/lyrics.txt"
+          "name": "Anxious",
+          "title": "Stop Being Anxious",
+          "trackNumber": 16,
+          "path": "Overtones/Anxious",
+          "readme": "_Stop Being Anxious_\n\nThis was one of the first songs...",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Anxious.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Anxious.m4a",
+          "wav": "Overtones/Anxious/Anxious.wav",
+          "lyrics": "Stop being anxious\n\nStop being anxious about your lives..."
         },
         {
-          "name": "02-Molto-vivace",
-          "path": "Beethoven-Symphony-No-9/02-Molto-vivace",
-          "readme": "# Molto vivace\n\nThe scherzo movement...",
-          "mp3": "Beethoven-Symphony-No-9/02-Molto-vivace/track.mp3",
-          "m4a": "Beethoven-Symphony-No-9/02-Molto-vivace/track.m4a",
-          "playlist": "Beethoven-Symphony-No-9/02-Molto-vivace/02-Molto-vivace.m3u8",
-          "lyrics": null
-        }
-      ]
-    },
-    {
-      "name": "Take-Five",
-      "path": "Take-Five",
-      "readme": "# Take Five\n\nDave Brubeck's iconic composition...",
-      "cover": "Take-Five/cover.jpg",
-      "zipM4A": "Take-Five/Take-Five-m4a.zip",
-      "zipMP3": "Take-Five/Take-Five-mp3.zip",
-      "playlistM4A": "Take-Five/Take-Five-m4a.m3u8",
-      "playlistMP3": "Take-Five/Take-Five-mp3.m3u8",
-      "tracks": [
-        {
-          "name": "Take-Five",
-          "path": "Take-Five/Take-Five",
-          "readme": "# Take Five\n\nIconic jazz composition...",
-          "mp3": "Take-Five/Take-Five/track.mp3",
-          "m4a": "Take-Five/Take-Five/track.m4a",
-          "playlist": "Take-Five-Five/track.mp3",
-          "m4a": "Jazz/Take-Five/track.m4a",
-          "playlist": "Jazz/Take-Five/Take-Five.m3u8",
-          "lyrics": null
+          "name": "Voice",
+          "title": "He Hears My Voice",
+          "trackNumber": 19,
+          "path": "Overtones/Voice",
+          "readme": "_He Hears My Voice_\n\nThis song was created as a gift...",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Voice.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Voice.m4a",
+          "wav": "Overtones/Voice/Voice.wav",
+          "lyrics": "I love Jehovah, for he hears my voice..."
         }
       ]
     }
@@ -122,9 +107,7 @@ ver": "cover.jpg",
 
 ## Data Structure Details
 
-### Top Level
-
-| Field | Typ (Library Root)
+### Library Object (Top Level)
 
 | Field               | Type        | Required | Description                                           |
 | ------------------- | ----------- | -------- | ----------------------------------------------------- |
@@ -136,46 +119,120 @@ ver": "cover.jpg",
 | `repository.branch` | string      | Yes      | Branch name (typically "main")                        |
 | `cover`             | string      | No       | Relative path to library cover image                  |
 | `readme`            | string      | No       | Full markdown content of library README.md            |
-| `collections`       | arr (Album) |
+| `collections`       | array       | Yes      | Array of collection (album) objects                   |
+
+### Collection Object
 
 Collections and albums are the same thing. Each collection is an album containing tracks.
 
-| Field         | Type   | Required | Description                                    |
-| ------------- | ------ | -------- | ---------------------------------------------- |
-| `name`        | string | Yes      | Folder name (display name)                     |
-| `path`        | string | Yes      | Relative path from repository root             |
-| `readme`      | string | No       | Full markdown content of README.md if exists   |
-| `cover`       | string | No       | Relative path to cover image                   |
-| `playlistM4A` | string | No       | Relative path to M4A format M3U8 playlist file |
-| `playlistMP3` | string | No       | Relative path to MP3 format M3U8 playlist file |
-| `playlistWAV` | string | No       | Relative path to WAV format M3U8 playlist file |
-| `tracks`      | array  | Yes      | Array of track objects                         |
+| Field         | Type   | Required | Description                                                                 |
+| ------------- | ------ | -------- | --------------------------------------------------------------------------- |
+| `name`        | string | Yes      | Folder name (display name)                                                  |
+| `path`        | string | Yes      | Relative path from repository root                                          |
+| `readme`      | string | No       | Full markdown content of README.md if exists                                |
+| `cover`       | string | No       | Relative path to cover image                                                |
+| `zipM4A`      | string | No       | Full URL to M4A album ZIP in GitHub Releases                                |
+| `zipMP3`      | string | No       | Full URL to MP3 album ZIP in GitHub Releases                                |
+| `zipWAV`      | string | No       | Full URL to WAV album ZIP in GitHub Releases                                |
+| `playlistM4A` | string | No       | Relative path to M4A format M3U8 playlist (for streaming)                   |
+| `playlistMP3` | string | No       | Relative path to MP3 format M3U8 playlist (for streaming)                   |
+| `playlistWAV` | string | No       | Relative path to WAV format M3U8 playlist (for streaming)                   |
+| `tracks`      | array  | Yes      | Array of track objects                                                      |
 
 ### Track Object
 
 Represents an individual track folder.
 
-| Field         | Type   | Required | Description                                                |
-| ------------- | ------ | -------- | ---------------------------------------------------------- |
-| `name`        | string | Yes      | Folder name (unique identifier)                            |
-| `title`       | string | No       | Display title extracted from README.md (text between \_\_) |
-| `trackNumber` | number | No       | Track sequence number within the collection                |
-| `path`        | string | Yes      | Relative path from repository root                         |
-| `readme`      | string | No       | Full markdown content of README.md if exists               |
-| `mp3`         | string | No       | Relative path to MP3 audio file                            |
-| `m4a`         | string | No       | Relative path to M4A audio file                            |
-| `wav`         | string | No       | Relative path to WAV audio file (master source)            |
-| `lyrics`      | string | No       | Full text content of lyrics file                           |
+| Field         | Type   | Required | Description                                                  |
+| ------------- | ------ | -------- | ------------------------------------------------------------ |
+| `name`        | string | Yes      | Folder name (unique identifier)                              |
+| `title`       | string | No       | Display title extracted from README.md (text between \_\_)   |
+| `trackNumber` | number | No       | Track sequence number within the collection                  |
+| `path`        | string | Yes      | Relative path from repository root                           |
+| `readme`      | string | No       | Full markdown content of README.md if exists                 |
+| `mp3`         | string | No       | Full URL to MP3 file in GitHub Releases                      |
+| `m4a`         | string | No       | Full URL to M4A file in GitHub Releases                      |
+| `wav`         | string | No       | Relative path to WAV file (master source, stored in git)     |
+| `lyrics`      | string | No       | Full text content of lyrics file                             |
+
+## Download Options
+
+The catalog supports multiple download strategies for different use cases:
+
+### Individual Track Downloads
+
+Users can download individual tracks in three formats:
+
+- **MP3**: `https://github.com/{owner}/{repo}/releases/download/latest/{trackName}.mp3`
+- **M4A**: `https://github.com/{owner}/{repo}/releases/download/latest/{trackName}.m4a`
+- **WAV**: `https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{relativePath}`
+
+MP3 and M4A files are distributed via GitHub Releases for fast CDN delivery. WAV files are stored in the git repository as master source files and accessed via raw.githubusercontent.com URLs.
+
+### Album ZIP Downloads
+
+Users can download complete albums as ZIP packages in three formats:
+
+- **MP3 ZIP**: Includes all MP3 tracks + local M3U8 playlist (for offline playback)
+- **M4A ZIP**: Includes all M4A tracks + local M3U8 playlist (for offline playback)
+- **WAV ZIP**: Includes all WAV tracks + local M3U8 playlist (for offline playback)
+
+Each ZIP package contains a playlist file with relative paths, allowing users to double-click the playlist after extraction to play the entire album in their preferred media player.
+
+ZIP URLs are available in the collection object:
+- `zipMP3`: Full URL to GitHub Releases
+- `zipM4A`: Full URL to GitHub Releases
+- `zipWAV`: Full URL to GitHub Releases
+
+### Streaming Playlists
+
+For streaming playback without downloading, the catalog includes M3U8 playlists:
+
+- **playlistMP3**: M3U8 file with URLs to MP3 files in GitHub Releases
+- **playlistM4A**: M3U8 file with URLs to M4A files in GitHub Releases
+- **playlistWAV**: M3U8 file with URLs to WAV files in git repository
+
+Playlist files are stored in the git repository at relative paths specified in the collection object.
+
+### URL Construction
+
+When implementing the player app, construct URLs based on file type:
+
+```typescript
+// MP3 and M4A - use GitHub Releases
+const mp3Url = track.mp3; // Already full URL
+const m4aUrl = track.m4a; // Already full URL
+
+// WAV - construct from repository info and relative path
+const wavUrl = `https://raw.githubusercontent.com/${catalog.repository.owner}/${catalog.repository.repo}/${catalog.repository.branch}/${track.wav}`;
+
+// ZIP packages - use directly
+const zipUrl = collection.zipMP3; // Already full URL
+
+// Streaming playlists - construct from repository info
+const playlistUrl = `https://raw.githubusercontent.com/${catalog.repository.owner}/${catalog.repository.repo}/${catalog.repository.branch}/${collection.playlistMP3}`;
+```
 
 ## Important Notes
 
-### 1. All Paths Are Relative
+### 1. URL Strategies
 
-All file paths in the catalog should be relative to the repository root. The app will construct full URLs using:
+The catalog uses different URL strategies based on file type:
 
+**MP3 and M4A files** - Full URLs to GitHub Releases:
+```
+https://github.com/{owner}/{repo}/releases/download/latest/{filename}
+```
+
+**WAV files and other repository content** - Relative paths, construct URLs with:
 ```
 https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}
 ```
+
+This separation allows:
+- Fast CDN delivery for converted files (MP3/M4A)
+- Version control for master source files (WAV)
+- Smaller git repository size (no binary commits for generated files)
 
 ### 2. Optional Fields
 
@@ -197,56 +254,52 @@ README content should be stored as the full markdown text, not as a file path. T
 
 ### 4. Hierarchical Structure
 
-The catalog supports two structures:
+The library uses a simple hierarchy:
 
-**Three-level hierarchy** (Collection → Album → Track):
+**Library → Collection (Album) → Track**
 
 ```
-Classical/
-  └─ Beethoven-Symphony-No-9/
-      └─ 01-Allegro-ma-non-troppo/
-```
-
-**Two-level hierarchy** (Collection → Track):
-
-````
-Jazz/
-  └─ Take-Five/
-```uses a simple three-level hierarchy:
-
-**Library → Collection (Album) → Track**:
-````
-
 Library (root)
-└─ Beethoven-Symphony-No-9/ (Collection/Album)
-└─ 01-Allegro-ma-non-troppo/ (Track)
-└─ 02-Molto-vivace/ (Track)
-
+└─ Overtones/ (Collection/Album)
+    ├─ Love/ (Track)
+    ├─ Anxious/ (Track)
+    └─ Voice/ (Track)
 ```
 
-Collections ARE albums. There is no nested album structure - each collection directly contains tracks
+Collections ARE albums. There is no nested album structure - each collection directly contains tracks.
 
-**Cover images:**
+### 5. Cover Images
+
+Cover images are flexible:
 - Must start with "cover" (case-insensitive)
 - Supported formats: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`
+- No size restrictions (previously required 800×800, now any reasonable size)
 
-### 6. Generation Timestamp
+### 6. File Naming Patterns
+
+The catalog generation script looks for files following these patterns:
+
+**Collection/Album-level files:**
+- ZIP: `{collection-name}-M4A.zip`, `{collection-name}-MP3.zip`, `{collection-name}-WAV.zip`
+- Playlists: `{collection-name}-M4A.m3u8`, `{collection-name}-MP3.m3u8`, `{collection-name}-WAV.m3u8`
+
+**Track-level files:**
+- Audio: `{track-name}.mp3`, `{track-name}.m4a`, `{track-name}.wav`
+- Lyrics: `LYRICS.txt`
+
+**Cover images:**
+- Library: `COVER.jpg` (or any cover.* at repository root)
+- Collections: `{collection-name}/COVER.jpg`
+
+### 7. Generation Timestamp
 
 The `generatedAt` timestamp allows the app to:
 - Display when the catalog was last updated
 - Optionally cache the catalog with an expiration policy
-- Collection/Album-level files:**
-- ZIP: `{collection-name}-m4a.zip` and `{collection-name}-mp3.zip`
-- Playlists: `{collection-name}-m4a.m3u8` and `{collection-name}-mp3.m3u8`
 
-**Track-level files:**
-- Audio: Any name ending in `.mp3` or `.m4a`
-- Playlist: `{track-name}.m3u8`
-- Lyrics: Any name ending in `.txt`
+## Catalog Generation
 
-**Cover images:**
-- Library: `cover.jpg` at repository root
-- Collections: `{collection-name}/cover.jpg`
+To generate or update the catalog, run:
 git add catalog.json
 git commit -m "Update catalog"
 git push
@@ -255,10 +308,20 @@ git push
 The generation script should:
 
 1. Traverse all directories in the repository
-2. Read README.md files and store their content
-3. Find all audio files, cover images, and supplementary files
-4. Build the JSON structure according to this schema
-5. Write to `catalog.json` in the repository root
+## Catalog Generation
+
+To generate or update the catalog, run:
+
+```bash
+```bashautomatically:
+
+1. Traverses all directories in the repository
+2. Reads README.md files and extracts friendly titles from `_Title_` format
+3. Finds all audio files, cover images, and lyrics files
+4. Constructs full URLs for MP3/M4A files in GitHub Releases
+5. Uses relative paths for WAV files in git repository
+6. Builds the JSON structure according to this schema
+7. Writes to `catalog.json` in the repository root
 
 ## Integration with App
 
@@ -277,12 +340,7 @@ const catalog = await response.json();
 
 3. Use the catalog data directly instead of making GitHub API calls
 
-4. Construct file URLs using the pattern:
-
-```typescript
-function getRawFileUrl(path: string): string {
-  return `https://raw.githubusercontent.com/${OWNER}/${REPO}/${BRANCH}/${path}`;
-}
+4. Construct file URLs based on file type (see Download Options section above)
 ```
 
 5. Optionally refresh the catalog periodically (e.g., once per session or once per day)
