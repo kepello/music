@@ -57,7 +57,7 @@ jobs:
             # Convert to MP3 if it doesn't exist or WAV is newer
             if [ ! -f "$mp3_file" ] || [ "$wav_file" -nt "$mp3_file" ]; then
               echo "Converting: $wav_file -> $mp3_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame=" || true
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame=" || true
             else
               echo "MP3 is up to date: $mp3_file"
             fi
@@ -65,7 +65,7 @@ jobs:
             # Convert to M4A if it doesn't exist or WAV is newer
             if [ ! -f "$m4a_file" ] || [ "$wav_file" -nt "$m4a_file" ]; then
               echo "Converting: $wav_file -> $m4a_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame=" || true
+              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame=" || true
             else
               echo "M4A is up to date: $m4a_file"
             fi
@@ -99,7 +99,7 @@ jobs:
             echo "Cleaning metadata: $mp3_file"
             temp_file="${mp3_file}.tmp"
             # Strip all metadata and embedded images, then add back artist and comment
-            ffmpeg -nostdin -i "$mp3_file" -map 0:a -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
+            ffmpeg -nostdin -i "$mp3_file" -map 0:a -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$mp3_file"
@@ -119,7 +119,7 @@ jobs:
             echo "Cleaning metadata: $m4a_file"
             temp_file="${m4a_file}.tmp"
             # Strip all metadata, then add back artist and comment
-            ffmpeg -nostdin -i "$m4a_file" -vn -map_metadata -1 -metadata artist="Carl Lance" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
+            ffmpeg -nostdin -i "$m4a_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
             
             if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
               mv "$temp_file" "$m4a_file"
