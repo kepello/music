@@ -1,285 +1,257 @@
 #!/usr/bin/env python3
 """
-Generate catalog.json for the music repository.
+Generate catalog.json (and the per-album M3U8 playlists) for the music repository.
 
-This script traverses the repository structure and generates a JSON catalog
-following the schema defined in CATALOG_README.md.
+Track discovery is driven by the *text* in the repo -- a song folder counts as a
+track when it holds a README.md or LYRICS.txt.  Audio never lives in git: the
+MP3/M4A are uploaded to the "latest" GitHub Release by scripts/sync-album.sh and
+referenced here by URL, and the WAV masters stay on Carl's machine under
+~/Music/Masters.
+
+Album ordering, descriptions and streaming links come from an ALBUM.json in each
+album folder, so adding an album never requires editing this file.
+See CATALOG_README.md for the schema.
 """
 
 import json
-import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
 
+RELEASE_TAG = "latest"
 
-# Track number mappings for collections (based on official sequencing)
-TRACK_NUMBERS = {
-    "Overtones": {
-        "Love": 1,
-        "Bow": 2,
-        "Dove": 3,
-        "Endurance": 4,
-        "Happy": 5,
-        "Hope": 6,
-        "Lamp": 7,
-        "Mercy": 8,
-        "Ordinary": 9,
-        "Overtone": 10,
-        "Paradise": 11,
-        "Planted": 12,
-        "Valley": 13,
-        "Where": 14,
-        "Zac": 15,
-        "Anxious": 16,
-        "Storm": 17,
-        "Exquisite": 18,
-        "Voice": 19
-    }
-}
+# A song folder is a track when it contains one of these.
+TRACK_MARKERS = ("README.md", "LYRICS.txt")
+
+COVER_EXTS = (".jpg", ".jpeg", ".png", ".gif", ".webp")
 
 
-def find_file_by_pattern(directory: Path, patterns: List[str]) -> Optional[str]:
-    """Find a file matching any of the given patterns (case-insensitive)."""
-    if not directory.is_dir():
+def read_text(path: Path) -> Optional[str]:
+    """Read a UTF-8 text file, returning None when absent or empty."""
+    try:
+        content = path.read_text(encoding="utf-8").strip()
+        return content or None
+    except (OSError, UnicodeDecodeError):
         return None
-    
-    for item in directory.iterdir():
-        if item.is_file():
-            item_lower = item.name.lower()
-            for pattern in patterns:
-                if item_lower == pattern.lower() or item_lower.startswith(pattern.lower()):
-                    # Return relative path from repo root
-                    return str(item.relative_to(repo_root))
-    return None
 
 
 def read_readme(directory: Path) -> Optional[str]:
-    """Read README.md content if it exists."""
-    readme_path = directory / "README.md"
-    if readme_path.is_file():
-        try:
-            with open(readme_path, 'r', encoding='utf-8') as f:
-                return f.read()
-        except Exception as e:
-            print(f"Warning: Could not read {readme_path}: {e}")
-    return None
-
-
-def extract_friendly_name(directory: Path) -> Optional[str]:
-    """Extract friendly name from first line of README.md (text between underscores)."""
-    readme_path = directory / "README.md"
-    if readme_path.is_file():
-        try:
-            with open(readme_path, 'r', encoding='utf-8') as f:
-                # Read first few lines to find title (skip empty lines)
-                for line in f:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    # Extract text between underscores: _Title Here_
-                    if line.startswith('_') and line.endswith('_'):
-                        return line[1:-1]
-                    # If we find a non-empty line that's not a title, stop looking
-                    break
-        except Exception as e:
-            print(f"Warning: Could not read {readme_path}: {e}")
-    return None
+    return read_text(directory / "README.md")
 
 
 def read_lyrics(directory: Path) -> Optional[str]:
-    """Read lyrics file content if it exists."""
-    if not directory.is_dir():
+    return read_text(directory / "LYRICS.txt")
+
+
+def read_album_meta(album_dir: Path) -> Dict:
+    """Load ALBUM.json if present. Missing file is fine -- everything is optional."""
+    meta_path = album_dir / "ALBUM.json"
+    if not meta_path.is_file():
+        return {}
+    try:
+        return json.loads(meta_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"  WARNING: could not read {meta_path.name}: {exc}", flush=True)
+        return {}
+
+
+def clean_links(links: Optional[Dict]) -> Optional[Dict]:
+    """Drop unfilled placeholders so the site never renders an empty link."""
+    if not isinstance(links, dict):
         return None
-    
-    for item in directory.iterdir():
-        if item.is_file() and item.suffix.lower() == '.txt' and 'lyric' in item.name.lower():
-            try:
-                with open(item, 'r', encoding='utf-8') as f:
-                    return f.read()
-            except Exception as e:
-                print(f"Warning: Could not read {item}: {e}")
+    filled = {k: v for k, v in links.items() if isinstance(v, str) and v.strip()}
+    return filled or None
+
+
+def extract_friendly_name(directory: Path) -> Optional[str]:
+    """Pull the display title from the first _underscored_ line of README.md."""
+    readme = read_readme(directory)
+    if not readme:
+        return None
+
+    for line in readme.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        if line.startswith("_") and line.endswith("_") and len(line) > 2:
+            return line[1:-1].strip()
+        # First non-empty line wasn't a title -- stop looking.
+        return None
     return None
 
 
-def find_cover_image(directory: Path) -> Optional[str]:
-    """Find cover image in directory."""
+def find_cover_image(directory: Path, repo_root: Path) -> Optional[str]:
+    """Find a cover*.{jpg,png,...} in the directory, as a repo-relative path."""
     if not directory.is_dir():
         return None
-    
-    for item in directory.iterdir():
-        if item.is_file():
-            item_lower = item.name.lower()
-            if item_lower.startswith('cover'):
-                ext = item.suffix.lower()
-                if ext in ['.jpg', '.jpeg', '.png', '.gif', '.webp']:
-                    return str(item.relative_to(repo_root))
+
+    for item in sorted(directory.iterdir()):
+        if item.is_file() and item.name.lower().startswith("cover"):
+            if item.suffix.lower() in COVER_EXTS:
+                return str(item.relative_to(repo_root))
     return None
 
 
-def process_track(track_dir: Path, collection_name: str = None, owner: str = "kepello", repo: str = "music") -> Optional[Dict]:
-    """Process a track directory and return track object."""
-    if not track_dir.is_dir():
-        return None
-    
-    # Check if this directory contains audio files
-    mp3_file = None
-    m4a_file = None
-    wav_file = None
-    
-    for item in track_dir.iterdir():
-        if item.is_file():
-            ext = item.suffix.lower()
-            if ext == '.mp3':
-                # MP3 files are in GitHub Releases, construct release URL
-                mp3_file = f"https://github.com/{owner}/{repo}/releases/download/latest/{item.name}"
-            elif ext == '.m4a':
-                # M4A files are in GitHub Releases, construct release URL
-                m4a_file = f"https://github.com/{owner}/{repo}/releases/download/latest/{item.name}"
-            elif ext == '.wav':
-                # WAV files are in git, use relative path
-                wav_file = str(item.relative_to(repo_root))
-    
-    # Must have at least one audio file to be considered a track
-    if not mp3_file and not m4a_file and not wav_file:
-        return None
-    
-    # Get track number if available
-    track_number = None
-    if collection_name and collection_name in TRACK_NUMBERS:
-        track_number = TRACK_NUMBERS[collection_name].get(track_dir.name)
-    
-    track = {
-        "name": track_dir.name,
+def is_track_dir(path: Path) -> bool:
+    if not path.is_dir() or path.name.startswith("."):
+        return False
+    return any((path / marker).is_file() for marker in TRACK_MARKERS)
+
+
+def release_url(owner: str, repo: str, filename: str) -> str:
+    return f"https://github.com/{owner}/{repo}/releases/download/{RELEASE_TAG}/{filename}"
+
+
+def process_track(
+    track_dir: Path,
+    repo_root: Path,
+    owner: str,
+    repo: str,
+    track_number: Optional[int],
+    streaming: Optional[Dict],
+) -> Dict:
+    """Build a track object. Audio URLs are derived from the folder name."""
+    name = track_dir.name
+
+    return {
+        "name": name,
         "title": extract_friendly_name(track_dir),
         "trackNumber": track_number,
         "path": str(track_dir.relative_to(repo_root)),
         "readme": read_readme(track_dir),
-        "cover": find_cover_image(track_dir),
-        "mp3": mp3_file,
-        "m4a": m4a_file,
-        "wav": wav_file,
-        "lyrics": read_lyrics(track_dir)
+        "cover": find_cover_image(track_dir, repo_root),
+        "mp3": release_url(owner, repo, f"{name}.mp3"),
+        "m4a": release_url(owner, repo, f"{name}.m4a"),
+        "lyrics": read_lyrics(track_dir),
+        "streaming": clean_links(streaming),
     }
-    
-    return track
 
 
-def process_collection(collection_dir: Path, owner: str, repo: str) -> Optional[Dict]:
-    """Process a collection/album directory and return collection object."""
-    if not collection_dir.is_dir() or collection_dir.name.startswith('.'):
+def order_tracks(track_dirs: List[Path], meta: Dict) -> List[Path]:
+    """
+    Order tracks by the "tracks" list in ALBUM.json.
+
+    Anything listed but missing from disk is reported and skipped; anything on
+    disk but unlisted is appended alphabetically so a new song still shows up
+    before its sequencing has been decided.
+    """
+    by_name = {d.name: d for d in track_dirs}
+    listed = meta.get("tracks") or []
+
+    ordered: List[Path] = []
+    for name in listed:
+        if name in by_name:
+            ordered.append(by_name.pop(name))
+        else:
+            print(f"  WARNING: ALBUM.json lists '{name}' but no such folder exists", flush=True)
+
+    leftovers = sorted(by_name.values(), key=lambda d: d.name)
+    for extra in leftovers:
+        print(f"  NOTE: '{extra.name}' is not sequenced in ALBUM.json (appended)", flush=True)
+    ordered.extend(leftovers)
+
+    return ordered
+
+
+def write_playlist(path: Path, entries: List[tuple]) -> None:
+    """Write an EXTM3U playlist of (display title, url) pairs."""
+    lines = ["#EXTM3U", "#EXTENC:UTF-8"]
+    for title, url in entries:
+        lines.append(f"#EXTINF:-1,{title}")
+        lines.append(url)
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) -> Optional[Dict]:
+    """Process an album folder into a collection object, writing its playlists."""
+    if not album_dir.is_dir() or album_dir.name.startswith("."):
         return None
-    
-    collection_name = collection_dir.name
-    tracks = []
-    
-    # Look for track subdirectories
-    for item in sorted(collection_dir.iterdir()):
-        if item.is_dir() and not item.name.startswith('.'):
-            track = process_track(item, collection_name, owner, repo)
-            if track:
-                tracks.append(track)
-    
-    # Sort tracks by track number if available, otherwise by name
-    tracks.sort(key=lambda t: (t.get('trackNumber') is None, t.get('trackNumber'), t['name']))
-    
-    # Must have tracks to be a valid collection
-    if not tracks:
+
+    album_name = album_dir.name
+    track_dirs = [d for d in sorted(album_dir.iterdir()) if is_track_dir(d)]
+    if not track_dirs:
         return None
-    
-    # Look for collection-level ZIP and playlist files
-    collection_name = collection_dir.name
-    
-    # Check if ZIP files exist locally
-    zip_m4a_local = find_file_by_pattern(collection_dir, [f"{collection_name}-M4A.zip", f"{collection_name}-m4a.zip"])
-    zip_mp3_local = find_file_by_pattern(collection_dir, [f"{collection_name}-MP3.zip", f"{collection_name}-mp3.zip"])
-    zip_wav_local = find_file_by_pattern(collection_dir, [f"{collection_name}-WAV.zip", f"{collection_name}-wav.zip"])
-    
-    # Generate GitHub release URLs for ZIP files
-    release_base_url = f"https://github.com/{owner}/{repo}/releases/download/latest"
-    zip_m4a = f"{release_base_url}/{collection_name}-M4A.zip" if zip_m4a_local else None
-    zip_mp3 = f"{release_base_url}/{collection_name}-MP3.zip" if zip_mp3_local else None
-    zip_wav = f"{release_base_url}/{collection_name}-WAV.zip" if zip_wav_local else None
-    
-    playlist_m4a = find_file_by_pattern(collection_dir, [f"{collection_name}-M4A.m3u8", f"{collection_name}-m4a.m3u8"])
-    playlist_mp3 = find_file_by_pattern(collection_dir, [f"{collection_name}-MP3.m3u8", f"{collection_name}-mp3.m3u8"])
-    playlist_wav = find_file_by_pattern(collection_dir, [f"{collection_name}-WAV.m3u8", f"{collection_name}-wav.m3u8"])
-    
-    collection = {
-        "name": collection_dir.name,
-        "path": str(collection_dir.relative_to(repo_root)),
-        "readme": read_readme(collection_dir),
-        "cover": find_cover_image(collection_dir),
-        "zipM4A": zip_m4a,
-        "zipMP3": zip_mp3,
-        "zipWAV": zip_wav,
-        "playlistM4A": playlist_m4a,
-        "playlistMP3": playlist_mp3,
-        "playlistWAV": playlist_wav,
-        "tracks": tracks
+
+    print(f"Collection: {album_name}", flush=True)
+    meta = read_album_meta(album_dir)
+    ordered = order_tracks(track_dirs, meta)
+
+    per_track_streaming = meta.get("trackStreaming") or {}
+    tracks = [
+        process_track(
+            track_dir,
+            repo_root,
+            owner,
+            repo,
+            track_number=index,
+            streaming=per_track_streaming.get(track_dir.name),
+        )
+        for index, track_dir in enumerate(ordered, start=1)
+    ]
+
+    # Playlists mirror the catalog order and point at the release assets.
+    playlist_m4a = album_dir / f"{album_name}-M4A.m3u8"
+    playlist_mp3 = album_dir / f"{album_name}-MP3.m3u8"
+    write_playlist(playlist_m4a, [(t["title"] or t["name"], t["m4a"]) for t in tracks])
+    write_playlist(playlist_mp3, [(t["title"] or t["name"], t["mp3"]) for t in tracks])
+
+    print(f"  {len(tracks)} tracks", flush=True)
+
+    return {
+        "name": album_name,
+        "title": meta.get("title") or album_name,
+        "path": str(album_dir.relative_to(repo_root)),
+        "readme": read_readme(album_dir),
+        "cover": find_cover_image(album_dir, repo_root),
+        "released": meta.get("released"),
+        "streaming": clean_links(meta.get("streaming")),
+        "playlistM4A": str(playlist_m4a.relative_to(repo_root)),
+        "playlistMP3": str(playlist_mp3.relative_to(repo_root)),
+        "tracks": tracks,
     }
-    
-    return collection
 
 
-def generate_catalog(repo_path: Path, owner: str = "kepello", repo: str = "music", branch: str = "main") -> Dict:
+def generate_catalog(repo_root: Path, owner: str = "kepello", repo: str = "music", branch: str = "main") -> Dict:
     """Generate the complete catalog structure."""
     collections = []
-    
-    # Iterate through top-level directories
-    for item in sorted(repo_path.iterdir()):
-        if item.is_dir() and not item.name.startswith('.') and item.name != '.git':
-            collection = process_collection(item, owner, repo)
+
+    for item in sorted(repo_root.iterdir()):
+        if item.is_dir() and not item.name.startswith(".") and item.name != "scripts":
+            collection = process_collection(item, repo_root, owner, repo)
             if collection:
                 collections.append(collection)
-    
-    # Look for library-level cover and readme at repository root
-    library_cover = find_cover_image(repo_path)
-    library_readme = read_readme(repo_path)
-    
-    catalog = {
-        "version": "1.0",
+
+    return {
+        "version": "1.1",
         "generatedAt": datetime.now(timezone.utc).isoformat(),
-        "repository": {
-            "owner": owner,
-            "repo": repo,
-            "branch": branch
-        },
-        "cover": library_cover,
-        "readme": library_readme,
-        "collections": collections
+        "repository": {"owner": owner, "repo": repo, "branch": branch},
+        "cover": find_cover_image(repo_root, repo_root),
+        "readme": read_readme(repo_root),
+        "collections": collections,
     }
-    
-    return catalog
 
 
 def clean_catalog(obj):
     """Remove None values from the catalog structure."""
     if isinstance(obj, dict):
         return {k: clean_catalog(v) for k, v in obj.items() if v is not None}
-    elif isinstance(obj, list):
+    if isinstance(obj, list):
         return [clean_catalog(item) for item in obj]
-    else:
-        return obj
+    return obj
 
 
 if __name__ == "__main__":
-    # Get repository root (script is in scripts/ subdirectory)
     repo_root = Path(__file__).parent.parent.resolve()
-    
+
     print(f"Generating catalog for repository at: {repo_root}", flush=True)
-    
-    # Generate catalog
-    catalog = generate_catalog(repo_root)
-    
-    # Clean up None values
-    catalog = clean_catalog(catalog)
-    
-    # Write to catalog.json
+
+    catalog = clean_catalog(generate_catalog(repo_root))
+
     catalog_path = repo_root / "catalog.json"
-    with open(catalog_path, 'w', encoding='utf-8') as f:
+    with open(catalog_path, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
-    
-    print(f"Catalog generated successfully!", flush=True)
-    print(f"Collections: {len(catalog['collections'])}", flush=True)
+
+    total = sum(len(c["tracks"]) for c in catalog["collections"])
+    print("Catalog generated successfully!", flush=True)
+    print(f"Collections: {len(catalog['collections'])}  Tracks: {total}", flush=True)
     print(f"Output: {catalog_path}", flush=True)

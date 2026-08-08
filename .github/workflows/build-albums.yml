@@ -1,20 +1,29 @@
-name: Build Album Packages
+name: Build Catalog
+
+# Audio is no longer built here. WAV masters live on Carl's machine under
+# ~/Music/Masters and scripts/sync-album.sh encodes + uploads the MP3/M4A to the
+# "latest" release. This workflow only regenerates catalog.json and the
+# playlists from the text in the repo, so it runs in seconds and can never
+# delete a release asset.
 
 on:
   push:
     paths:
-      - "**/*.wav"
-      - "**/*.mp3"
-      - "**/*.m4a"
       - "**/README.md"
       - "**/LYRICS.txt"
+      - "**/ALBUM.json"
+      - "**/COVER.*"
       - "scripts/generate-catalog.py"
       - ".github/workflows/build-albums.yml"
   workflow_dispatch:
-    # Manual trigger enabled
+
+# Two quick pushes shouldn't race each other into a rejected push.
+concurrency:
+  group: build-catalog
+  cancel-in-progress: false
 
 jobs:
-  build-albums:
+  build-catalog:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -22,406 +31,31 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 1
-
-      - name: Install FFmpeg and GNU Parallel
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y ffmpeg parallel
-
-      - name: Convert WAV to MP3 and M4A (Parallel)
-        run: |
-          #!/bin/bash
-          set -e
-
-          echo "Converting WAV files to MP3 and M4A in parallel (only if needed)..."
-          
-          # Define conversion function
-          convert_wav_file() {
-            wav_file="$1"
-            
-            # Skip if file doesn't exist or is empty
-            if [ ! -f "$wav_file" ] || [ ! -s "$wav_file" ]; then
-              echo "Skipping invalid file: $wav_file"
-              return 0
-            fi
-            
-            # Get directory and base name without extension
-            dir=$(dirname "$wav_file")
-            filename=$(basename "$wav_file")
-            base="${filename%.[wW][aA][vV]}"
-            mp3_file="$dir/$base.mp3"
-            m4a_file="$dir/$base.m4a"
-
-            # Convert to MP3 if it doesn't exist or WAV is newer
-            if [ ! -f "$mp3_file" ] || [ "$wav_file" -nt "$mp3_file" ]; then
-              echo "Converting: $wav_file -> $mp3_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a libmp3lame -q:a 0 "$mp3_file" 2>&1 | grep -v "^frame=" || true
-            else
-              echo "MP3 is up to date: $mp3_file"
-            fi
-
-            # Convert to M4A if it doesn't exist or WAV is newer
-            if [ ! -f "$m4a_file" ] || [ "$wav_file" -nt "$m4a_file" ]; then
-              echo "Converting: $wav_file -> $m4a_file"
-              ffmpeg -nostdin -i "$wav_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a aac -b:a 320k -movflags +faststart "$m4a_file" 2>&1 | grep -v "^frame=" || true
-            else
-              echo "M4A is up to date: $m4a_file"
-            fi
-            
-            return 0
-          }
-          
-          # Export function for parallel
-          export -f convert_wav_file
-          
-          # Find all WAV files and process in parallel (using number of CPU cores)
-          find . -type f \( -name "*.wav" -o -name "*.WAV" \) ! -path "*/.*" | \
-            parallel --will-cite --jobs 0 --line-buffer convert_wav_file {}
-          
-          echo "Parallel conversions completed."
-
-      - name: Clean metadata on all audio files (Parallel)
-        run: |
-          #!/bin/bash
-          set -e
-
-          echo "Cleaning metadata on all audio files in parallel..."
-
-          # Function to clean MP3 metadata
-          clean_mp3() {
-            mp3_file="$1"
-            if [ ! -f "$mp3_file" ] || [ ! -s "$mp3_file" ]; then
-              return 0
-            fi
-            
-            echo "Cleaning metadata: $mp3_file"
-            temp_file="${mp3_file}.tmp"
-            # Strip all metadata and embedded images, then add back artist and comment
-            ffmpeg -nostdin -i "$mp3_file" -map 0:a -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f mp3 "$temp_file" 2>&1 | grep -v "^frame=" || true
-            
-            if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
-              mv "$temp_file" "$mp3_file"
-            else
-              rm -f "$temp_file"
-              echo "Failed to clean: $mp3_file"
-            fi
-          }
-
-          # Function to clean M4A metadata
-          clean_m4a() {
-            m4a_file="$1"
-            if [ ! -f "$m4a_file" ] || [ ! -s "$m4a_file" ]; then
-              return 0
-            fi
-            
-            echo "Cleaning metadata: $m4a_file"
-            temp_file="${m4a_file}.tmp"
-            # Strip all metadata, then add back artist and comment
-            ffmpeg -nostdin -i "$m4a_file" -vn -map_metadata -1 -metadata artist="Kepello" -metadata comment="https://kepello.github.io/Musicplayer/" -c:a copy -f ipod -movflags +faststart "$temp_file" 2>&1 | grep -v "^frame=" || true
-            
-            if [ -f "$temp_file" ] && [ -s "$temp_file" ]; then
-              mv "$temp_file" "$m4a_file"
-            else
-              rm -f "$temp_file"
-              echo "Failed to clean: $m4a_file"
-            fi
-          }
-
-          # Export functions for parallel
-          export -f clean_mp3
-          export -f clean_m4a
-
-          # Process all MP3 files in parallel
-          find . -type f \( -name "*.mp3" -o -name "*.MP3" \) ! -path "*/.*" | \
-            parallel --will-cite --jobs 0 --line-buffer clean_mp3 {}
-
-          # Process all M4A files in parallel
-          find . -type f -name "*.m4a" ! -path "*/.*" | \
-            parallel --will-cite --jobs 0 --line-buffer clean_m4a {}
-
-          echo "Metadata cleaning completed."
-
-      - name: Build collection packages
-        run: |
-          #!/bin/bash
-          set -e
-
-          # Get repo info for URLs
-          GITHUB_REPO="${GITHUB_REPOSITORY:-owner/repo}"
-
-          # Process each collection
-          for collection_dir in */; do
-            collection=$(basename "$collection_dir")
-            
-            # Skip special directories
-            if [[ "$collection" == "node_modules" ]] || [[ "$collection" == ".git" ]] || [[ "$collection" == ".github" ]] || [[ "$collection" == ".venv" ]]; then
-              continue
-            fi
-            
-            echo "Processing collection: $collection"
-            
-            # Create temp directories for ZIP packages
-            temp_dir=$(mktemp -d)
-            m4a_collection_dir="$temp_dir/${collection}-M4A/$collection"
-            mp3_collection_dir="$temp_dir/${collection}-MP3/$collection"
-            wav_collection_dir="$temp_dir/${collection}-WAV/$collection"
-            mkdir -p "$m4a_collection_dir"
-            mkdir -p "$mp3_collection_dir"
-            mkdir -p "$wav_collection_dir"
-            
-            # Create collection playlists
-            collection_m4a_playlist="$collection_dir/${collection}-M4A.m3u8"
-            collection_mp3_playlist="$collection_dir/${collection}-MP3.m3u8"
-            collection_wav_playlist="$collection_dir/${collection}-WAV.m3u8"
-            
-            echo "#EXTM3U" > "$collection_m4a_playlist"
-            echo "#EXTENC:UTF-8" >> "$collection_m4a_playlist"
-            
-            echo "#EXTM3U" > "$collection_mp3_playlist"
-            echo "#EXTENC:UTF-8" >> "$collection_mp3_playlist"
-            
-            echo "#EXTM3U" > "$collection_wav_playlist"
-            echo "#EXTENC:UTF-8" >> "$collection_wav_playlist"
-            
-            # Track counts
-            m4a_count=0
-            mp3_count=0
-            wav_count=0
-            track_num=1
-            
-            # Process each song/album in the collection
-            for song_dir in "$collection_dir"*/; do
-              if [ ! -d "$song_dir" ]; then
-                continue
-              fi
-              
-              song=$(basename "$song_dir")
-              
-              # Find audio files
-              m4a_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.m4a" | head -n 1)
-              mp3_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.mp3" | head -n 1)
-              wav_file=$(find "$song_dir" -maxdepth 1 -type f -name "*.wav" -o -name "*.WAV" | head -n 1)
-              
-              padded_num=$(printf "%02d" $track_num)
-              
-              # Copy M4A if available
-              if [ -n "$m4a_file" ] && [ -s "$m4a_file" ]; then
-                output_name="${padded_num} - ${song}.m4a"
-                cp "$m4a_file" "$m4a_collection_dir/$output_name"
-                m4a_count=$((m4a_count + 1))
-                
-                # Add to online playlist with release URL
-                m4a_filename=$(basename "$m4a_file")
-                m4a_url="https://github.com/$GITHUB_REPO/releases/download/latest/$m4a_filename"
-                echo "#EXTINF:-1,$song" >> "$collection_m4a_playlist"
-                echo "$m4a_url" >> "$collection_m4a_playlist"
-              fi
-              
-              # Copy MP3 if available
-              if [ -n "$mp3_file" ] && [ -s "$mp3_file" ]; then
-                output_name="${padded_num} - ${song}.mp3"
-                cp "$mp3_file" "$mp3_collection_dir/$output_name"
-                mp3_count=$((mp3_count + 1))
-                
-                # Add to online playlist with release URL
-                mp3_filename=$(basename "$mp3_file")
-                mp3_url="https://github.com/$GITHUB_REPO/releases/download/latest/$mp3_filename"
-                echo "#EXTINF:-1,$song" >> "$collection_mp3_playlist"
-                echo "$mp3_url" >> "$collection_mp3_playlist"
-              fi
-              
-              # Add WAV to playlist if available
-              if [ -n "$wav_file" ] && [ -s "$wav_file" ]; then
-                # Copy WAV for ZIP package
-                output_name="${padded_num} - ${song}.wav"
-                cp "$wav_file" "$wav_collection_dir/$output_name"
-                wav_count=$((wav_count + 1))
-                
-                # Add to online WAV playlist with URL
-                wav_relative_path="${wav_file#./}"
-                wav_url="https://raw.githubusercontent.com/$GITHUB_REPO/main/$wav_relative_path"
-                echo "#EXTINF:-1,$song" >> "$collection_wav_playlist"
-                echo "$wav_url" >> "$collection_wav_playlist"
-              fi
-              
-              track_num=$((track_num + 1))
-            done
-            
-            # Create local playlists for ZIP packages (with relative paths)
-            if [ $m4a_count -gt 1 ]; then
-              local_m4a_playlist="$m4a_collection_dir/${collection}.m3u8"
-              echo "#EXTM3U" > "$local_m4a_playlist"
-              echo "#EXTENC:UTF-8" >> "$local_m4a_playlist"
-              
-              # Add tracks with relative paths
-              for file in "$m4a_collection_dir"/*.m4a; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  # Extract song name from "01 - SongName.m4a"
-                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.m4a$//')
-                  echo "#EXTINF:-1,$songname" >> "$local_m4a_playlist"
-                  echo "$filename" >> "$local_m4a_playlist"
-                fi
-              done
-            fi
-            
-            if [ $mp3_count -gt 1 ]; then
-              local_mp3_playlist="$mp3_collection_dir/${collection}.m3u8"
-              echo "#EXTM3U" > "$local_mp3_playlist"
-              echo "#EXTENC:UTF-8" >> "$local_mp3_playlist"
-              
-              # Add tracks with relative paths
-              for file in "$mp3_collection_dir"/*.mp3; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  # Extract song name from "01 - SongName.mp3"
-                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.mp3$//')
-                  echo "#EXTINF:-1,$songname" >> "$local_mp3_playlist"
-                  echo "$filename" >> "$local_mp3_playlist"
-                fi
-              done
-            fi
-            
-            if [ $wav_count -gt 1 ]; then
-              local_wav_playlist="$wav_collection_dir/${collection}.m3u8"
-              echo "#EXTM3U" > "$local_wav_playlist"
-              echo "#EXTENC:UTF-8" >> "$local_wav_playlist"
-              
-              # Add tracks with relative paths
-              for file in "$wav_collection_dir"/*.wav; do
-                if [ -f "$file" ]; then
-                  filename=$(basename "$file")
-                  # Extract song name from "01 - SongName.wav"
-                  songname=$(echo "$filename" | sed 's/^[0-9]* - //;s/\.wav$//')
-                  echo "#EXTINF:-1,$songname" >> "$local_wav_playlist"
-                  echo "$filename" >> "$local_wav_playlist"
-                fi
-              done
-            fi
-            
-            # Create ZIP files only if we have multiple tracks (collections)
-            if [ $m4a_count -gt 1 ]; then
-              output_zip="$collection_dir/${collection}-M4A.zip"
-              (cd "$temp_dir/${collection}-M4A" && zip -r - "$collection") > "$output_zip"
-              echo "Created: $output_zip ($m4a_count tracks, $(du -h "$output_zip" | cut -f1))"
-            else
-              rm -f "$collection_m4a_playlist"
-            fi
-            
-            if [ $mp3_count -gt 1 ]; then
-              output_zip="$collection_dir/${collection}-MP3.zip"
-              (cd "$temp_dir/${collection}-MP3" && zip -r - "$collection") > "$output_zip"
-              echo "Created: $output_zip ($mp3_count tracks, $(du -h "$output_zip" | cut -f1))"
-            else
-              rm -f "$collection_mp3_playlist"
-            fi
-            
-            if [ $wav_count -gt 1 ]; then
-              output_zip="$collection_dir/${collection}-WAV.zip"
-              (cd "$temp_dir/${collection}-WAV" && zip -r - "$collection") > "$output_zip"
-              echo "Created: $output_zip ($wav_count tracks, $(du -h "$output_zip" | cut -f1))"
-            else
-              rm -f "$collection_wav_playlist"
-            fi
-            
-            # Cleanup
-            rm -rf "$temp_dir"
-          done
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.12"
 
-      - name: Generate catalog.json
+      - name: Generate catalog.json and playlists
+        run: python3 scripts/generate-catalog.py
+
+      - name: Commit catalog and playlists
         run: |
-          echo "Generating catalog.json..."
-          python scripts/generate-catalog.py
-          echo "Catalog generation completed!"
-
-      - name: Upload album packages as artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: album-packages
-          path: |
-            **/*.zip
-            **/*.m3u8
-          retention-days: 90
-
-      - name: Create or Update Release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          #!/bin/bash
           set -e
-
-          RELEASE_TAG="latest"
-          RELEASE_NAME="Latest Album Packages"
-
-          # Check if release exists
-          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
-            echo "Release $RELEASE_TAG exists, deleting old assets..."
-            gh release delete "$RELEASE_TAG" --yes --cleanup-tag
-          fi
-
-          echo "Creating new release $RELEASE_TAG..."
-          gh release create "$RELEASE_TAG" \
-            --title "$RELEASE_NAME" \
-            --notes "Automatically generated album packages. Updated on $(date -u +'%Y-%m-%d %H:%M:%S UTC')" \
-            --latest
-
-          # Upload all ZIP files
-          echo "Uploading ZIP files..."
-          find . -name "*.zip" -type f ! -path "*/.*" | while read -r zip_file; do
-            if [ -f "$zip_file" ]; then
-              echo "Uploading: $zip_file"
-              gh release upload "$RELEASE_TAG" "$zip_file" --clobber
-            fi
-          done
-
-          # Upload all MP3 and M4A files individually
-          echo "Uploading individual MP3 files..."
-          find . -name "*.mp3" -type f ! -path "*/.*" | while read -r mp3_file; do
-            if [ -f "$mp3_file" ]; then
-              echo "Uploading: $mp3_file"
-              gh release upload "$RELEASE_TAG" "$mp3_file" --clobber
-            fi
-          done
-
-          echo "Uploading individual M4A files..."
-          find . -name "*.m4a" -type f ! -path "*/.*" | while read -r m4a_file; do
-            if [ -f "$m4a_file" ]; then
-              echo "Uploading: $m4a_file"
-              gh release upload "$RELEASE_TAG" "$m4a_file" --clobber
-            fi
-          done
-
-          echo "Release updated successfully!"
-
-      - name: Commit WAV playlists and catalog
-        run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add playlists and catalog (but NOT mp3/m4a/zip files)
-          find . -name "*.m3u8" | grep -v ".git" | xargs -r git add
-
-          # Add catalog.json if it exists
-          [ -f catalog.json ] && git add catalog.json || true
+          git add catalog.json
+          find . -name "*.m3u8" -not -path "./.git/*" -print0 | xargs -0 -r git add
 
           if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "Update catalog and playlists [skip ci]"
-            
-            # Pull with rebase before pushing to handle any race conditions
-            echo "Pulling latest changes before push..."
-            git pull --rebase origin main || {
-              echo "Failed to rebase, attempting to continue..."
-              git rebase --continue || git rebase --skip || true
-            }
-            
-            git push
+            echo "Catalog already up to date."
+            exit 0
           fi
+
+          git commit -m "Update catalog and playlists [skip ci]"
+
+          # Rebase onto anything that landed while we were building.
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"

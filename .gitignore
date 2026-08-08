@@ -1,6 +1,11 @@
 .DS_Store
 *.zip
 
-# Auto-generated audio files (kept only in releases)
+# No audio lives in git.
+#
+# WAV masters are kept on Carl's machine at ~/Music/Masters/<Album>/ and are the
+# source of truth. scripts/sync-album.sh encodes them to MP3/M4A and uploads
+# those to the "latest" GitHub Release, which is what catalog.json points at.
+*.wav
 *.mp3
 *.m4a
