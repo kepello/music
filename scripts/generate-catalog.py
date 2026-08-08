@@ -14,6 +14,7 @@ See CATALOG_README.md for the schema.
 """
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Optional
@@ -98,6 +99,22 @@ def is_track_dir(path: Path) -> bool:
     return any((path / marker).is_file() for marker in TRACK_MARKERS)
 
 
+def asset_slug(text: str) -> str:
+    """
+    Reduce a name to letters and digits only.
+
+    Release assets share one flat namespace, so audio is published as
+    <Album>-<Song>.<ext>: 'Cami' means one thing in Digressions and another in
+    Moved Me First. Stripping punctuation also sidesteps GitHub rewriting
+    spaces to dots in asset filenames, which would break these URLs.
+    """
+    return re.sub(r"[^A-Za-z0-9]+", "", text)
+
+
+def asset_name(album: str, song: str, ext: str) -> str:
+    return f"{asset_slug(album)}-{asset_slug(song)}.{ext}"
+
+
 def release_url(owner: str, repo: str, filename: str) -> str:
     return f"https://github.com/{owner}/{repo}/releases/download/{RELEASE_TAG}/{filename}"
 
@@ -107,6 +124,7 @@ def process_track(
     repo_root: Path,
     owner: str,
     repo: str,
+    album_name: str,
     track_number: Optional[int],
     streaming: Optional[Dict],
 ) -> Dict:
@@ -120,8 +138,8 @@ def process_track(
         "path": str(track_dir.relative_to(repo_root)),
         "readme": read_readme(track_dir),
         "cover": find_cover_image(track_dir, repo_root),
-        "mp3": release_url(owner, repo, f"{name}.mp3"),
-        "m4a": release_url(owner, repo, f"{name}.m4a"),
+        "mp3": release_url(owner, repo, asset_name(album_name, name, "mp3")),
+        "m4a": release_url(owner, repo, asset_name(album_name, name, "m4a")),
         "lyrics": read_lyrics(track_dir),
         "streaming": clean_links(streaming),
     }
@@ -172,8 +190,12 @@ def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) 
     if not track_dirs:
         return None
 
-    print(f"Collection: {album_name}", flush=True)
     meta = read_album_meta(album_dir)
+    if meta.get("draft"):
+        print(f"Collection: {album_name} -- SKIPPED (draft: not yet released)", flush=True)
+        return None
+
+    print(f"Collection: {album_name}", flush=True)
     ordered = order_tracks(track_dirs, meta)
 
     per_track_streaming = meta.get("trackStreaming") or {}
@@ -183,6 +205,7 @@ def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) 
             repo_root,
             owner,
             repo,
+            album_name,
             track_number=index,
             streaming=per_track_streaming.get(track_dir.name),
         )
@@ -200,6 +223,7 @@ def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) 
     return {
         "name": album_name,
         "title": meta.get("title") or album_name,
+        "artist": (meta.get("artist") or "").strip() or None,
         "path": str(album_dir.relative_to(repo_root)),
         "readme": read_readme(album_dir),
         "cover": find_cover_image(album_dir, repo_root),

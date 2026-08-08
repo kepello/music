@@ -1,0 +1,31 @@
+{
+  "title": "My Father",
+  "artist": "Kepello",
+  "released": "2026-08-19",
+  "streaming": {
+    "spotify": "",
+    "appleMusic": "",
+    "amazonMusic": ""
+  },
+  "tracks": [
+    "Heavenly",
+    "Replace",
+    "Critical1",
+    "Curse",
+    "ManDies",
+    "LessThanTheLeast1",
+    "Critical2",
+    "Promise",
+    "Pruning",
+    "Critical3",
+    "Tension",
+    "LessThanTheLeast2",
+    "TurnAway",
+    "Rafter",
+    "Reason",
+    "LessThanTheLeast3"
+  ],
+  "trackStreaming": {},
+  "draft": true,
+  "_comment": "Draft: submitted to CD Baby, releases 2026-08-19. Set draft to false (or delete the key) on release day and the album appears on the site."
+}

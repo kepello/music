@@ -6,7 +6,7 @@
     "appleMusic": "",
     "amazonMusic": ""
   },
-  "_comment": "Track order below is alphabetical - it was never sequenced. Reorder this list to match the official running order and the site follows.",
+  "_comment": "Site-only collection, never distributed. Several of these songs were re-recorded for the Moved Me First release under the name Carl Lance. Track order is alphabetical - it was never sequenced.",
   "tracks": [
     "Broken",
     "Buddy",
@@ -22,5 +22,6 @@
     "Shape",
     "Water"
   ],
-  "trackStreaming": {}
+  "trackStreaming": {},
+  "artist": "Kepello"
 }

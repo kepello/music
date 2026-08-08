@@ -23,8 +23,10 @@ Exit code is 0 when nothing needs attention, 1 otherwise, so it can gate a job.
 import argparse
 import json
 import os
+import re
 import subprocess
 import sys
+from datetime import date
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).parent.parent.resolve()
@@ -79,6 +81,7 @@ def collect():
         "missingStory": [], "missingLyrics": [], "missingAudio": [],
         "unsequenced": [], "danglingInAlbumJson": [],
         "missingLinks": [], "missingReleaseDate": [], "unpublishedAlbums": [],
+        "draftPastRelease": [],
     }
     assets = release_assets()
     findings["_assetsChecked"] = assets is not None
@@ -104,6 +107,12 @@ def collect():
         for missing in [n for n in listed if n not in names]:
             findings["danglingInAlbumJson"].append(f"{album.name}/{missing}")
 
+        # A draft whose release date has arrived is just an album nobody published.
+        if meta.get("draft"):
+            released = (meta.get("released") or "").strip()
+            if released and released <= date.today().isoformat():
+                findings["draftPastRelease"].append(f"{album.name} (released {released})")
+
         links = meta.get("streaming") or {}
         if not any((links.get(s) or "").strip() for s in SERVICES):
             findings["missingLinks"].append(album.name)
@@ -117,10 +126,12 @@ def collect():
             if is_stub_or_empty(song / "LYRICS.txt"):
                 findings["missingLyrics"].append(label)
             if assets is not None:
-                have = {f"{song.name}.mp3", f"{song.name}.m4a"} & assets
-                if len(have) < 2:
-                    absent = ", ".join(sorted({f"{song.name}.mp3", f"{song.name}.m4a"} - have))
-                    findings["missingAudio"].append(f"{label} ({absent})")
+                # Must match asset_slug() in generate-catalog.py.
+                base = f"{re.sub(r'[^A-Za-z0-9]+', '', album.name)}-{re.sub(r'[^A-Za-z0-9]+', '', song.name)}"
+                want = {f"{base}.mp3", f"{base}.m4a"}
+                absent = want - assets
+                if absent:
+                    findings["missingAudio"].append(f"{label} ({', '.join(sorted(absent))})")
 
     if MASTERS_DIR.is_dir():
         for d in sorted(MASTERS_DIR.iterdir()):
@@ -133,6 +144,8 @@ def collect():
 
 
 SECTIONS = [
+    ("draftPastRelease", "Albums still marked draft whose release date has passed",
+     "Set \"draft\": false in the album's ALBUM.json to put it on the site"),
     ("unpublishedAlbums", "Albums on your Mac that aren't on the site yet",
      "Run: ./scripts/sync-album.sh '<name>'"),
     ("missingAudio", "Songs with no audio in the release",

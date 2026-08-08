@@ -43,6 +43,11 @@ done
 say()  { printf '%s\n' "$*"; }
 run()  { if [ "$DRY_RUN" = 1 ]; then say "  [dry-run] $*"; else "$@"; fi; }
 
+# Release assets are one flat namespace, so audio is published as
+# <Album>-<Song>.<ext> with punctuation stripped. Must stay identical to
+# asset_slug() in generate-catalog.py or the catalog will point at 404s.
+slug() { printf '%s' "$1" | LC_ALL=C tr -cd 'A-Za-z0-9'; }
+
 for tool in ffmpeg gh; do
   command -v "$tool" >/dev/null 2>&1 || { echo "error: '$tool' is required but not installed" >&2; exit 1; }
 done
@@ -160,14 +165,15 @@ for album in "${ALBUMS[@]}"; do
     song="$(basename "${wav%.*}")"
     songs+=("$song")
 
-    mp3="$CACHE_DIR/$album/$song.mp3"
-    m4a="$CACHE_DIR/$album/$song.m4a"
+    asset="$(slug "$album")-$(slug "$song")"
+    mp3="$CACHE_DIR/$album/$asset.mp3"
+    m4a="$CACHE_DIR/$album/$asset.m4a"
 
     if encode_if_stale "$wav" "$mp3" -c:a libmp3lame -q:a 0; then
-      say "  encoded $song.mp3"; uploads+=("$mp3")
+      say "  encoded $asset.mp3"; uploads+=("$mp3")
     fi
     if encode_if_stale "$wav" "$m4a" -c:a aac -b:a 320k -movflags +faststart; then
-      say "  encoded $song.m4a"; uploads+=("$m4a")
+      say "  encoded $asset.m4a"; uploads+=("$m4a")
     fi
 
     scaffold_song "$album" "$song"
