@@ -1,0 +1,15 @@
+{
+  "title": "One More Thing",
+  "artist": "Carl Lance",
+  "distributed": false,
+  "_comment": "Start of the next personal album (Carl Lance). Not distributed yet. Track order is a guess - reorder to taste. Add \"released\", streaming links and \"distributed\": true once it ships.",
+  "tracks": [
+    "OneMoreThing",
+    "Clarity",
+    "Entropy",
+    "Everything",
+    "WeAreOne",
+    "TeleMan"
+  ],
+  "trackStreaming": {}
+}

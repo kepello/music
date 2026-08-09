@@ -1,6 +1,6 @@
 {
   "title": "Unreleased",
-  "_comment": "Songs that haven't been distributed. Anything here goes up as soon as the WAV exists; when a song makes it onto a release, move its folder into that album and drop it from this list.",
+  "_comment": "Songs not on any release, across both identities - Carl Lance for personal songs, Kepello for the spiritually leaning ones. No album-level artist here on purpose; move a song into the album it belongs to and it inherits that.",
   "tracks": [
     "Broken",
     "Buddy",
@@ -9,6 +9,5 @@
     "Rearranged"
   ],
   "trackStreaming": {},
-  "artist": "Kepello",
   "distributed": false
 }

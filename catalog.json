@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-09T01:50:27.680605+00:00",
+  "generatedAt": "2026-08-09T02:01:03.835026+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -344,6 +344,76 @@
       ]
     },
     {
+      "name": "OneMoreThing",
+      "title": "One More Thing",
+      "artist": "Carl Lance",
+      "path": "OneMoreThing",
+      "playlistM4A": "OneMoreThing/OneMoreThing-M4A.m3u8",
+      "playlistMP3": "OneMoreThing/OneMoreThing-MP3.m3u8",
+      "tracks": [
+        {
+          "name": "OneMoreThing",
+          "title": "One More Thing",
+          "trackNumber": 1,
+          "path": "OneMoreThing/OneMoreThing",
+          "readme": "_One More Thing_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-OneMoreThing.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-OneMoreThing.m4a",
+          "lyrics": "_One More Thing_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "Clarity",
+          "title": "Call That Clarity Trust",
+          "trackNumber": 2,
+          "path": "OneMoreThing/Clarity",
+          "readme": "_Call That Clarity Trust_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Clarity.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Clarity.m4a",
+          "lyrics": "_Call That Clarity Trust_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "Entropy",
+          "title": "Entropy's Handyman",
+          "trackNumber": 3,
+          "path": "OneMoreThing/Entropy",
+          "readme": "_Entropy's Handyman_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Entropy.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Entropy.m4a",
+          "lyrics": "_Entropy's Handyman_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "Everything",
+          "title": "Everything is falling",
+          "trackNumber": 4,
+          "path": "OneMoreThing/Everything",
+          "readme": "_Everything is falling_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Everything.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-Everything.m4a",
+          "lyrics": "_Everything is falling_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "WeAreOne",
+          "title": "We Are One",
+          "trackNumber": 5,
+          "path": "OneMoreThing/WeAreOne",
+          "readme": "_We Are One_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-WeAreOne.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-WeAreOne.m4a",
+          "lyrics": "_We Are One_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "TeleMan",
+          "title": "Who Knew I’m a Tele Man",
+          "trackNumber": 6,
+          "path": "OneMoreThing/TeleMan",
+          "readme": "_Who Knew I’m a Tele Man_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-TeleMan.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-TeleMan.m4a",
+          "lyrics": "_Who Knew I’m a Tele Man_\n\nTODO: paste the lyrics."
+        }
+      ]
+    },
+    {
       "name": "Overtones",
       "title": "Overtones",
       "artist": "Kepello",
@@ -549,7 +619,6 @@
     {
       "name": "Unreleased",
       "title": "Unreleased",
-      "artist": "Kepello",
       "path": "Unreleased",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nNot all music needs to point beyond itself. Some songs exist simply because they needed to—because a moment struck, a feeling surfaced, or a friend mattered enough to put into sound.\n\nThis collection spans the full range of that impulse. Some pieces are light and playful—the kind that make you smile or tap your foot without thinking. They grew out of small moments, noodling around, or just seeing what might happen. Others run deeper: songs born from grief, loss, and the kind of pain that forces you to find new ways to process what you're feeling. Still others come from friendship—written for friends, inspired by them, or shaped by the knowledge that shared troubles are easier to bear.  As Francis Bacon wrote, for those without true friends, \"the world is but a wilderness.\" \n\nNone of it follows a plan. Some tracks are polished; others are raw. Some carry weight; others float easily alongside everyday life. What they share is honesty: these songs weren't written for an audience or to fit a theme. They were written because they needed to exist.\n\nBut life isn't only about depth and difficulty—it's also about curiosity, accompaniment, and the quiet joy of letting sound move along with the day. This music lives in both places. It marks moments of learning how to let feelings out, how to celebrate friendship, and how to sit with whatever comes—whether that's grief, gratitude, or just the urge to see what a melody might do.\n\nThis is personal music. Some of it hurt to write. Some of it brought unexpected relief. All of it is simply what happened when emotions found a voice, and music did what I didn't always know it could do.",
       "cover": "Unreleased/COVER.jpg",
