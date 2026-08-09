@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-09T02:01:23.606895+00:00",
+  "generatedAt": "2026-08-09T14:22:19.302213+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -673,6 +673,16 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-Rearranged.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-Rearranged.m4a",
           "lyrics": "I’m patient.\nI’ll wait.\nI’ll wait.\n\nI’m patient — pace steady, don’t rush it.\nPressure around me, I don’t discuss it.\nGround gettin changed, rooms rearranged,\nStill I remain when the climate corrupted.\nDon’t chase noise, don’t raise tone,\nCalm in the storm when I stand alone.\nFeet stay planted, spine don’t fold,\nWon’t burn it down just to heat my soul.\n\nI’m tired of starting over,\nTired of the same old climb.\nEvery way forward gets colder,\nEvery reset steals time.\n\nI’m not meek — don’t confuse the calm.\nLet the work talk, let it prove the arm.\nWeight on shoulders, I’ve held it before,\nBack still straight at the bottom floor.\nFeels like reset — again, repeat,\nStill my bloodline don’t accept defeat.\nNot from zero, don’t erase my gain,\nProgress stays even in the rain.\n\nI’m tired of starting over,\nTired of the same old climb.\nEvery way forward gets colder,\nEvery reset steals time.\n\nNo badge needed, no stamped sign,\nIf it’s real, it aligns in time.\nNothing clear but I’m standing firm,\nFire don’t spread when the mind don’t burn.\nOne door open, one door sealed,\nBoth say “move” but neither yield.\nSo I wait — not weak, not slow,\nCalculated patience in control.\n\nI’m tired of starting over,\nTired of the same old climb.\nEvery way forward gets colder,\nEvery reset steals time.\n\nNo fear here — just measured pace,\nI let truth surface, I give it space.\nEvery border tests resolve,\nI don’t force doors — I evolve.\nKnow how to wait — that’s power stored,\nNot hesitation — that’s sharpened sword.\nIf it’s late, I won’t complain,\nWhen it’s mine, it’ll speak my name.\n\nI’m tired of starting over,\nTired of the same old climb.\nEvery way forward gets colder,\nEvery reset steals time.\n\nGround shift.\nStill stand.\nNo noise.\nNo bend.\nNot from zero.\nNot undone.\nStill patient.\nStill one.\n\nI’ll wait.\nI’ll wait.\nI’ll wait."
+        },
+        {
+          "name": "AskMeToFly",
+          "title": "You Don't Ask Me To Fly",
+          "trackNumber": 6,
+          "path": "Unreleased/AskMeToFly",
+          "readme": "_You Don't Ask Me To Fly_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.m4a",
+          "lyrics": "_You Don't Ask Me To Fly_\n\nTODO: paste the lyrics."
         }
       ]
     }
