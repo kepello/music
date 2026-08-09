@@ -1,0 +1,14 @@
+{
+  "title": "Unreleased",
+  "_comment": "Songs that haven't been distributed. Anything here goes up as soon as the WAV exists; when a song makes it onto a release, move its folder into that album and drop it from this list.",
+  "tracks": [
+    "Broken",
+    "Buddy",
+    "Jellybean",
+    "Line",
+    "Rearranged"
+  ],
+  "trackStreaming": {},
+  "artist": "Kepello",
+  "distributed": false
+}

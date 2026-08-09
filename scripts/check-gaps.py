@@ -113,11 +113,14 @@ def collect():
             if released and released <= date.today().isoformat():
                 findings["draftPastRelease"].append(f"{album.name} (released {released})")
 
-        links = meta.get("streaming") or {}
-        if not any((links.get(s) or "").strip() for s in SERVICES):
-            findings["missingLinks"].append(album.name)
-        if not (meta.get("released") or "").strip():
-            findings["missingReleaseDate"].append(album.name)
+        # A collection that was never distributed has no release date or store
+        # links to be missing, so don't nag about them forever.
+        if meta.get("distributed", True):
+            links = meta.get("streaming") or {}
+            if not any((links.get(s) or "").strip() for s in SERVICES):
+                findings["missingLinks"].append(album.name)
+            if not (meta.get("released") or "").strip():
+                findings["missingReleaseDate"].append(album.name)
 
         for song in songs:
             label = f"{album.name}/{song.name}"
