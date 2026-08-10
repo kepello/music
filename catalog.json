@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-09T14:22:28.044767+00:00",
+  "generatedAt": "2026-08-10T12:54:16.698457+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -683,6 +683,16 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.m4a",
           "lyrics": "_You Don't Ask Me To Fly_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "LessThanTheLeastEarly",
+          "title": "Less Than the Least",
+          "trackNumber": 7,
+          "path": "Unreleased/LessThanTheLeastEarly",
+          "readme": "_Less Than the Least_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-LessThanTheLeastEarly.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-LessThanTheLeastEarly.m4a",
+          "lyrics": "_Less Than the Least_\n\nTODO: paste the lyrics."
         }
       ]
     }
