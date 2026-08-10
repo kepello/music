@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-10T12:54:32.492996+00:00",
+  "generatedAt": "2026-08-10T16:35:41.642011+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -693,6 +693,16 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-LessThanTheLeastEarly.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-LessThanTheLeastEarly.m4a",
           "lyrics": "_Less Than the Least_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "JobEndured",
+          "title": "Job Endured",
+          "trackNumber": 8,
+          "path": "Unreleased/JobEndured",
+          "readme": "_Job Endured_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-JobEndured.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-JobEndured.m4a",
+          "lyrics": "_Job Endured_\n\nTODO: paste the lyrics."
         }
       ]
     }

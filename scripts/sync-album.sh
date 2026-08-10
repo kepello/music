@@ -161,26 +161,44 @@ for album in "${ALBUMS[@]}"; do
   songs=()
   uploads=()
 
-  while IFS= read -r wav; do
-    song="$(basename "${wav%.*}")"
+  while IFS= read -r master; do
+    song="$(basename "${master%.*}")"
     songs+=("$song")
 
     asset="$(slug "$album")-$(slug "$song")"
     mp3="$CACHE_DIR/$album/$asset.mp3"
     m4a="$CACHE_DIR/$album/$asset.m4a"
 
-    if encode_if_stale "$wav" "$mp3" -c:a libmp3lame -q:a 0; then
-      say "  encoded $asset.mp3"; uploads+=("$mp3")
-    fi
-    if encode_if_stale "$wav" "$m4a" -c:a aac -b:a 320k -movflags +faststart; then
-      say "  encoded $asset.m4a"; uploads+=("$m4a")
-    fi
+    case "$(printf '%s' "${master##*.}" | tr 'A-Z' 'a-z')" in
+      mp3)
+        # Master is already lossy. Copy the stream rather than re-encoding it,
+        # so publishing costs no further generation loss; only the M4A has to
+        # be transcoded, and it can be no better than its source.
+        if encode_if_stale "$master" "$mp3" -c:a copy; then
+          say "  copied  $asset.mp3 (lossy master, stream copied)"; uploads+=("$mp3")
+        fi
+        if encode_if_stale "$master" "$m4a" -c:a aac -b:a 256k -movflags +faststart; then
+          say "  encoded $asset.m4a (transcoded from MP3)"; uploads+=("$m4a")
+        fi
+        ;;
+      *)
+        if encode_if_stale "$master" "$mp3" -c:a libmp3lame -q:a 0; then
+          say "  encoded $asset.mp3"; uploads+=("$mp3")
+        fi
+        if encode_if_stale "$master" "$m4a" -c:a aac -b:a 320k -movflags +faststart; then
+          say "  encoded $asset.m4a"; uploads+=("$m4a")
+        fi
+        ;;
+    esac
 
     scaffold_song "$album" "$song"
-  done < <(find "$src" -maxdepth 1 -type f \( -iname '*.wav' \) | sort)
+    # A WAV always wins over an MP3 of the same song, so a later re-export
+    # silently upgrades the master without needing the MP3 deleted first.
+  done < <(find "$src" -maxdepth 1 -type f \( -iname '*.wav' -o -iname '*.mp3' \) | sort |
+           awk -F/ '{ n=$NF; sub(/\.[^.]*$/,"",n); if (!(n in seen) || $0 ~ /\.[wW][aA][vV]$/) { seen[n]=$0 } } END { for (k in seen) print seen[k] }' | sort)
 
   if [ ${#songs[@]} -eq 0 ]; then
-    say "  (no WAV files found)"
+    say "  (no WAV or MP3 masters found)"
     continue
   fi
 
