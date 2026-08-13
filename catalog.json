@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-13T01:59:52.580978+00:00",
+  "generatedAt": "2026-08-13T12:26:47.170582+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -16,6 +16,9 @@
       "path": "MovedMeFirst",
       "cover": "MovedMeFirst/COVER.jpeg",
       "released": "2026-04-20",
+      "streaming": {
+        "appleMusic": "https://music.apple.com/us/album/moved-me-first/1890574048"
+      },
       "playlistM4A": "MovedMeFirst/MovedMeFirst-M4A.m3u8",
       "playlistMP3": "MovedMeFirst/MovedMeFirst-MP3.m3u8",
       "tracks": [
@@ -421,6 +424,9 @@
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nI'm deeply moved by the beauty and depth of God's Word. For me, setting scripture to music helps it settle more firmly in my mind and heart—though I'm still learning how to do this well. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.\n\nPsalm 1 speaks of reading in an undertone — a quiet, continual meditation. These songs are my attempt to take that same meditation and give it voice. What begins inwardly becomes something spoken and sung — an overtone.",
       "cover": "Overtones/COVER.png",
       "released": "2026-03-09",
+      "streaming": {
+        "appleMusic": "https://music.apple.com/us/album/overtones/1885931791"
+      },
       "playlistM4A": "Overtones/Overtones-M4A.m3u8",
       "playlistMP3": "Overtones/Overtones-MP3.m3u8",
       "tracks": [
