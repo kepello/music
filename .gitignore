@@ -9,3 +9,6 @@
 *.wav
 *.mp3
 *.m4a
+
+# Encode-cache sidecars (live under ~/Music/Masters/.encoded, never in git)
+*.src-sha256

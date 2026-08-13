@@ -82,14 +82,26 @@ ensure_release() {
   fi
 }
 
-# encode <wav> <out> <codec-args...>
+# encode <master> <out> <codec-args...>
+#
+# Freshness is decided by the master's content hash, not its timestamp. An
+# mtime comparison silently skips the re-encode when a master is *replaced by an
+# older file* -- restoring an archived take, say -- and the site would go on
+# serving audio that no longer matches its master. The hash is recorded in a
+# sidecar next to the cached encode.
 encode_if_stale() {
-  local wav="$1" out="$2"; shift 2
-  if [ -f "$out" ] && [ "$out" -nt "$wav" ]; then
-    return 1   # already current
+  local master="$1" out="$2"; shift 2
+  local stamp="$out.src-sha256"
+  local now
+  now="$(shasum -a 256 "$master" | cut -d' ' -f1)"
+
+  if [ -f "$out" ] && [ -f "$stamp" ] && [ "$(cat "$stamp")" = "$now" ]; then
+    return 1   # encode was made from exactly this master
   fi
-  run ffmpeg -nostdin -loglevel error -y -i "$wav" -vn -map_metadata -1 \
+
+  run ffmpeg -nostdin -loglevel error -y -i "$master" -vn -map_metadata -1 \
     -metadata artist="$ARTIST" -metadata comment="$SITE_URL" "$@" "$out"
+  [ "$DRY_RUN" = 1 ] || printf '%s' "$now" > "$stamp"
   return 0
 }
 
