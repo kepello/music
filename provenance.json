@@ -1,0 +1,522 @@
+{
+  "songs": {
+    "MovedMeFirst/Cami": {
+      "audioMd5": "5dd6a7d5e2853613d6704f35fa118224",
+      "duration": 184.16,
+      "master": "Cami.wav",
+      "sampleRate": "44100",
+      "sha256": "41d2f8951182afe696704b786b46b5f8dab061fff7850b3ff100bb2410945c1a"
+    },
+    "MovedMeFirst/Conviction": {
+      "audioMd5": "512b03f754a3d8c363ba0adcec72a817",
+      "duration": 376.96,
+      "master": "Conviction.wav",
+      "sampleRate": "44100",
+      "sha256": "a9ce16f2c21aa044a997983a133422bbb2943c130e4197417a2356fa7a7b4acb"
+    },
+    "MovedMeFirst/KeyOfD": {
+      "audioMd5": "8e57174165721e5b26e50df482de668e",
+      "duration": 214.88,
+      "master": "KeyOfD.wav",
+      "sampleRate": "44100",
+      "sha256": "173dcc0f7d62471f30ed886b42a0d6366477e43567569dfa35673c654a5aa074"
+    },
+    "MovedMeFirst/LeftBrain": {
+      "audioMd5": "efa9baaf414049b7048ca1b83135bf6a",
+      "duration": 224.96,
+      "master": "LeftBrain.wav",
+      "sampleRate": "44100",
+      "sha256": "3006f9bbe324ba5deaccc8260818405476e0a1de357a740af781a9bdfb99443d"
+    },
+    "MovedMeFirst/MovedMeFirst2": {
+      "audioMd5": "150d3932786b93a1b2c219b24655511d",
+      "duration": 202.6,
+      "master": "MovedMeFirst2.wav",
+      "sampleRate": "44100",
+      "sha256": "40650680cc08a5f91b7d6df990a99c3124f80b3521c4d6d93c7511fdacec765a"
+    },
+    "MovedMeFirst/MusicMovedMeFirst1": {
+      "audioMd5": "50f3061f35c4ace2c29ec9a5e3f3cbd1",
+      "duration": 217.72,
+      "master": "MusicMovedMeFirst1.wav",
+      "sampleRate": "44100",
+      "sha256": "188aa0d3cd5e0d5dfb9a48325e8d294423bd65896b2cd51e0b93b2fa6962be51"
+    },
+    "MovedMeFirst/MusicMovedMeFirst3": {
+      "audioMd5": "11bd1783236ef11c53cea95f2dd3c082",
+      "duration": 177.6,
+      "master": "MusicMovedMeFirst3.wav",
+      "sampleRate": "44100",
+      "sha256": "2308e24a9904e999abfbdde9ef24424a93e437e96da174d9f5545f6f996cc485"
+    },
+    "MovedMeFirst/MusicMovedMeFirst4": {
+      "audioMd5": "8099fee811c3f9de3b7aabfc3f7c592b",
+      "duration": 201.36,
+      "master": "MusicMovedMeFirst4.wav",
+      "sampleRate": "44100",
+      "sha256": "83789c0175abbc8a0c2ebe18debf41bc0d06004617e45d7303f6833336e35bc6"
+    },
+    "MovedMeFirst/Patch": {
+      "audioMd5": "85208e4ee9efabff0bfffbcd3ffa4a31",
+      "duration": 164.12,
+      "master": "Patch.wav",
+      "sampleRate": "44100",
+      "sha256": "d88fbef666d295306628cb0c3cefd8aa612cda99339ed47c8ed7a48dd05d1832"
+    },
+    "MovedMeFirst/Patient": {
+      "audioMd5": "64061adf2fac103445a2fe1037a3c99b",
+      "duration": 162.08,
+      "master": "Patient.wav",
+      "sampleRate": "44100",
+      "sha256": "9b8857c8536f4a9fd539e5d2eacb1f23c45f954781f989ff9dfd415082a3f2ff"
+    },
+    "MovedMeFirst/Shape": {
+      "audioMd5": "ec08be49c234e5e4d27c8bd3a31fc2f0",
+      "duration": 209.24,
+      "master": "Shape.wav",
+      "sampleRate": "44100",
+      "sha256": "c5a7d55e81af63493e193c5c7df09434464d98397ad5cf00492db2b014407cee"
+    },
+    "MovedMeFirst/StillHears": {
+      "audioMd5": "1eea779407d10c1a672874c23a2cf98a",
+      "duration": 225.92,
+      "master": "StillHears.wav",
+      "sampleRate": "44100",
+      "sha256": "53bb2f3168b9ea02bbfdfd063ed9b7fb9fd82e0f103ccaabd2c957fbf27428f0"
+    },
+    "MovedMeFirst/SunGoesDown": {
+      "audioMd5": "1b1c32c0b3453a4343c6c5f6f1456dea",
+      "duration": 308.32,
+      "master": "SunGoesDown.wav",
+      "sampleRate": "44100",
+      "sha256": "0a54b074151d9fcb12dd16514a6b54815fa15cc4e86a552093838a387b961f26"
+    },
+    "MovedMeFirst/Water": {
+      "audioMd5": "e025747be0dce40565ad4a95dd7a216f",
+      "duration": 288.68,
+      "master": "Water.wav",
+      "sampleRate": "44100",
+      "sha256": "33eb40760586f015b5d6d3013e5a0fca172c0fd475c2c8730c53738eae6d12d4"
+    },
+    "MovedMeFirst/Words": {
+      "audioMd5": "b4197c379d2bd7edb068eeac511ef441",
+      "duration": 258.72,
+      "master": "Words.wav",
+      "sampleRate": "44100",
+      "sha256": "b1c852e2cf4ba7f7d232de40bf4f74085797b0dc698fd6f4f163ca63c1d4a637"
+    },
+    "MyFather/Critical1": {
+      "audioMd5": "5f048dff4a8cdcbe76d9500a166cb26f",
+      "duration": 263.08,
+      "master": "Critical1.wav",
+      "sampleRate": "44100",
+      "sha256": "5e476ec3b04347e451447cae7b9adc3e97fc2b2f9ad98086d1d5acb31259e1d3"
+    },
+    "MyFather/Critical2": {
+      "audioMd5": "51aa84affd9d8464b92c45917371d965",
+      "duration": 306.08,
+      "master": "Critical2.wav",
+      "sampleRate": "44100",
+      "sha256": "7bd49803b2ec99224bd01a39e345852a374c910b855e19a4fe903a2f67c9ced7",
+      "sunoCreated": "2026-08-04T11:05:49Z",
+      "sunoId": "6b2c177b-84a3-4d8d-aad1-77ae44032040"
+    },
+    "MyFather/Critical3": {
+      "audioMd5": "8d98d6f6967dde6985f9c206d064f872",
+      "duration": 273.0,
+      "master": "Critical3.wav",
+      "sampleRate": "44100",
+      "sha256": "9477be6a552fb54644eebc7e8b7357c8871d12104116f772208b6ade18d70b47",
+      "sunoCreated": "2026-08-04T11:06:53Z",
+      "sunoId": "cbda81d1-196e-488c-a8f0-5383f279e72d"
+    },
+    "MyFather/Curse": {
+      "audioMd5": "c48ba79472792b2d1c09024bbe43d574",
+      "duration": 259.92,
+      "master": "Curse.wav",
+      "sampleRate": "44100",
+      "sha256": "ce992e312f54b2da9c997ee0c7a2d46b9847ea23fe800d516a783a387302edd2"
+    },
+    "MyFather/Heavenly": {
+      "audioMd5": "f29d0f74ae80d6a081aacafff591b745",
+      "duration": 227.88,
+      "master": "Heavenly.wav",
+      "sampleRate": "44100",
+      "sha256": "65df848b8ae80fa8b18e68bf374a229bfe382b747e9d78d78dce7a97e82fa5c2",
+      "sunoCreated": "2026-08-04T12:57:07Z",
+      "sunoId": "05a2843a-c5db-4b68-b70b-5489734d7018"
+    },
+    "MyFather/LessThanTheLeast1": {
+      "audioMd5": "a6f97bdf2c82c30aadc6147c8e6b4d93",
+      "duration": 252.92,
+      "master": "LessThanTheLeast1.wav",
+      "sampleRate": "44100",
+      "sha256": "c62a0502458b038dc557af0f51637a241f2419bbb87457d60b7dc0cb83810598",
+      "sunoCreated": "2026-08-05T18:58:44Z",
+      "sunoId": "9488aa98-4c2b-4119-87cf-ad497c4b0792"
+    },
+    "MyFather/LessThanTheLeast2": {
+      "audioMd5": "20b51a4efad498a556fbfdad8ea98b57",
+      "duration": 297.52,
+      "master": "LessThanTheLeast2.wav",
+      "sampleRate": "44100",
+      "sha256": "68d0cb936881173edffabf0e7b79ce56315181f67e55e7cb63979edf26dd2db7",
+      "sunoCreated": "2026-08-04T11:46:01Z",
+      "sunoId": "859ae84f-5641-4aa2-be5e-11753b53730c"
+    },
+    "MyFather/LessThanTheLeast3": {
+      "audioMd5": "d1650cc882338520e8305fdb8b3bca39",
+      "duration": 218.96,
+      "master": "LessThanTheLeast3.wav",
+      "sampleRate": "44100",
+      "sha256": "b0bf5dec7a0dbad0a22427ff9a2a0ead2f81643f03e0269c01fd67bc99e3a08c",
+      "sunoCreated": "2026-08-04T11:23:40Z",
+      "sunoId": "68c61efd-af17-4ab9-9360-afe104270528"
+    },
+    "MyFather/ManDies": {
+      "audioMd5": "1fa6af46224377f774412794703b80ad",
+      "duration": 257.88,
+      "master": "ManDies.wav",
+      "sampleRate": "44100",
+      "sha256": "cd110d4a8c737f00f18f88549a433acf36d970ff36fbcda6ca4eed52f68afaa3",
+      "sunoCreated": "2026-08-04T13:06:02Z",
+      "sunoId": "6fa50674-0d17-411f-a465-123989290b54"
+    },
+    "MyFather/Promise": {
+      "audioMd5": "bbb57732c43c607fa48d1c23cca1c1c2",
+      "duration": 240.52,
+      "master": "Promise.wav",
+      "sampleRate": "44100",
+      "sha256": "c21fd57a344beb9c0a5949a0ad679dc0d3a0879a1f4adea19734005c0946b61c",
+      "sunoCreated": "2026-08-04T13:32:37Z",
+      "sunoId": "bf67dde7-4377-4d0c-9228-c5235f567d9d"
+    },
+    "MyFather/Pruning": {
+      "audioMd5": "9860186745ca2cdcec58bcd7a5e76478",
+      "duration": 245.84,
+      "master": "Pruning.wav",
+      "sampleRate": "44100",
+      "sha256": "af8b051e855f706591a208157f5c73d3834badb4c8a7c8325a6accc11139701c",
+      "sunoCreated": "2026-08-04T12:07:30Z",
+      "sunoId": "2b77b216-dde2-4cd9-9981-2970a5ed6d44"
+    },
+    "MyFather/Rafter": {
+      "audioMd5": "70d0616470ea5680d31ea597fc0f7d3e",
+      "duration": 178.8,
+      "master": "Rafter.wav",
+      "sampleRate": "44100",
+      "sha256": "6d12502093a92ae217937b1c84a5761f50bdc2e817f38992ffff53751fa4920f",
+      "sunoCreated": "2026-08-05T18:52:51Z",
+      "sunoId": "b31c6c07-15b4-44d1-b9af-a62f523aebd2"
+    },
+    "MyFather/Reason": {
+      "audioMd5": "ce92030a1f233fecb084ea6ff5fd432b",
+      "duration": 243.6,
+      "master": "Reason.wav",
+      "sampleRate": "44100",
+      "sha256": "2c9550b853817a588bbf37b5c136851257e247d674e065615f14c4a3f7a23f16",
+      "sunoCreated": "2026-08-04T11:47:35Z",
+      "sunoId": "27dd6498-6841-45d1-96b6-4d05c8bd0c01"
+    },
+    "MyFather/Replace": {
+      "audioMd5": "fdf2b8d6cfc4aee387791eabaf7c1754",
+      "duration": 239.08,
+      "master": "Replace.wav",
+      "sampleRate": "44100",
+      "sha256": "cb3253e278882be32940a5dc3eb860511227d6700a210bda98e6f7f7b3ffc73b",
+      "sunoCreated": "2026-08-04T10:55:40Z",
+      "sunoId": "a7a64fb2-a445-4450-8ede-a97c161a429c"
+    },
+    "MyFather/Tension": {
+      "audioMd5": "719e1d2cd02a1dc5ebee2c3a4dcba6be",
+      "duration": 294.08,
+      "master": "Tension.wav",
+      "sampleRate": "44100",
+      "sha256": "07547dd8803b75cb61ffed9eca7d5391fff9ddec38d89a46d02b19fdb0cb182c",
+      "sunoCreated": "2026-08-05T20:09:18Z",
+      "sunoId": "9bf5b4d1-8a33-4e35-88ea-87d3faec0a80"
+    },
+    "MyFather/TurnAway": {
+      "audioMd5": "15d0a81936c286cde22b6de6acef9e0c",
+      "duration": 182.0,
+      "master": "TurnAway.wav",
+      "sampleRate": "44100",
+      "sha256": "8d38db068cf5d89d151fce25b7779710f349c6ddae5250595bc81080c7adf846",
+      "sunoCreated": "2026-08-04T12:13:46Z",
+      "sunoId": "9e59395f-f2ef-4fc7-b5b2-d017c68bff64"
+    },
+    "OneMoreThing/Clarity": {
+      "audioMd5": "362f82299f7c4f8bf098425d883563a1",
+      "duration": 211.96,
+      "master": "Clarity.wav",
+      "sampleRate": "48000",
+      "sha256": "4d7a5a30fbcf149a79971d9f2cfdf7d92be2cc1f2778e4862d3669475380810a",
+      "sunoCreated": "2026-08-07T11:29:12Z",
+      "sunoId": "289a945b-e754-4ab4-b92f-24d9583367b5"
+    },
+    "OneMoreThing/Entropy": {
+      "audioMd5": "a276c1d6b239cdff23802e0fc57bfb73",
+      "duration": 237.36,
+      "master": "Entropy.wav",
+      "sampleRate": "48000",
+      "sha256": "2fb179a244e7d186ab81070b5a75d1742114f5d1f2066ab1f5b30364b0914ac8",
+      "sunoCreated": "2026-08-07T12:30:16Z",
+      "sunoId": "2d2c6461-88cc-40e7-a37f-fb1707ec71ab"
+    },
+    "OneMoreThing/Everything": {
+      "audioMd5": "22dbca87a0e78c589eb705e3d80a907d",
+      "duration": 319.12,
+      "master": "Everything.wav",
+      "sampleRate": "48000",
+      "sha256": "c328601568bf44702da3b45e84c1bfe951ce2435dc918612adf211504bb9ae4d",
+      "sunoCreated": "2026-08-04T11:01:53Z",
+      "sunoId": "2203760b-a19e-47dd-9a65-9d35976ee5b6"
+    },
+    "OneMoreThing/OneMoreThing": {
+      "audioMd5": "8dbd5c7aeda21ef7767a9920beb9cfa4",
+      "duration": 189.64,
+      "master": "OneMoreThing.wav",
+      "sampleRate": "48000",
+      "sha256": "8df2a3bbd81d64a58a3203d082b65014233838859798e3cd49347683924f531e",
+      "sunoCreated": "2026-08-09T12:31:49Z",
+      "sunoId": "9835c61a-d478-45f2-a2c7-4f2a2ece2c91"
+    },
+    "OneMoreThing/TeleMan": {
+      "audioMd5": "f3a6a4b98453521f1ed3058a1e06be45",
+      "duration": 222.72,
+      "master": "TeleMan.wav",
+      "sampleRate": "48000",
+      "sha256": "c17795d10851534f70f4d13ab6a6e0a5a7b8bb21a4110d79a9ae3a944b449021",
+      "sunoCreated": "2026-08-04T13:26:07Z",
+      "sunoId": "19c45ee1-9362-40a5-b1d1-edccf493f5e9"
+    },
+    "OneMoreThing/WeAreOne": {
+      "audioMd5": "f817aac9fe608f973cf2b6aa4dfa9b2d",
+      "duration": 180.88,
+      "master": "WeAreOne.wav",
+      "sampleRate": "48000",
+      "sha256": "f4b15489c4b7f99ad3c745720a420ca643d0812cd3898370d580a6e6575c8119",
+      "sunoCreated": "2026-08-04T12:19:10Z",
+      "sunoId": "efd40ff2-8c83-4af7-9ce6-977d28a37986"
+    },
+    "Overtones/Anxious": {
+      "audioMd5": "4f9d5f4b4604b90e83f0cf8192d45deb",
+      "duration": 185.08,
+      "master": "Anxious.wav",
+      "sampleRate": "44100",
+      "sha256": "d18638e22e73e0593155bb4a9bb1e14966d88a23424c3592a7126165a5af30d5"
+    },
+    "Overtones/Bow": {
+      "audioMd5": "b6073d620bfa33b8ddde1ff03c881705",
+      "duration": 312.68,
+      "master": "Bow.wav",
+      "sampleRate": "44100",
+      "sha256": "f504eef1f16a03596f5048df2ed49963228af2294b0a2461221022ff3cc179a3"
+    },
+    "Overtones/Dove": {
+      "audioMd5": "321fb4dbc8fac1e236ea690a3f90a053",
+      "duration": 211.72,
+      "master": "Dove.wav",
+      "sampleRate": "44100",
+      "sha256": "c8da8ac54e0baa0429b433027a65005d47d9355889b1305838a74fa3f3da203c"
+    },
+    "Overtones/Endurance": {
+      "audioMd5": "9e727dfaf7f1e35f140e2edb731bd457",
+      "duration": 227.4,
+      "master": "Endurance.wav",
+      "sampleRate": "44100",
+      "sha256": "35657ff473e56e2468e021bd4550a7d8734a3d19b7d3139f40782b0a5d69c8f9"
+    },
+    "Overtones/Exquisite": {
+      "audioMd5": "9f8bac067db52996b994269d6c118afd",
+      "duration": 246.84,
+      "master": "Exquisite.wav",
+      "sampleRate": "44100",
+      "sha256": "50c245a72d850a95572332042fec91a618164db77eb744d84ccf65acec28d415"
+    },
+    "Overtones/Happy": {
+      "audioMd5": "c497bc1cafbcec0ba95708aca680ed4e",
+      "duration": 191.88,
+      "master": "Happy.wav",
+      "sampleRate": "44100",
+      "sha256": "2042794bfeeb533782dbabb429f53479f329c49f89ce4b903eaed88034f05640"
+    },
+    "Overtones/Hope": {
+      "audioMd5": "a35d3ea843930ac8609831381c383819",
+      "duration": 243.12,
+      "master": "Hope.wav",
+      "sampleRate": "44100",
+      "sha256": "8bc267b0bd8bb575e14c36d0a382843a421e6010e467505c753bd426b36e86c0"
+    },
+    "Overtones/Lamp": {
+      "audioMd5": "105b3c5a66335ab172d1eb19967ea597",
+      "duration": 209.4,
+      "master": "Lamp.wav",
+      "sampleRate": "44100",
+      "sha256": "33e9555539da4384321c6f28376e9ddc8479b2817227578f1a37f96f4eeb4d2a"
+    },
+    "Overtones/Love": {
+      "audioMd5": "c2206faf8cb8fd5572766e415b474307",
+      "duration": 294.8,
+      "master": "Love.wav",
+      "sampleRate": "44100",
+      "sha256": "45d1141b6676812d6113a3895d20b2391907c696b1dffe700a435d0c87c7e5ca"
+    },
+    "Overtones/Mercy": {
+      "audioMd5": "09086b05b48595f3b2bfa341efa0a69b",
+      "duration": 364.96,
+      "master": "Mercy.wav",
+      "sampleRate": "44100",
+      "sha256": "febc191505d9d91eab82d1b1c66b348e3423a45428a148e8e2a43ce9d694f00f"
+    },
+    "Overtones/Ordinary": {
+      "audioMd5": "b2646d43bf5896c4b834dd4da2a00107",
+      "duration": 329.96,
+      "master": "Ordinary.wav",
+      "sampleRate": "44100",
+      "sha256": "7d89f15194419bfd0d94d161b14434c6cecdb80a6d237e8b3a18d3028f5a67a1"
+    },
+    "Overtones/Overtone": {
+      "audioMd5": "3ca5c67a3ac0c4b9dc462ffaabc831cb",
+      "duration": 294.32,
+      "master": "Overtone.wav",
+      "sampleRate": "44100",
+      "sha256": "95c6c5e1d6e0b5e9ccd3767c0e7af1c8b95a53fda6d174131cdda3c32d4b45cd"
+    },
+    "Overtones/Paradise": {
+      "audioMd5": "bd2a0251a392961d122d18afbbfde013",
+      "duration": 253.28,
+      "master": "Paradise.wav",
+      "sampleRate": "44100",
+      "sha256": "6ed0915108826e6abedd6875a9c52f0a1dca204cbb4abbd87039b8a9392e4e2b"
+    },
+    "Overtones/Planted": {
+      "audioMd5": "44e0f89796554bfb4093adc110142ad9",
+      "duration": 257.8,
+      "master": "Planted.wav",
+      "sampleRate": "44100",
+      "sha256": "47d8b6b31fdf0855ab5cdb9002fbb322f7ec28866934dd61e265842997b80d53"
+    },
+    "Overtones/Storm": {
+      "audioMd5": "b9fcd5daef73d47c1a0044d638a50e06",
+      "duration": 248.32,
+      "master": "Storm.wav",
+      "sampleRate": "44100",
+      "sha256": "b69279b0d3257b3157cc57b9bfee713ae884cb04de7d4d3aa54976ab1f1128dc"
+    },
+    "Overtones/Valley": {
+      "audioMd5": "1088d0466682ef96ce3df7284c5135ac",
+      "duration": 304.48,
+      "master": "Valley.wav",
+      "sampleRate": "44100",
+      "sha256": "6c5f8f8cdf7764a0e5d4a8b52f79cac1a2fadd8cfdb2a2f6e59ecffb23511883"
+    },
+    "Overtones/Voice": {
+      "audioMd5": "047c44cbe4cf9b8de649ac10f073a540",
+      "duration": 197.92,
+      "master": "Voice.wav",
+      "sampleRate": "44100",
+      "sha256": "f1b2e3b4a32ff2a38611f9ce125c7bd7f67f6779a5cd37c8cb3f8c5b86ab2ab4"
+    },
+    "Overtones/Where": {
+      "audioMd5": "7900d6bd5f8d47e30377ca6f44d8d86a",
+      "duration": 232.32,
+      "master": "Where.wav",
+      "sampleRate": "44100",
+      "sha256": "8ee120bf6170cd8b72ae95bd6aada386bb1f9541d28d437411bcbab9c15745f2"
+    },
+    "Overtones/Zac": {
+      "audioMd5": "08b0e5df94f9a5d31ea31b472264e6a0",
+      "duration": 206.12,
+      "master": "Zac.wav",
+      "sampleRate": "44100",
+      "sha256": "b7aff721e4b6ce94b0f53dd98f93c78cbf730952e3f07e0d2833209824752185"
+    },
+    "Unreleased/AirCompressor": {
+      "audioMd5": "f8d5960e30c5f5d0699336ef145b3b80",
+      "duration": 260.84,
+      "master": "AirCompressor.wav",
+      "sampleRate": "48000",
+      "sha256": "e1db16221f71880396fa9a3981889c22ff7c8aa3e707ec4aff8e97fa1e522a88",
+      "sunoCreated": "2026-08-10T16:56:37Z",
+      "sunoId": "e37f2e43-255e-48a3-aa9a-670e39e0d5f0"
+    },
+    "Unreleased/AskMeToFly": {
+      "audioMd5": "40c3df6dcc99ad48550c7486b1350e05",
+      "duration": 228.96,
+      "master": "AskMeToFly.wav",
+      "sampleRate": "48000",
+      "sha256": "9e866be8a592a41983fb45000bf77481108969ce3ec8ba667e69ee56ca8cdc14",
+      "sunoCreated": "2026-08-06T00:25:34Z",
+      "sunoId": "5e2dcd8a-f7b1-4ac0-8cfe-1c28314dc1a0"
+    },
+    "Unreleased/Broken": {
+      "audioMd5": "34eace5e364cf8fbee3b90671bc17c64",
+      "duration": 292.96,
+      "master": "Broken.wav",
+      "sampleRate": "44100",
+      "sha256": "eb62ba9037cc282aa86e88c3844223620f6d1a7419b17f51ae345863480e1879"
+    },
+    "Unreleased/Buddy": {
+      "audioMd5": "249969aaf2a70df4e761cad114c069e0",
+      "duration": 209.84,
+      "master": "Buddy.wav",
+      "sampleRate": "48000",
+      "sha256": "d44181287ff153677732043cd1914c006ac0c98e2899dc01bcf5a9ec93b7d235",
+      "sunoCreated": "2026-03-09T11:25:11Z",
+      "sunoId": "e42f4ad5-560f-40a2-8aa5-b89fc1bfba02"
+    },
+    "Unreleased/Jellybean": {
+      "audioMd5": "797808f9fb86c9d9f9e3796cf8f9e49d",
+      "duration": 177.28,
+      "master": "Jellybean.wav",
+      "sampleRate": "48000",
+      "sha256": "5e5365c5dd3b21733d98e7510a35152a8ef51dde23565ca76b6af7e1f98611b5"
+    },
+    "Unreleased/LessThanTheLeastEarly": {
+      "audioMd5": "a2613786709fb445d0d3c139528675d4",
+      "duration": 227.52,
+      "master": "LessThanTheLeastEarly.wav",
+      "sampleRate": "48000",
+      "sha256": "3a039481c029f52188e1fd4f8f2a098ba194db4eed4db268504fd2857a61fd95",
+      "sunoCreated": "2026-05-10T05:29:27Z",
+      "sunoId": "d5f5d425-070b-4bc1-8d2a-a0927fad7bd4"
+    },
+    "Unreleased/Line": {
+      "audioMd5": "9475b11ddae794a2978ed3138ec1f603",
+      "duration": 258.72,
+      "master": "Line.wav",
+      "sampleRate": "48000",
+      "sha256": "a395fa5babec5498d3d33ee3b4119faaf28d73783c60f59851baddfc2522e233",
+      "sunoCreated": "2026-03-09T11:40:48Z",
+      "sunoId": "97f77f0c-00a2-4494-b1f5-e849cb896401"
+    },
+    "Unreleased/MyFather": {
+      "audioMd5": "b18a1403d841024251f000f0c78d9031",
+      "duration": 298.48,
+      "master": "MyFather.wav",
+      "sampleRate": "48000",
+      "sha256": "e617b6b3d2a06fa3bc7c503590c31a19d099775db0449a5c1e93f3da5c4d4b17",
+      "sunoCreated": "2026-05-16T12:39:01Z",
+      "sunoId": "7ef45137-8f19-4dd8-9cbc-752e315bff2b"
+    },
+    "Unreleased/OurStrength": {
+      "audioMd5": "1cacc8b2890770cb4888897899d8a859",
+      "duration": 213.08,
+      "master": "OurStrength.wav",
+      "sampleRate": "48000",
+      "sha256": "1989b287e5e9b29ea4338ed6f545427b2c70029f47fc3ca39e5af432a755ece6",
+      "sunoCreated": "2026-08-13T01:50:00Z",
+      "sunoId": "f51a407c-0cce-4279-b485-7eb51a5fde60"
+    },
+    "Unreleased/Rearranged": {
+      "audioMd5": "1fc70ecb82674d61dade9ae512c863b9",
+      "duration": 162.08,
+      "master": "Rearranged.wav",
+      "sampleRate": "48000",
+      "sha256": "4fcdf8be9aba4d070811f9dfc64462329b090c4aa08447af915cd30af596c9f5",
+      "sunoCreated": "2026-03-09T12:08:05Z",
+      "sunoId": "0228769f-1592-47ca-b378-1beb518fbb5e"
+    }
+  }
+}
