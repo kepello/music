@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-10T16:35:56.809228+00:00",
+  "generatedAt": "2026-08-13T01:47:58.848714+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -703,6 +703,16 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-JobEndured.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-JobEndured.m4a",
           "lyrics": "_Job Endured_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "AirCompressor",
+          "title": "Sleeping with Air Compressor",
+          "trackNumber": 9,
+          "path": "Unreleased/AirCompressor",
+          "readme": "_Sleeping with Air Compressor_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-AirCompressor.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-AirCompressor.m4a",
+          "lyrics": "_Sleeping with Air Compressor_\n\nTODO: paste the lyrics."
         }
       ]
     }
