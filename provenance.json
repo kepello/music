@@ -44,19 +44,19 @@
       "sampleRate": "44100",
       "sha256": "3006f9bbe324ba5deaccc8260818405476e0a1de357a740af781a9bdfb99443d"
     },
-    "MovedMeFirst/MovedMeFirst2": {
-      "audioMd5": "150d3932786b93a1b2c219b24655511d",
-      "duration": 202.6,
-      "master": "MovedMeFirst2.wav",
-      "sampleRate": "44100",
-      "sha256": "40650680cc08a5f91b7d6df990a99c3124f80b3521c4d6d93c7511fdacec765a"
-    },
     "MovedMeFirst/MusicMovedMeFirst1": {
       "audioMd5": "50f3061f35c4ace2c29ec9a5e3f3cbd1",
       "duration": 217.72,
       "master": "MusicMovedMeFirst1.wav",
       "sampleRate": "44100",
       "sha256": "188aa0d3cd5e0d5dfb9a48325e8d294423bd65896b2cd51e0b93b2fa6962be51"
+    },
+    "MovedMeFirst/MusicMovedMeFirst2": {
+      "audioMd5": "150d3932786b93a1b2c219b24655511d",
+      "duration": 202.6,
+      "master": "MusicMovedMeFirst2.wav",
+      "sampleRate": "44100",
+      "sha256": "40650680cc08a5f91b7d6df990a99c3124f80b3521c4d6d93c7511fdacec765a"
     },
     "MovedMeFirst/MusicMovedMeFirst3": {
       "audioMd5": "11bd1783236ef11c53cea95f2dd3c082",
