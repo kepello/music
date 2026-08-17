@@ -1,3 +1,20 @@
 _Curse God and Die_
 
-TODO: write the story behind this song.
+I’ve read the account of Job many times, but this time I found myself thinking about his wife differently. We know her largely through one terrible sentence: “Are you still holding firmly to your integrity? Curse God and die!” It’s easy to read that and judge her by what may have been the worst thing she said at the worst moment of her life. This time I found myself wondering what it was like to be her.
+
+Job had lost his children, but they were her children too. Job was suffering terribly from his illness, wishing for death and openly expressing the depth of his despair, and we can read his words and understand them as the raw expressions of a faithful man pushed almost beyond what a human being could bear. But his wife was standing there watching him. She had her own grief to carry while also watching someone she loved deteriorate in front of her, unable to fix it, unable to take his pain away, and hearing the man she loved say that he wanted to die. I began to wonder whether her words might have come from some of the same terrible human place that his did.
+
+The Bible doesn’t tell us, and I don’t want the song to say that it does. This is my imagining of that scene and of the person behind those few words. I don’t know what she was thinking, what motivated her statement, or how Jehovah viewed her at that moment. But I found myself asking questions I hadn’t really asked before. Was this one sentence representative of who she was, or are we seeing a brief glimpse into the worst moment of a person’s life? Was she otherwise a faithful woman who simply reached the point where grief, exhaustion, fear and helplessness became too much? If we can understand why Job cried out for death without concluding that those words defined the entirety of his faith, is there room for compassion when considering the breaking point of the person standing beside him?
+
+That led me to think more broadly about caregivers and a kind of suffering that can be almost invisible. There is the pain experienced by the person who is sick, and then there is another kind carried by someone who loves them and has to watch. They may spend days, months or years trying to help while knowing that much of what is happening is completely beyond their ability to change. They can desperately want the suffering to stop and then feel guilty because, somewhere along the way, even the meaning of wanting it to stop can become frighteningly complicated. Love, exhaustion, mercy, grief and helplessness can begin occupying the same space, and thoughts can appear that the person never imagined themselves capable of having.
+
+That’s where the chorus came from: “Am I wrong for thinking this? For wanting it to end today? Not just for you—but for us both, and hating that I feel this way.” I wanted to explore the possibility that having a terrible thought under unbearable strain isn’t necessarily the same thing as becoming a terrible person. Sometimes we get only a glimpse into someone’s worst moment without seeing everything they carried to reach it.
+
+The arrangement needed to leave room for that uncertainty, so I kept it very sparse and intimate: slow acoustic folk, very little percussion, and a close female vocal without embellishment or a large production around it. The female voice was important because I didn’t want to sing about Job’s wife from a comfortable distance. I wanted, as much as an imagined song can, to let us sit quietly beside her and hear the words from where she might have been standing. The pauses and empty spaces are part of the arrangement because this isn’t a thought I wanted the music to resolve for us.
+
+I see Job’s wife differently now. Not because I know what she meant—I don’t—but because contemplating what might have surrounded those words made me slower to judge them. Maybe that’s what stays with me most from writing this song. Sometimes the only thing we know about another person is the sentence they spoke when the weight became more than they could carry, while everything that brought them to that moment remains invisible to us.
+
+“This isn’t failure, this is strain.
+This isn’t losing what is right.
+It’s what it means to stand beside
+A pain with no end in sight.”
