@@ -1,14 +1,46 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-17T00:28:38.851754+00:00",
+  "generatedAt": "2026-08-17T00:30:19.892254+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
     "branch": "main"
   },
   "cover": "COVER.jpg",
-  "readme": "For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.\n\nMusic has always moved me, yet I only recently learned that this could be engaged with, not just felt.\nThe music I write now is an attempt to approach sound and song from a different direction: not analysis, polish, or achievement,\nbut expression. To feel, to experiment, and to allow emotional release without needing to justify it.\n\nThese are best thought of as personal collections—songs I’ve created primarily for myself, grouped by their tone, origin, and purpose rather than by style or polish.\n\nThe collections are Moved Me First (personal songs spanning friendship, loss, and everyday moments), Overtones and My Father (songs rooted in scripture and reflection), and Unreleased (songs that haven't been distributed anywhere). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.\n\nThese songs were created for personal reasons, but you’re welcome to listen—and if you find any value in them, I hope you enjoy them.",
+  "readme": "For much of my life, I've leaned heavily into mental and logical thinking—engineering, structure, and problem-solving. Over time, I realized that this came at the expense of something equally important: emotional expression.\n\nMusic has always moved me, yet I only recently learned that this could be engaged with, not just felt.\nThe music I write now is an attempt to approach sound and song from a different direction: not analysis, polish, or achievement,\nbut expression. To feel, to experiment, and to allow emotional release without needing to justify it.\n\nThese are best thought of as personal collections—songs I’ve created primarily for myself, grouped by their tone, origin, and purpose rather than by style or polish.\n\nThe collections are Moved Me First (personal songs spanning friendship, loss, and everyday moments), Overtones and My Father (songs rooted in scripture and reflection), and Fly (a newer Kepello collection, not yet distributed). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.\n\nThese songs were created for personal reasons, but you’re welcome to listen—and if you find any value in them, I hope you enjoy them.",
   "collections": [
+    {
+      "name": "Fly",
+      "title": "Fly",
+      "artist": "Kepello",
+      "path": "Fly",
+      "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nNot all music needs to point beyond itself. Some songs exist simply because they needed to—because a moment struck, a feeling surfaced, or a friend mattered enough to put into sound.\n\nThis collection spans the full range of that impulse. Some pieces are light and playful—the kind that make you smile or tap your foot without thinking. They grew out of small moments, noodling around, or just seeing what might happen. Others run deeper: songs born from grief, loss, and the kind of pain that forces you to find new ways to process what you're feeling. Still others come from friendship—written for friends, inspired by them, or shaped by the knowledge that shared troubles are easier to bear.  As Francis Bacon wrote, for those without true friends, \"the world is but a wilderness.\" \n\nNone of it follows a plan. Some tracks are polished; others are raw. Some carry weight; others float easily alongside everyday life. What they share is honesty: these songs weren't written for an audience or to fit a theme. They were written because they needed to exist.\n\nBut life isn't only about depth and difficulty—it's also about curiosity, accompaniment, and the quiet joy of letting sound move along with the day. This music lives in both places. It marks moments of learning how to let feelings out, how to celebrate friendship, and how to sit with whatever comes—whether that's grief, gratitude, or just the urge to see what a melody might do.\n\nThis is personal music. Some of it hurt to write. Some of it brought unexpected relief. All of it is simply what happened when emotions found a voice, and music did what I didn't always know it could do.",
+      "cover": "Fly/COVER.jpg",
+      "playlistM4A": "Fly/Fly-M4A.m3u8",
+      "playlistMP3": "Fly/Fly-MP3.m3u8",
+      "tracks": [
+        {
+          "name": "AskMeToFly",
+          "title": "You Don't Ask Me To Fly",
+          "trackNumber": 1,
+          "path": "Fly/AskMeToFly",
+          "readme": "_You Don't Ask Me To Fly_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Fly-AskMeToFly.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Fly-AskMeToFly.m4a",
+          "lyrics": "_You Don't Ask Me To Fly_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "Broken",
+          "title": "Broken People",
+          "trackNumber": 2,
+          "path": "Fly/Broken",
+          "readme": "_Broken People_\n\nThis song is not mine.  It was written by a friend, A'shon Franklin.\n\nWe struck up a casual conversation while at a gathering with friends.  The topic turned to music and he shared that he has written some lyrics.  I offered to take a stab at putting them to music based on his vision.\n\nWhate he sent me were not just \"some lyrics\"!  I find this song well written and moving.  I think you will enjoy it as well.\n\nPerhaps A'shon will read this and offer a better description of this song!",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/Fly-Broken.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/Fly-Broken.m4a",
+          "lyrics": "_Broken People_\n\nWhen you think about it, \nyou and I the same.\nDifferent faces, same ache, \ndifferent chapters, same pain.\nLooking for a name to blame \nfor these emotional stains.\nFrom Abel’s blood in the rain,\nto Pharaoh breaking chains.\n\nHistory got a way of repeating the strain.\nPressure on the mind, \ntrying hard not to go insane.\nSo I’m hoping these words, \nreach a heart that’s open.\nFrom the viewpoint, \nthe voice of a person broken.\n\nLife keep tapping on my shoulder,\nAsking me to heal what I don’t wanna reopen.\nStill I’m learning as I’m getting older,\nEven faith feels heavy when you’re broken.\n\nWe’re just broken people,\nTrying to love through the cracks.\nTrying to trust while we’re carrying the past.\nBut Jehovah stays close,\nWhen the pieces fall apart.\nHe’s never far from broken people.\nOr a broken heart.\n\nYou ask what makes me broken?\nIt’s baggage from a “step”,\n that missed the runway.\nLove crashed, \nwe flew miles apart one day.\nHard to call her mother, \nharder still to explain.\n\nAnd then a father,\nwho never saw what he had.\nToo busy building dreams,\n in a bachelor pad.\nI grew up in the echo,\n of what should’ve been.\nEven though he changed, \nthere’s a void deep within.\nLate nights, no sleep, feeling weak—SWV\nStill I choose forgiveness, \nthat’s the way He wants me to be.\nThoughts once buried ,\nnow they floating in the open.\nYeah I’m healing… \nbut I’m still broken.\n\nWe’re just broken people.\nTrying to love through the cracks.\nTrying to trust while we’re carrying the past.\nBut Jehovah stays close,\nWhen the pieces fall apart.\nHe’s never far from broken people,\nOr a broken heart.\n\nWhat about you?\nLearned pain way too young.\nPhysical, emotional—\nbefore you could run.\nA boy with his own hurt,\ndidn’t know how to cope.\nSo the pain he was in,\nbecame pain he provoked.\nScars still pulling like a horse and a carriage.\nHeart got a fence from surviving the damage.\nTrust issues from men that couldn’t stay.\nTears in those eyes every time love walked away.\nSo hard to say goodbye to the one who should protect.\nAnd then there’s me thinking I left grief at the check.\nBut it followed me home, yeah it followed me back.\nRound and around till the heart starts to crack.\n\nSeeds fall on rocky ground, still trying to grow,\nLike turning a key but the engine won’t go.\nLike a crown on a tooth that been chipped by the truth,\nStill I believe restoration is proof.\nAnything broken can be made whole again,\nEven hearts, even love, even broken men.\n\nSo I’ll write it all out,\nTry not to live in the past.\nWatching life through a peephole,\nAs broken people pass.\n\nWe’re just broken people.\nBut we don’t walk alone,\nGrace in the cracks, \nmercy in the bones.\nLet’s trust in Jehovah,\nAnd trust in each other’s arms.\nStay in love, keep it sacred.\nEven under covers, safe from harm.\n\nDrown out the noise they gave us.\nFathers, mothers, others who failed us.\nRemember this truth when the night feels dark.\nHe’s never far from broken people.\nOr a broken heart."
+        }
+      ]
+    },
     {
       "name": "MovedMeFirst",
       "title": "Moved Me First",
@@ -660,37 +692,6 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/Overtones-Voice.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/Overtones-Voice.m4a",
           "lyrics": "Because He Hears My Voice\n\nBecause he hears my voice\n\nI love Jehovah\nBecause he hears my voice, my pleas for help\n\nFor he inclines his ear to me,\nAnd I will call on him as long as I live.\n\nThe ropes of death encircled me;\nThe Grave had me in its grip.\n \nI love Jehovah\nBecause he hears my voice, my pleas for help\n\nI was overcome by distress and grief.\n But I called on the name of Jehovah:\n\"O Jehovah, rescue me!\"\n\nJehovah is compassionate and righteous;\nOur God is merciful.\n\nI love Jehovah\nBecause he hears my voice, my pleas for help\n\nJehovah is guarding the inexperienced.\nI was brought low, and he saved me.\n\nI love Jehovah\nBecause he hears my voice, my pleas for help\n\nBecause he hears my voice\n\nLet my soul rest once again,\nFor Jehovah has dealt kindly with me."
-        }
-      ]
-    },
-    {
-      "name": "Unreleased",
-      "title": "Unreleased",
-      "path": "Unreleased",
-      "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nNot all music needs to point beyond itself. Some songs exist simply because they needed to—because a moment struck, a feeling surfaced, or a friend mattered enough to put into sound.\n\nThis collection spans the full range of that impulse. Some pieces are light and playful—the kind that make you smile or tap your foot without thinking. They grew out of small moments, noodling around, or just seeing what might happen. Others run deeper: songs born from grief, loss, and the kind of pain that forces you to find new ways to process what you're feeling. Still others come from friendship—written for friends, inspired by them, or shaped by the knowledge that shared troubles are easier to bear.  As Francis Bacon wrote, for those without true friends, \"the world is but a wilderness.\" \n\nNone of it follows a plan. Some tracks are polished; others are raw. Some carry weight; others float easily alongside everyday life. What they share is honesty: these songs weren't written for an audience or to fit a theme. They were written because they needed to exist.\n\nBut life isn't only about depth and difficulty—it's also about curiosity, accompaniment, and the quiet joy of letting sound move along with the day. This music lives in both places. It marks moments of learning how to let feelings out, how to celebrate friendship, and how to sit with whatever comes—whether that's grief, gratitude, or just the urge to see what a melody might do.\n\nThis is personal music. Some of it hurt to write. Some of it brought unexpected relief. All of it is simply what happened when emotions found a voice, and music did what I didn't always know it could do.",
-      "cover": "Unreleased/COVER.jpg",
-      "playlistM4A": "Unreleased/Unreleased-M4A.m3u8",
-      "playlistMP3": "Unreleased/Unreleased-MP3.m3u8",
-      "tracks": [
-        {
-          "name": "Broken",
-          "title": "Broken People",
-          "trackNumber": 1,
-          "path": "Unreleased/Broken",
-          "readme": "_Broken People_\n\nThis song is not mine.  It was written by a friend, A'shon Franklin.\n\nWe struck up a casual conversation while at a gathering with friends.  The topic turned to music and he shared that he has written some lyrics.  I offered to take a stab at putting them to music based on his vision.\n\nWhate he sent me were not just \"some lyrics\"!  I find this song well written and moving.  I think you will enjoy it as well.\n\nPerhaps A'shon will read this and offer a better description of this song!",
-          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-Broken.mp3",
-          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-Broken.m4a",
-          "lyrics": "_Broken People_\n\nWhen you think about it, \nyou and I the same.\nDifferent faces, same ache, \ndifferent chapters, same pain.\nLooking for a name to blame \nfor these emotional stains.\nFrom Abel’s blood in the rain,\nto Pharaoh breaking chains.\n\nHistory got a way of repeating the strain.\nPressure on the mind, \ntrying hard not to go insane.\nSo I’m hoping these words, \nreach a heart that’s open.\nFrom the viewpoint, \nthe voice of a person broken.\n\nLife keep tapping on my shoulder,\nAsking me to heal what I don’t wanna reopen.\nStill I’m learning as I’m getting older,\nEven faith feels heavy when you’re broken.\n\nWe’re just broken people,\nTrying to love through the cracks.\nTrying to trust while we’re carrying the past.\nBut Jehovah stays close,\nWhen the pieces fall apart.\nHe’s never far from broken people.\nOr a broken heart.\n\nYou ask what makes me broken?\nIt’s baggage from a “step”,\n that missed the runway.\nLove crashed, \nwe flew miles apart one day.\nHard to call her mother, \nharder still to explain.\n\nAnd then a father,\nwho never saw what he had.\nToo busy building dreams,\n in a bachelor pad.\nI grew up in the echo,\n of what should’ve been.\nEven though he changed, \nthere’s a void deep within.\nLate nights, no sleep, feeling weak—SWV\nStill I choose forgiveness, \nthat’s the way He wants me to be.\nThoughts once buried ,\nnow they floating in the open.\nYeah I’m healing… \nbut I’m still broken.\n\nWe’re just broken people.\nTrying to love through the cracks.\nTrying to trust while we’re carrying the past.\nBut Jehovah stays close,\nWhen the pieces fall apart.\nHe’s never far from broken people,\nOr a broken heart.\n\nWhat about you?\nLearned pain way too young.\nPhysical, emotional—\nbefore you could run.\nA boy with his own hurt,\ndidn’t know how to cope.\nSo the pain he was in,\nbecame pain he provoked.\nScars still pulling like a horse and a carriage.\nHeart got a fence from surviving the damage.\nTrust issues from men that couldn’t stay.\nTears in those eyes every time love walked away.\nSo hard to say goodbye to the one who should protect.\nAnd then there’s me thinking I left grief at the check.\nBut it followed me home, yeah it followed me back.\nRound and around till the heart starts to crack.\n\nSeeds fall on rocky ground, still trying to grow,\nLike turning a key but the engine won’t go.\nLike a crown on a tooth that been chipped by the truth,\nStill I believe restoration is proof.\nAnything broken can be made whole again,\nEven hearts, even love, even broken men.\n\nSo I’ll write it all out,\nTry not to live in the past.\nWatching life through a peephole,\nAs broken people pass.\n\nWe’re just broken people.\nBut we don’t walk alone,\nGrace in the cracks, \nmercy in the bones.\nLet’s trust in Jehovah,\nAnd trust in each other’s arms.\nStay in love, keep it sacred.\nEven under covers, safe from harm.\n\nDrown out the noise they gave us.\nFathers, mothers, others who failed us.\nRemember this truth when the night feels dark.\nHe’s never far from broken people.\nOr a broken heart."
-        },
-        {
-          "name": "AskMeToFly",
-          "title": "You Don't Ask Me To Fly",
-          "trackNumber": 2,
-          "path": "Unreleased/AskMeToFly",
-          "readme": "_You Don't Ask Me To Fly_\n\nTODO: write the story behind this song.",
-          "mp3": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.mp3",
-          "m4a": "https://github.com/kepello/music/releases/download/latest/Unreleased-AskMeToFly.m4a",
-          "lyrics": "_You Don't Ask Me To Fly_\n\nTODO: paste the lyrics."
         }
       ]
     }

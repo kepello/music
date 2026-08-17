@@ -1,5 +1,21 @@
 {
   "songs": {
+    "Fly/AskMeToFly": {
+      "audioMd5": "40c3df6dcc99ad48550c7486b1350e05",
+      "duration": 228.96,
+      "master": "AskMeToFly.wav",
+      "sampleRate": "48000",
+      "sha256": "9e866be8a592a41983fb45000bf77481108969ce3ec8ba667e69ee56ca8cdc14",
+      "sunoCreated": "2026-08-06T00:25:34Z",
+      "sunoId": "5e2dcd8a-f7b1-4ac0-8cfe-1c28314dc1a0"
+    },
+    "Fly/Broken": {
+      "audioMd5": "34eace5e364cf8fbee3b90671bc17c64",
+      "duration": 292.96,
+      "master": "Broken.wav",
+      "sampleRate": "44100",
+      "sha256": "eb62ba9037cc282aa86e88c3844223620f6d1a7419b17f51ae345863480e1879"
+    },
     "MovedMeFirst/Cami": {
       "audioMd5": "5dd6a7d5e2853613d6704f35fa118224",
       "duration": 184.16,
@@ -467,22 +483,6 @@
       "master": "Zac.wav",
       "sampleRate": "44100",
       "sha256": "b7aff721e4b6ce94b0f53dd98f93c78cbf730952e3f07e0d2833209824752185"
-    },
-    "Unreleased/AskMeToFly": {
-      "audioMd5": "40c3df6dcc99ad48550c7486b1350e05",
-      "duration": 228.96,
-      "master": "AskMeToFly.wav",
-      "sampleRate": "48000",
-      "sha256": "9e866be8a592a41983fb45000bf77481108969ce3ec8ba667e69ee56ca8cdc14",
-      "sunoCreated": "2026-08-06T00:25:34Z",
-      "sunoId": "5e2dcd8a-f7b1-4ac0-8cfe-1c28314dc1a0"
-    },
-    "Unreleased/Broken": {
-      "audioMd5": "34eace5e364cf8fbee3b90671bc17c64",
-      "duration": 292.96,
-      "master": "Broken.wav",
-      "sampleRate": "44100",
-      "sha256": "eb62ba9037cc282aa86e88c3844223620f6d1a7419b17f51ae345863480e1879"
     }
   }
 }
