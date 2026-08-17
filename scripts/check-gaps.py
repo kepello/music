@@ -81,7 +81,7 @@ def collect():
         "missingStory": [], "missingLyrics": [], "missingAudio": [],
         "unsequenced": [], "danglingInAlbumJson": [],
         "missingLinks": [], "missingReleaseDate": [], "unpublishedAlbums": [],
-        "draftPastRelease": [],
+        "draftPastRelease": [], "coverProblem": [],
     }
     assets = release_assets()
     findings["_assetsChecked"] = assets is not None
@@ -106,6 +106,27 @@ def collect():
             findings["unsequenced"].append(f"{album.name}/{extra}")
         for missing in [n for n in listed if n not in names]:
             findings["danglingInAlbumJson"].append(f"{album.name}/{missing}")
+
+        # Cover art has to satisfy the strictest consumer: CD Baby wants
+        # 1400x1400 minimum, square. Art that is too small only fails at upload,
+        # which is far too late to discover it.
+        cover = next((c for c in album.glob("COVER.*")), None)
+        if cover is None:
+            findings["coverProblem"].append(f"{album.name}: no cover art")
+        else:
+            try:
+                out = subprocess.run(["sips", "-g", "pixelWidth", "-g", "pixelHeight", str(cover)],
+                                     capture_output=True, text=True, timeout=30).stdout
+                dims = [int(x.split(":")[1]) for x in out.strip().splitlines() if ":" in x and x.split(":")[1].strip().isdigit()]
+                if len(dims) == 2:
+                    w, h = dims
+                    if w != h:
+                        findings["coverProblem"].append(f"{album.name}: {w}x{h} is not square")
+                    elif w < 1400:
+                        findings["coverProblem"].append(
+                            f"{album.name}: {w}x{w} is below CD Baby's 1400 minimum")
+            except (OSError, subprocess.SubprocessError, ValueError):
+                pass
 
         # A draft whose release date has arrived is just an album nobody published.
         if meta.get("draft"):
@@ -149,6 +170,8 @@ def collect():
 SECTIONS = [
     ("draftPastRelease", "Albums still marked draft whose release date has passed",
      "Set \"draft\": false in the album's ALBUM.json to put it on the site"),
+    ("coverProblem", "Album art that cannot be distributed",
+     "Regenerate at 3000x3000 and run: ./scripts/set-cover.sh <album> <image>"),
     ("unpublishedAlbums", "Albums on your Mac that aren't on the site yet",
      "Run: ./scripts/sync-album.sh '<name>'"),
     ("missingAudio", "Songs with no audio in the release",

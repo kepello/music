@@ -24,6 +24,15 @@ REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 RELEASE_TAG="latest"
 ARTIST="Kepello"
 SITE_URL="https://kepello.github.io/Musicplayer/"
+CD_SAMPLE_RATE=44100          # Red Book / what CD Baby requires
+
+# soxr has a materially better anti-aliasing filter for 48k->44.1k, which is not
+# an integer ratio. Fall back to ffmpeg's built-in resampler when it is absent.
+if ffmpeg -hide_banner -version 2>/dev/null | grep -q 'enable-libsoxr'; then
+  RESAMPLE="aresample=resampler=soxr:precision=28:dither_method=triangular"
+else
+  RESAMPLE="aresample=resampler=swr:dither_method=triangular"
+fi
 
 DRY_RUN=0
 ALL=0
@@ -105,6 +114,48 @@ encode_if_stale() {
   return 0
 }
 
+# Masters are kept at CD quality so there is only ever one copy of a song.
+#
+# Suno renders at 48kHz and CD Baby wants 44.1kHz (Red Book), so a WAV master
+# arriving at any other rate is converted in place, here, on ingest. Carl chose
+# a single CD-quality master over keeping a 48kHz original alongside it; the
+# 48kHz version remains recoverable from his Suno library, which is what the
+# Suno id in provenance.json is for.
+#
+# Metadata is carried across explicitly. Losing it is exactly how 38 masters
+# ended up with no Suno id: this same conversion, done by a tool that dropped
+# the tags.
+normalize_master() {
+  local master="$1"
+  case "$(printf '%s' "${master##*.}" | tr 'A-Z' 'a-z')" in wav) ;; *) return 1 ;; esac
+
+  local sr
+  sr="$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate \
+        -of default=nw=1:nk=1 "$master" 2>/dev/null)"
+  [ "$sr" = "$CD_SAMPLE_RATE" ] && return 1
+
+  say "  normalise $(basename "$master") (${sr}Hz -> ${CD_SAMPLE_RATE}Hz, CD quality)"
+  [ "$DRY_RUN" = 1 ] && return 0
+
+  local tmp="${master%.wav}.normalising.wav"
+  ffmpeg -nostdin -loglevel error -y -i "$master" \
+    -map_metadata 0 -vn -af "$RESAMPLE" \
+    -ar "$CD_SAMPLE_RATE" -c:a pcm_s16le "$tmp"
+
+  # Only replace once the new file is proven good -- a truncated convert must
+  # never be allowed to destroy the only copy of a master.
+  local got
+  got="$(ffprobe -v error -select_streams a:0 -show_entries stream=sample_rate \
+         -of default=nw=1:nk=1 "$tmp" 2>/dev/null)"
+  if [ "$got" != "$CD_SAMPLE_RATE" ] || [ ! -s "$tmp" ]; then
+    rm -f "$tmp"
+    echo "error: conversion of $master failed; master left untouched" >&2
+    return 1
+  fi
+  mv "$tmp" "$master"
+  return 0
+}
+
 scaffold_song() {
   local album="$1" song="$2"
   local dir="$REPO_ROOT/$album/$song"
@@ -176,6 +227,8 @@ for album in "${ALBUMS[@]}"; do
   while IFS= read -r master; do
     song="$(basename "${master%.*}")"
     songs+=("$song")
+
+    normalize_master "$master" || true
 
     asset="$(slug "$album")-$(slug "$song")"
     mp3="$CACHE_DIR/$album/$asset.mp3"
