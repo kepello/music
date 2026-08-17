@@ -315,15 +315,6 @@
       "sunoCreated": "2026-08-09T12:31:49Z",
       "sunoId": "9835c61a-d478-45f2-a2c7-4f2a2ece2c91"
     },
-    "OneMoreThing/Rearranged": {
-      "audioMd5": "50b2d045c11a685fedc22674b64fb9f8",
-      "duration": 162.08,
-      "master": "Rearranged.wav",
-      "sampleRate": "44100",
-      "sha256": "84c8fc68e94615595e77cdf6539eed02d690c1208bcef1b25ab1e017cacea582",
-      "sunoCreated": "2026-03-09T12:08:05Z",
-      "sunoId": "0228769f-1592-47ca-b378-1beb518fbb5e"
-    },
     "OneMoreThing/TeleMan": {
       "audioMd5": "f70c678b5afc34fa2ef8bb449a80c080",
       "duration": 222.72,
