@@ -45,19 +45,28 @@ def read_readme(directory: Path) -> Optional[str]:
 # back to Suno on a re-generation, but it is production scaffolding and no
 # reader wants it in the middle of the words.
 SUNO_DIRECTIVE = re.compile(r"^\s*\[[^\]]*\]\s*$")
+# A direction can also sit at the head of a sung line -- "[quieter, nearly
+# whispered] \"Curse God and die!\"" -- where dropping the whole line would take
+# the lyric with it. Strip only the leading bracket, keep what follows.
+LEADING_DIRECTIVE = re.compile(r"^\s*\[[^\]]*\]\s*")
 
 
 def strip_suno_directives(text: Optional[str]) -> Optional[str]:
     """
     Drop whole lines that are nothing but a bracketed Suno directive.
 
-    Only whole-line tags are removed. A lyric line that happens to contain
-    brackets keeps them: stripping every [...] anywhere, as the old
-    clean-lyrics.py did, would quietly eat part of a real line.
+    Whole-line tags are dropped. A direction at the head of a sung line has its
+    bracket removed and the words kept. Brackets anywhere else survive:
+    stripping every [...] in the file, as the old clean-lyrics.py did, would
+    quietly eat part of a real line.
     """
     if not text:
         return text
-    kept = [ln for ln in text.splitlines() if not SUNO_DIRECTIVE.match(ln)]
+    kept = []
+    for ln in text.splitlines():
+        if SUNO_DIRECTIVE.match(ln):
+            continue                      # the whole line is direction
+        kept.append(LEADING_DIRECTIVE.sub("", ln))
     cleaned = "\n".join(kept)
     cleaned = re.sub(r"\n{3,}", "\n\n", cleaned).strip()
     return cleaned or None
