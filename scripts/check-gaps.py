@@ -81,7 +81,7 @@ def collect():
         "missingStory": [], "missingLyrics": [], "missingAudio": [],
         "unsequenced": [], "danglingInAlbumJson": [],
         "missingLinks": [], "missingReleaseDate": [], "unpublishedAlbums": [],
-        "draftPastRelease": [], "coverProblem": [], "missingAlbumNote": [],
+        "draftPastRelease": [], "coverProblem": [], "missingAlbumNote": [], "missingTitleLine": [],
     }
     assets = release_assets()
     findings["_assetsChecked"] = assets is not None
@@ -153,6 +153,15 @@ def collect():
             label = f"{album.name}/{song.name}"
             if is_stub_or_empty(song / "README.md"):
                 findings["missingStory"].append(label)
+            else:
+                # The site takes the display title from the first _underscored_
+                # line. Without it the track shows its folder slug instead --
+                # and verify-apple.py cannot catch that, because the slug is
+                # derived from the title and normalises to the same string.
+                readme = (song / "README.md").read_text(encoding="utf-8", errors="replace")
+                first = next((l.strip() for l in readme.splitlines() if l.strip()), "")
+                if not (first.startswith("_") and first.endswith("_") and len(first) > 2):
+                    findings["missingTitleLine"].append(label)
             if is_stub_or_empty(song / "LYRICS.txt"):
                 findings["missingLyrics"].append(label)
             if assets is not None:
@@ -184,6 +193,8 @@ SECTIONS = [
      "Run: ./scripts/sync-album.sh '<album>'"),
     ("missingAlbumNote", "Albums with no note written yet",
      "Edit <album>/README.md -- it opens the collection page"),
+    ("missingTitleLine", "Songs whose README has no _Title_ line (site shows the folder name)",
+     "Make the first line _Song Title_, wrapped in underscores"),
     ("missingStory", "Songs with no story written yet", "Edit each README.md"),
     ("missingLyrics", "Songs with no lyrics yet", "Edit each LYRICS.txt"),
     ("unsequenced", "Songs not placed in the album running order",
