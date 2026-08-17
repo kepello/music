@@ -81,7 +81,7 @@ def collect():
         "missingStory": [], "missingLyrics": [], "missingAudio": [],
         "unsequenced": [], "danglingInAlbumJson": [],
         "missingLinks": [], "missingReleaseDate": [], "unpublishedAlbums": [],
-        "draftPastRelease": [], "coverProblem": [],
+        "draftPastRelease": [], "coverProblem": [], "missingAlbumNote": [],
     }
     assets = release_assets()
     findings["_assetsChecked"] = assets is not None
@@ -106,6 +106,11 @@ def collect():
             findings["unsequenced"].append(f"{album.name}/{extra}")
         for missing in [n for n in listed if n not in names]:
             findings["danglingInAlbumJson"].append(f"{album.name}/{missing}")
+
+        # The album note is the first thing a visitor reads on a collection
+        # page, so a missing one is more visible than any single song's story.
+        if is_stub_or_empty(album / "README.md"):
+            findings["missingAlbumNote"].append(album.name)
 
         # Cover art has to satisfy the strictest consumer: CD Baby wants
         # 1400x1400 minimum, square. Art that is too small only fails at upload,
@@ -177,6 +182,8 @@ SECTIONS = [
      "Run: ./scripts/sync-album.sh '<name>'"),
     ("missingAudio", "Songs with no audio in the release",
      "Run: ./scripts/sync-album.sh '<album>'"),
+    ("missingAlbumNote", "Albums with no note written yet",
+     "Edit <album>/README.md -- it opens the collection page"),
     ("missingStory", "Songs with no story written yet", "Edit each README.md"),
     ("missingLyrics", "Songs with no lyrics yet", "Edit each LYRICS.txt"),
     ("unsequenced", "Songs not placed in the album running order",
