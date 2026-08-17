@@ -40,8 +40,31 @@ def read_readme(directory: Path) -> Optional[str]:
     return read_text(directory / "README.md")
 
 
+# Suno takes structural direction inline -- [Intro], [Verse 1, Female Vocals],
+# [Instrumental]. Useful to keep in the source file, since it is what gets fed
+# back to Suno on a re-generation, but it is production scaffolding and no
+# reader wants it in the middle of the words.
+SUNO_DIRECTIVE = re.compile(r"^\s*\[[^\]]*\]\s*$")
+
+
+def strip_suno_directives(text: Optional[str]) -> Optional[str]:
+    """
+    Drop whole lines that are nothing but a bracketed Suno directive.
+
+    Only whole-line tags are removed. A lyric line that happens to contain
+    brackets keeps them: stripping every [...] anywhere, as the old
+    clean-lyrics.py did, would quietly eat part of a real line.
+    """
+    if not text:
+        return text
+    kept = [ln for ln in text.splitlines() if not SUNO_DIRECTIVE.match(ln)]
+    cleaned = "\n".join(kept)
+    cleaned = re.sub(r"\n{3,}", "\n\n", cleaned).strip()
+    return cleaned or None
+
+
 def read_lyrics(directory: Path) -> Optional[str]:
-    return read_text(directory / "LYRICS.txt")
+    return strip_suno_directives(read_text(directory / "LYRICS.txt"))
 
 
 def read_album_meta(album_dir: Path) -> Dict:
