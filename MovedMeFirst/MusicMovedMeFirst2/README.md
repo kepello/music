@@ -2,7 +2,7 @@ _Moved Me First (2)_
 
 After the first version, I wanted to hear what would happen if I took almost everything away. No swirling organ. No biting guitar bends. No theatrical build. Just one guitar and one voice—deep, soft, airy, intimate. In some ways, this may be the closest of the four versions to how I would have written the song sitting alone with a guitar in my hands, without AI-augmented help. Stripped back, clear and clean. Nothing between the words and what they mean to me.
 
-The first arrangement was written to audibly move me. I wanted to hear the music reach out and grab me—the very experience the song describes. This one was written to move my heart. And it does. Without the production surrounding the lyrics, some of the lines became more personal than I realized they were when I wrote them.
+The first arrangement was written to audibly move me. I wanted to hear the music reach out and grab me—the very experience the song describes. This one was written to move my heart, and it does. Without the production surrounding the lyrics, some of the lines became more personal than I realized they were when I wrote them.
 
 I thought I was only listening
 Turns out there’s something more.

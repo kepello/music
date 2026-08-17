@@ -25,7 +25,7 @@ I have my say,
 And that’s just where
 it’s gonna stay.
 
-That doesn’t mean the words never existed. Sometimes you need to think them. Feel them. Admit them to yourself. Maybe even wrestle with them for a while. But they don’t all need to be delivered. Because eventually this stops being about correcting another person and becomes a decision about what I’m willing to continue carrying inside myself.
+That doesn’t mean the words never existed. Sometimes you need to think them. Feel them. Admit them to yourself. Maybe even wrestle with them for a while, but they don’t all need to be delivered. Because eventually this stops being about correcting another person and becomes a decision about what I’m willing to continue carrying inside myself.
 
 That’s the meaning of the sun going down. It’s a boundary. I can acknowledge what happened. I can acknowledge that it hurt. I can even acknowledge that I’m still angry. But I don’t have to take it home with me. I can find peace with people I love, even though sometimes we hurt one another.
 
@@ -34,4 +34,4 @@ And, perhaps harder, I can find peace inside myself. That’s what I wanted to w
 Lay this fire down.
 Lay it down right now.
 
-Anything else keeps hurting me. And helps no one.
+Anything else keeps hurting me, and helps no one.

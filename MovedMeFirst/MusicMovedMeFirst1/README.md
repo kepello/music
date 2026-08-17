@@ -1,6 +1,6 @@
 _Music Moved Me First (1)_
 
-This is where the song started. I ended up arranging Music Moved Me First four different ways. There was something about these lyrics that I wasn’t finished with after hearing them in just one musical setting. Each version found something different in them. But this was the first.
+This is where the song started. I ended up arranging Music Moved Me First four different ways. There was something about these lyrics that I wasn’t finished with after hearing them in just one musical setting. Each version found something different in them, but this was the first.
 
 This is the way I heard the song in my head when the words were still new: late-‘60s psychedelic rock—dark, theatrical, hypnotic and a little dangerous. Vox-style organ swirling underneath, drums pushing and pulling, and long, biting guitar bends that don’t just decorate the song but seem to strain against it.
 

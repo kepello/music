@@ -9,7 +9,7 @@ Everything I imagined he might consider sacrilegious to a song he actually liked
 Too fast.
 Too twangy.
 
-Mission accomplished. Except I had spent enough time working on the joke that something unfortunate happened. I started to like it. Then I started to really like it. The speed gives the song an excitement none of the other versions have. The call-and-response between the voice and guitar turns the lyric into an actual musical conversation—which, accidentally, is rather perfect for a song about learning to answer music back.
+Mission accomplished. Except I had spent enough time working on the joke that something unfortunate happened. I started to like it, then I started to really like it. The speed gives the song an excitement none of the other versions have. The call-and-response between the voice and guitar turns the lyric into an actual musical conversation—which, accidentally, is rather perfect for a song about learning to answer music back.
 
 And then there’s the Telecaster. I own one and love it, though not particularly because of country music. I love its simplicity. There’s something about picking it up that lets me stop searching for the perfect tone and just disappear into playing. This arrangement has that same effect on me.
 

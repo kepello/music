@@ -20,7 +20,7 @@ Just patterns in the streams.
 No pulse beneath the surface,
 No memory, no dreams.
 
-The metaphor I eventually liked best was a mirror. A mirror doesn’t see you. But you can see yourself in it. Maybe AI can sometimes work that way too—not replacing human connection, not possessing understanding or empathy of its own, but providing a surface against which our own thoughts can become clearer.
+The metaphor I eventually liked best was a mirror. A mirror doesn’t see you, but you can see yourself in it. Maybe AI can sometimes work that way too—not replacing human connection, not possessing understanding or empathy of its own, but providing a surface against which our own thoughts can become clearer.
 
 The bridge says it more simply:
 

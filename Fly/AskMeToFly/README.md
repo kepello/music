@@ -13,7 +13,7 @@ That became the heart of the song:
 You don’t ask me to fly
 When I can barely stand.
 
-Maybe someday is the day for flying. Maybe someday is the day for running. But today, faithfulness might look like taking one more step. Sometimes it might simply mean standing. And that can be enough. The song isn’t really about lowering expectations. It’s about understanding where the strength comes from in the first place. Jehovah’s power doesn’t begin where ours ends because we finally failed. It was never dependent on our strength.
+Maybe someday is the day for flying. Maybe someday is the day for running. But today, faithfulness might look like taking one more step. Sometimes it might simply mean standing, and that can be enough. The song isn’t really about lowering expectations. It’s about understanding where the strength comes from in the first place. Jehovah’s power doesn’t begin where ours ends because we finally failed. It was never dependent on our strength.
 
 That’s why the bridge became so important to me:
 
