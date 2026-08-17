@@ -63,8 +63,28 @@ def strip_suno_directives(text: Optional[str]) -> Optional[str]:
     return cleaned or None
 
 
+# Roughly two thirds of the lyric files open with a _Title_ line and the rest
+# do not. The site already shows the track title above the lyric, so where the
+# line is present it renders the title twice.
+LYRIC_TITLE = re.compile(r"^_.+_$")
+
+
+def strip_leading_title(text: Optional[str]) -> Optional[str]:
+    """Drop a _Title_ line if it is the first non-empty line, and only there."""
+    if not text:
+        return text
+    lines = text.splitlines()
+    for i, line in enumerate(lines):
+        if not line.strip():
+            continue
+        if LYRIC_TITLE.match(line.strip()):
+            return "\n".join(lines[i + 1:]).strip() or None
+        break   # first real line isn't a title; leave underscores alone elsewhere
+    return text
+
+
 def read_lyrics(directory: Path) -> Optional[str]:
-    return strip_suno_directives(read_text(directory / "LYRICS.txt"))
+    return strip_leading_title(strip_suno_directives(read_text(directory / "LYRICS.txt")))
 
 
 def read_album_meta(album_dir: Path) -> Dict:
