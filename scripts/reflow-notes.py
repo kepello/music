@@ -146,7 +146,8 @@ def main():
         return 0
 
     if args.apply is not None:
-        targets = [pathlib.Path(x) for x in args.apply] if args.apply else note_files()
+        # resolve() so a relative path on the command line still reports cleanly
+        targets = [pathlib.Path(x).resolve() for x in args.apply] if args.apply else note_files()
         changed = 0
         skipped = []
         for f in targets:
