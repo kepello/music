@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-17T00:42:59.255285+00:00",
+  "generatedAt": "2026-08-17T00:47:07.206238+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -15,7 +15,7 @@
       "artist": "Kepello",
       "path": "Fly",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nNot all music needs to point beyond itself. Some songs exist simply because they needed to—because a moment struck, a feeling surfaced, or a friend mattered enough to put into sound.\n\nThis collection spans the full range of that impulse. Some pieces are light and playful—the kind that make you smile or tap your foot without thinking. They grew out of small moments, noodling around, or just seeing what might happen. Others run deeper: songs born from grief, loss, and the kind of pain that forces you to find new ways to process what you're feeling. Still others come from friendship—written for friends, inspired by them, or shaped by the knowledge that shared troubles are easier to bear.  As Francis Bacon wrote, for those without true friends, \"the world is but a wilderness.\" \n\nNone of it follows a plan. Some tracks are polished; others are raw. Some carry weight; others float easily alongside everyday life. What they share is honesty: these songs weren't written for an audience or to fit a theme. They were written because they needed to exist.\n\nBut life isn't only about depth and difficulty—it's also about curiosity, accompaniment, and the quiet joy of letting sound move along with the day. This music lives in both places. It marks moments of learning how to let feelings out, how to celebrate friendship, and how to sit with whatever comes—whether that's grief, gratitude, or just the urge to see what a melody might do.\n\nThis is personal music. Some of it hurt to write. Some of it brought unexpected relief. All of it is simply what happened when emotions found a voice, and music did what I didn't always know it could do.",
-      "cover": "Fly/COVER.png",
+      "cover": "Fly/COVER.jpg",
       "playlistM4A": "Fly/Fly-M4A.m3u8",
       "playlistMP3": "Fly/Fly-MP3.m3u8",
       "tracks": [
@@ -46,7 +46,7 @@
       "title": "Moved Me First",
       "artist": "Carl Lance",
       "path": "MovedMeFirst",
-      "cover": "MovedMeFirst/COVER.jpeg",
+      "cover": "MovedMeFirst/COVER.jpg",
       "released": "2026-04-20",
       "streaming": {
         "appleMusic": "https://music.apple.com/us/album/moved-me-first/1890574048"
@@ -383,7 +383,7 @@
       "title": "One More Thing",
       "artist": "Carl Lance",
       "path": "OneMoreThing",
-      "cover": "OneMoreThing/COVER.png",
+      "cover": "OneMoreThing/COVER.jpg",
       "playlistM4A": "OneMoreThing/OneMoreThing-M4A.m3u8",
       "playlistMP3": "OneMoreThing/OneMoreThing-MP3.m3u8",
       "tracks": [
@@ -495,7 +495,7 @@
       "artist": "Kepello",
       "path": "Overtones",
       "readme": "<img src=\"COVER.jpg\" alt=\"Album cover\" style=\"width: 300px;\">\n\nI'm deeply moved by the beauty and depth of God's Word. For me, setting scripture to music helps it settle more firmly in my mind and heart—though I'm still learning how to do this well. Music has always moved me profoundly, and it has become a way for me to linger with passages I don't want to rush past.\n\nPsalm 1 speaks of reading in an undertone — a quiet, continual meditation. These songs are my attempt to take that same meditation and give it voice. What begins inwardly becomes something spoken and sung — an overtone.",
-      "cover": "Overtones/COVER.png",
+      "cover": "Overtones/COVER.jpg",
       "released": "2026-03-09",
       "streaming": {
         "appleMusic": "https://music.apple.com/us/album/overtones/1885931791"

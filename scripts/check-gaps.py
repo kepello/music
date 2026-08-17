@@ -122,9 +122,10 @@ def collect():
                     w, h = dims
                     if w != h:
                         findings["coverProblem"].append(f"{album.name}: {w}x{h} is not square")
-                    elif w < 1400:
+                    elif w < 3000:
                         findings["coverProblem"].append(
-                            f"{album.name}: {w}x{w} is below CD Baby's 1400 minimum")
+                            f"{album.name}: {w}x{w} is under the 3000px target"
+                            + (" and below CD Baby's 1400 minimum" if w < 1400 else ""))
             except (OSError, subprocess.SubprocessError, ValueError):
                 pass
 
@@ -170,8 +171,8 @@ def collect():
 SECTIONS = [
     ("draftPastRelease", "Albums still marked draft whose release date has passed",
      "Set \"draft\": false in the album's ALBUM.json to put it on the site"),
-    ("coverProblem", "Album art that cannot be distributed",
-     "Regenerate at 3000x3000 and run: ./scripts/set-cover.sh <album> <image>"),
+    ("coverProblem", "Album art below the 3000px distribution target",
+     "Run: ./scripts/set-cover.py --fix-all  (or supply larger source art)"),
     ("unpublishedAlbums", "Albums on your Mac that aren't on the site yet",
      "Run: ./scripts/sync-album.sh '<name>'"),
     ("missingAudio", "Songs with no audio in the release",
