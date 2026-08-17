@@ -272,6 +272,15 @@
       "sunoCreated": "2026-08-04T11:01:53Z",
       "sunoId": "2203760b-a19e-47dd-9a65-9d35976ee5b6"
     },
+    "OneMoreThing/NiceToMeetYou": {
+      "audioMd5": "e604e9c60becd41df27826f93efd63c5",
+      "duration": 268.0,
+      "master": "NiceToMeetYou.wav",
+      "sampleRate": "48000",
+      "sha256": "57acb9dd4e57781ebd648f9b3ba490e6a25f8017887a9b7ff01f44acb14972c1",
+      "sunoCreated": "2026-08-16T15:35:38Z",
+      "sunoId": "3d742c0b-085b-4cbe-86d2-f9ad2cb7d939"
+    },
     "OneMoreThing/OneMoreThing": {
       "audioMd5": "8dbd5c7aeda21ef7767a9920beb9cfa4",
       "duration": 189.64,
@@ -291,13 +300,13 @@
       "sunoId": "19c45ee1-9362-40a5-b1d1-edccf493f5e9"
     },
     "OneMoreThing/WeAreOne": {
-      "audioMd5": "f817aac9fe608f973cf2b6aa4dfa9b2d",
-      "duration": 180.88,
+      "audioMd5": "5b0806787e92dff27bc66b12186293fe",
+      "duration": 181.56,
       "master": "WeAreOne.wav",
       "sampleRate": "48000",
-      "sha256": "f4b15489c4b7f99ad3c745720a420ca643d0812cd3898370d580a6e6575c8119",
-      "sunoCreated": "2026-08-04T12:19:10Z",
-      "sunoId": "efd40ff2-8c83-4af7-9ce6-977d28a37986"
+      "sha256": "a72e97bc2d4c66fbc96a926ae35fb1dd38a443ddeba4e626dab61a0b0b2b8e43",
+      "sunoCreated": "2026-08-14T19:44:28Z",
+      "sunoId": "7d2448ec-e348-4a21-ae76-46d83c1dc82d"
     },
     "Overtones/Anxious": {
       "audioMd5": "4f9d5f4b4604b90e83f0cf8192d45deb",

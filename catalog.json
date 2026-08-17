@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-13T12:27:05.614011+00:00",
+  "generatedAt": "2026-08-17T00:13:08.631515+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -413,6 +413,16 @@
           "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-TeleMan.mp3",
           "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-TeleMan.m4a",
           "lyrics": "_Who Knew I’m a Tele Man_\n\nTODO: paste the lyrics."
+        },
+        {
+          "name": "NiceToMeetYou",
+          "title": "Nice to Meet You",
+          "trackNumber": 7,
+          "path": "OneMoreThing/NiceToMeetYou",
+          "readme": "_Nice to Meet You_\n\nTODO: write the story behind this song.",
+          "mp3": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-NiceToMeetYou.mp3",
+          "m4a": "https://github.com/kepello/music/releases/download/latest/OneMoreThing-NiceToMeetYou.m4a",
+          "lyrics": "_Nice to Meet You_\n\nTODO: paste the lyrics."
         }
       ]
     },
