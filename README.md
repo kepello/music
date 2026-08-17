@@ -6,7 +6,7 @@ but expression. To feel, to experiment, and to allow emotional release without n
 
 These are best thought of as personal collections—songs I’ve created primarily for myself, grouped by their tone, origin, and purpose rather than by style or polish.
 
-The collections are Moved Me First (personal songs spanning friendship, loss, and everyday moments), Overtones and My Father (songs rooted in scripture and reflection), and Fly (a newer Kepello collection, not yet distributed). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.
+The collections are Moved Me First (songs from learning to answer music rather than only listen to it), Overtones and My Father (songs rooted in scripture and reflection), and Fly (a newer Kepello collection, not yet distributed). Together, they form a kind of musical journal—honest, unfinished, and allowed to be exactly what it is.
 
 These songs were created for personal reasons, but you’re welcome to listen—and if you find any value in them, I hope you enjoy them.
 
