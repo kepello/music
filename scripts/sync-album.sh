@@ -81,15 +81,65 @@ if [ "$ALBUM_COUNT" -eq 0 ]; then
   exit 1
 fi
 
-# Make sure the release exists before we try to upload into it.
-ensure_release() {
-  if ! gh release view "$RELEASE_TAG" --repo kepello/music >/dev/null 2>&1; then
-    say "Creating release '$RELEASE_TAG'..."
-    run gh release create "$RELEASE_TAG" --repo kepello/music \
-      --title "Latest Album Packages" \
-      --notes "Individual track downloads. Updated automatically by sync-album.sh." \
-      --latest
+RELEASE_ASSETS=""
+
+# What the release actually holds right now.
+#
+# The encode cache answers "was this built from the current master", which is a
+# different question from "did it ever reach the release". An upload can fail
+# after the sidecar is written -- a 503, a dropped connection -- and every run
+# after that sees a current encode and skips it, so catalog.json keeps pointing
+# at an asset that was never published. Comparing against the real asset list
+# closes that gap and makes the script self-healing: whatever is missing gets
+# sent, however it came to be missing.
+load_release_assets() {
+  local status=0
+  RELEASE_ASSETS=$(gh release view "$RELEASE_TAG" --repo kepello/music \
+                     --json assets -q '.assets[].name' 2>&1) || status=$?
+  if [ "$status" -ne 0 ]; then
+    echo "error: could not list assets on release '$RELEASE_TAG'." >&2
+    echo "       gh said: $RELEASE_ASSETS" >&2
+    echo "       Refusing to guess what is published. Re-run when GitHub answers." >&2
+    exit 1
   fi
+}
+
+in_release() { printf '%s\n' "$RELEASE_ASSETS" | grep -qxF "$1"; }
+
+# Make sure the release exists before we try to upload into it.
+#
+# Only a genuine "not found" justifies creating one. Treating every failed
+# lookup as absence means a GitHub outage -- a 503, a network drop, an expired
+# token -- reads as "the release is gone" and sends us on to create a second
+# one. The release is where every download URL points, so guessing wrong about
+# whether it exists is the one thing this script must not do. Anything that
+# isn't a clean answer either way stops the run instead.
+ensure_release() {
+  # `out=$(...)` on its own would take the substitution's exit status as the
+  # assignment's, and under `set -e` a non-zero one kills the script before the
+  # next line can read it -- silently, since gh's message went into $out. The
+  # `|| status=$?` makes it an OR list, which set -e leaves alone.
+  local out status=0
+  out=$(gh release view "$RELEASE_TAG" --repo kepello/music 2>&1) || status=$?
+  if [ "$status" -eq 0 ]; then
+    load_release_assets
+    return 0
+  fi
+  case "$out" in
+    *"release not found"*|*"Not Found"*|*"HTTP 404"*)
+      say "Creating release '$RELEASE_TAG'..."
+      run gh release create "$RELEASE_TAG" --repo kepello/music \
+        --title "Latest Album Packages" \
+        --notes "Individual track downloads. Updated automatically by sync-album.sh." \
+        --latest
+      ;;
+    *)
+      echo "error: could not determine whether release '$RELEASE_TAG' exists." >&2
+      echo "       gh said: $out" >&2
+      echo "       Refusing to guess. Re-run when GitHub answers cleanly." >&2
+      exit 1
+      ;;
+  esac
 }
 
 # encode <master> <out> <codec-args...>
@@ -242,17 +292,25 @@ for album in "${ALBUMS[@]}"; do
         # be transcoded, and it can be no better than its source.
         if encode_if_stale "$master" "$mp3" -c:a copy; then
           say "  copied  $asset.mp3 (lossy master, stream copied)"; uploads+=("$mp3")
+        elif ! in_release "$asset.mp3"; then
+          say "  requeued $asset.mp3 (cached, but absent from the release)"; uploads+=("$mp3")
         fi
         if encode_if_stale "$master" "$m4a" -c:a aac -b:a 256k -movflags +faststart; then
           say "  encoded $asset.m4a (transcoded from MP3)"; uploads+=("$m4a")
+        elif ! in_release "$asset.m4a"; then
+          say "  requeued $asset.m4a (cached, but absent from the release)"; uploads+=("$m4a")
         fi
         ;;
       *)
         if encode_if_stale "$master" "$mp3" -c:a libmp3lame -q:a 0; then
           say "  encoded $asset.mp3"; uploads+=("$mp3")
+        elif ! in_release "$asset.mp3"; then
+          say "  requeued $asset.mp3 (cached, but absent from the release)"; uploads+=("$mp3")
         fi
         if encode_if_stale "$master" "$m4a" -c:a aac -b:a 320k -movflags +faststart; then
           say "  encoded $asset.m4a"; uploads+=("$m4a")
+        elif ! in_release "$asset.m4a"; then
+          say "  requeued $asset.m4a (cached, but absent from the release)"; uploads+=("$m4a")
         fi
         ;;
     esac
