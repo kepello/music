@@ -1,6 +1,6 @@
 {
   "version": "1.1",
-  "generatedAt": "2026-08-17T00:13:34.347977+00:00",
+  "generatedAt": "2026-08-17T00:17:08.950462+00:00",
   "repository": {
     "owner": "kepello",
     "repo": "music",
@@ -351,6 +351,7 @@
       "title": "One More Thing",
       "artist": "Carl Lance",
       "path": "OneMoreThing",
+      "cover": "OneMoreThing/COVER.png",
       "playlistM4A": "OneMoreThing/OneMoreThing-M4A.m3u8",
       "playlistMP3": "OneMoreThing/OneMoreThing-MP3.m3u8",
       "tracks": [
