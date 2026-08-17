@@ -81,7 +81,7 @@ def collect():
         "missingStory": [], "missingLyrics": [], "missingAudio": [],
         "unsequenced": [], "danglingInAlbumJson": [],
         "missingLinks": [], "missingReleaseDate": [], "unpublishedAlbums": [],
-        "draftPastRelease": [], "coverProblem": [], "missingAlbumNote": [], "missingTitleLine": [],
+        "draftPastRelease": [], "coverProblem": [], "missingAlbumNote": [], "missingTitleLine": [], "partiallyWritten": [],
     }
     assets = release_assets()
     findings["_assetsChecked"] = assets is not None
@@ -153,6 +153,11 @@ def collect():
             label = f"{album.name}/{song.name}"
             if is_stub_or_empty(song / "README.md"):
                 findings["missingStory"].append(label)
+            elif "TODO" in (song / "README.md").read_text(encoding="utf-8", errors="replace"):
+                # Written, but with a TODO left inside it -- a seeded note whose
+                # arrangement paragraph is still owed. is_stub_or_empty only
+                # catches short files, so these would otherwise read as done.
+                findings["partiallyWritten"].append(f"{label} (README)")
             else:
                 # The site takes the display title from the first _underscored_
                 # line. Without it the track shows its folder slug instead --
@@ -195,6 +200,8 @@ SECTIONS = [
      "Edit <album>/README.md -- it opens the collection page"),
     ("missingTitleLine", "Songs whose README has no _Title_ line (site shows the folder name)",
      "Make the first line _Song Title_, wrapped in underscores"),
+    ("partiallyWritten", "Notes that are written but still contain a TODO",
+     "Finish the marked paragraph"),
     ("missingStory", "Songs with no story written yet", "Edit each README.md"),
     ("missingLyrics", "Songs with no lyrics yet", "Edit each LYRICS.txt"),
     ("unsequenced", "Songs not placed in the album running order",

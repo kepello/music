@@ -1,3 +1,13 @@
 _Less Than the Least (2)_
 
-TODO: write the story behind this song.
+The idea for this song came from a Bible discourse I heard where the speaker mentioned, almost in passing, Paul’s encouragement to put on the new personality as though we were putting on clothing. What caught my attention was the idea that we aren’t simply putting something new over top of what we’re already wearing. To really change, we have to be willing to strip off what was there before and then dress ourselves differently. I kept thinking about that picture afterward, and it became the framework for the whole song: garments, fabric, threads, seams, covering, stripping away the old and being clothed again in something new.
+
+Paul seemed like such a good person through whom to explore that idea because he didn’t lack sincerity or conviction before becoming a Christian. He was educated, respected, zealous and absolutely certain that he was doing the right thing. In many ways he had every reason, by the standards of the world he came from, to think highly of himself. What he discovered was that sincerity and certainty weren’t enough. He could be completely sincere and still be terribly wrong, and some of the things he once had reason to take pride in were things he eventually had to learn to see very differently. That thought became one of my favorite lines in the song: “I have learned how pride can hide itself inside sincerity.” I think that is something worth remembering, because pride doesn’t always announce itself as pride. Sometimes it can be woven into things that otherwise look quite respectable.
+
+I also find it interesting how Paul spoke about himself as his life and ministry progressed. Despite everything he accomplished and all the responsibility he was given, his language didn’t seem to become more self-important. Eventually, in Ephesians 3:8, he described himself as “a man less than the least of all holy ones.” That became the destination for the song. The man who once had so many reasons to be certain of his own standing had learned to speak about himself with remarkable humility. He hadn’t simply put a nicer garment over the man he had been; he had allowed himself to be changed.
+
+TODO: describe this arrangement. The shared paragraphs above and below are copied from Less Than the Least (1); only this one differs between the three.
+
+The song begins largely with Paul and with I: “Strip away the pride I carried.” By the final chorus it becomes we: “Strip away the pride we carry.” I didn’t want to finish by simply looking back at Paul and admiring how much he changed. His example is only useful if it makes me wonder what I’m still wearing myself, what pride or certainty I may not recognize yet, and what I might need to take off rather than simply cover with something better.
+
+May we learn, like Paul before us, to be less than the least.
