@@ -10,5 +10,13 @@
 *.mp3
 *.m4a
 
+# ...except the streaming copies. iOS refuses release assets outright: they are
+# served as application/octet-stream through a signed cross-host redirect and
+# fail with SRC_NOT_SUPPORTED. raw.githubusercontent serves a clean path as
+# audio/mpeg, which iOS accepts, so the site streams from here instead. These are
+# 128k copies for playback only -- the full-quality MP3/M4A stay in the release
+# for downloads.
+!stream/*.mp3
+
 # Encode-cache sidecars (live under ~/Music/Masters/.encoded, never in git)
 *.src-sha256

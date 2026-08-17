@@ -25,6 +25,7 @@ RELEASE_TAG="latest"
 ARTIST="Kepello"
 SITE_URL="https://kepello.github.io/Musicplayer/"
 CD_SAMPLE_RATE=44100          # Red Book / what CD Baby requires
+STREAM_BITRATE=128k           # playback copies in stream/; downloads stay full quality
 
 # soxr has a materially better anti-aliasing filter for 48k->44.1k, which is not
 # an integer ratio. Fall back to ffmpeg's built-in resampler when it is absent.
@@ -255,6 +256,15 @@ for album in "${ALBUMS[@]}"; do
         fi
         ;;
     esac
+
+    # Streaming copy, committed to the repo and served from
+    # raw.githubusercontent as audio/mpeg. Release assets arrive as
+    # application/octet-stream and iOS rejects them outright.
+    stream="$REPO_ROOT/stream/$asset.mp3"
+    mkdir -p "$REPO_ROOT/stream"
+    if encode_if_stale "$master" "$stream" -c:a libmp3lame -b:a "$STREAM_BITRATE"; then
+      say "  stream   $asset.mp3 ($STREAM_BITRATE)"
+    fi
 
     scaffold_song "$album" "$song"
     # A WAV always wins over an MP3 of the same song, so a later re-export

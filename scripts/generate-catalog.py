@@ -162,11 +162,23 @@ def release_url(owner: str, repo: str, filename: str) -> str:
     return f"https://github.com/{owner}/{repo}/releases/download/{RELEASE_TAG}/{filename}"
 
 
+def stream_url(owner: str, repo: str, branch: str, filename: str) -> str:
+    """
+    Playback URL, served from raw.githubusercontent.
+
+    iOS will not play a GitHub release asset: those arrive as
+    application/octet-stream through a signed cross-host redirect and fail with
+    SRC_NOT_SUPPORTED. raw.githubusercontent serves a clean path as audio/mpeg.
+    """
+    return f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/stream/{filename}"
+
+
 def process_track(
     track_dir: Path,
     repo_root: Path,
     owner: str,
     repo: str,
+    branch: str,
     album_name: str,
     track_number: Optional[int],
     streaming: Optional[Dict],
@@ -181,8 +193,11 @@ def process_track(
         "path": str(track_dir.relative_to(repo_root)),
         "readme": read_readme(track_dir),
         "cover": find_cover_image(track_dir, repo_root),
-        "mp3": release_url(owner, repo, asset_name(album_name, name, "mp3")),
+        # mp3 is what the player loads; m4a stays on the release as the
+        # fallback and the download.
+        "mp3": stream_url(owner, repo, branch, asset_name(album_name, name, "mp3")),
         "m4a": release_url(owner, repo, asset_name(album_name, name, "m4a")),
+        "download": release_url(owner, repo, asset_name(album_name, name, "mp3")),
         "lyrics": read_lyrics(track_dir),
         "streaming": clean_links(streaming),
     }
@@ -223,7 +238,7 @@ def write_playlist(path: Path, entries: List[tuple]) -> None:
     path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
-def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) -> Optional[Dict]:
+def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str, branch: str) -> Optional[Dict]:
     """Process an album folder into a collection object, writing its playlists."""
     if not album_dir.is_dir() or album_dir.name.startswith("."):
         return None
@@ -248,6 +263,7 @@ def process_collection(album_dir: Path, repo_root: Path, owner: str, repo: str) 
             repo_root,
             owner,
             repo,
+            branch,
             album_name,
             track_number=index,
             streaming=per_track_streaming.get(track_dir.name),
@@ -284,7 +300,7 @@ def generate_catalog(repo_root: Path, owner: str = "kepello", repo: str = "music
 
     for item in sorted(repo_root.iterdir()):
         if item.is_dir() and not item.name.startswith(".") and item.name != "scripts":
-            collection = process_collection(item, repo_root, owner, repo)
+            collection = process_collection(item, repo_root, owner, repo, branch)
             if collection:
                 collections.append(collection)
 

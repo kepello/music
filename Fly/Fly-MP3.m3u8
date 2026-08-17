@@ -1,6 +1,6 @@
 #EXTM3U
 #EXTENC:UTF-8
 #EXTINF:-1,You Don't Ask Me To Fly
-https://github.com/kepello/music/releases/download/latest/Fly-AskMeToFly.mp3
+https://raw.githubusercontent.com/kepello/music/main/stream/Fly-AskMeToFly.mp3
 #EXTINF:-1,Broken People
-https://github.com/kepello/music/releases/download/latest/Fly-Broken.mp3
+https://raw.githubusercontent.com/kepello/music/main/stream/Fly-Broken.mp3
