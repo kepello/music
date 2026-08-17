@@ -1,3 +1,18 @@
 _Heavenly Father_
 
-TODO: write the story behind this song.
+The Bible frequently describes Jehovah as our Father, and I know that illustration touches many people deeply, including friends very dear to me. It is supposed to communicate something almost instinctive: love, safety, protection, someone who wants you near and whose presence feels like home. I remember first learning about the Bible and God as a young teenager and being encouraged to think of him as my Heavenly Father. The problem was that father was already a word charged with meaning for me, and not in the way the illustration intended.
+
+For me, closeness to a father wasn’t naturally associated with safety or unconditional love. Distance could feel safer. Kindness could feel temporary, something you enjoyed cautiously because experience taught you that it might disappear or be followed by something very different. So when the Bible said, in effect, “Draw close to your Father,” I could understand the words and believe what they told me about Jehovah, but the illustration itself didn’t automatically produce the emotional response it seemed to produce in other people. In some ways I had to learn the illustration backward: first learning who Jehovah actually is, experiencing his steadiness and kindness over time, and only then gradually allowing Father to acquire a different meaning.
+
+That understanding came slowly and, I think, almost cautiously. Even now I wouldn’t say the illustration has exactly the same emotional impact on me that I suspect it has for someone whose experience of parental love was unconditional and foundational. I can get there, and increasingly I do, but for me it has been a process rather than an instinct. That’s why there is so much hesitation in the song: standing outside the doorway, waiting for the air to change, expecting the shadows to follow, moving toward kindness one cautious footstep at a time. I didn’t want to write an ending where all of that suddenly disappears, because that wouldn’t be true. What changed wasn’t my history; it was slowly discovering that Jehovah doesn’t behave according to the expectations my history taught me.
+
+Jesus’ relationship with his Father has helped me with that too. When I read the way he spoke about his Father, there is a closeness and security there that feels almost like listening to someone describe a happy home you’ve never lived in. At first you may understand it mostly by observation, but gradually you begin to understand what it must feel like from the inside. That is what I was trying to capture with “Like learning to have a Father, whose presence brings me peace.” Not remembering something I once had, but learning something that was missing in the first place.
+
+I’m quite sure I’m not alone in this. There are others for whom father, mother, family or even home don’t automatically carry the feelings those words are intended to evoke when they are used as illustrations. So I wrote this partly for myself and partly for anyone else who has ever understood the truth of an illustration intellectually while wondering why their heart didn’t respond to it in quite the same way. And I suppose I also wrote it for friends who have known that kind of love naturally, because perhaps it can help them understand why something so comforting and immediate to them might take someone else years to approach.
+
+The line that probably best describes where I am isn’t one of complete arrival. It’s movement:
+
+“So I move slowly toward my Father,
+Who moves gently toward me too.”
+
+For some people, perhaps being told that Jehovah is their Father immediately feels like coming home. For others of us, learning what Father was always supposed to mean is itself part of coming home.
