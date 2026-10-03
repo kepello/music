@@ -2,9 +2,9 @@ name: Build Catalog
 
 # Audio is no longer built here. WAV masters live on Carl's machine under
 # ~/Music/Masters and scripts/sync-album.sh encodes + uploads the MP3/M4A to the
-# "latest" release. This workflow only regenerates catalog.json and the
-# playlists from the text in the repo, so it runs in seconds and can never
-# delete a release asset.
+# "latest" release. This workflow verifies that catalog.json and the playlists
+# are current. The pre-commit hook stages them with their source changes, so CI
+# never creates a follow-up commit that can leave a local branch behind.
 
 on:
   push:
@@ -13,11 +13,15 @@ on:
       - "**/LYRICS.txt"
       - "**/ALBUM.json"
       - "**/COVER.*"
+      - "**/*.m3u8"
+      - "catalog.json"
       - "scripts/generate-catalog.py"
+      - "scripts/install-hooks.sh"
+      - ".githooks/**"
       - ".github/workflows/build-albums.yml"
   workflow_dispatch:
 
-# Two quick pushes shouldn't race each other into a rejected push.
+# Avoid duplicate validation runs for rapid updates.
 concurrency:
   group: build-catalog
   cancel-in-progress: false
@@ -26,7 +30,7 @@ jobs:
   build-catalog:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -40,22 +44,13 @@ jobs:
       - name: Generate catalog.json and playlists
         run: python3 scripts/generate-catalog.py
 
-      - name: Commit catalog and playlists
+      - name: Verify generated catalog and playlists
         run: |
           set -e
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-
-          git add catalog.json
-          find . -name "*.m3u8" -not -path "./.git/*" -print0 | xargs -0 -r git add
-
-          if git diff --staged --quiet; then
-            echo "Catalog already up to date."
-            exit 0
+          git add -A -- catalog.json ':(glob)**/*.m3u8'
+          if ! git diff --cached --quiet -- catalog.json ':(glob)**/*.m3u8'; then
+            echo "::error::Generated catalog or playlists are out of date."
+            echo "Run ./scripts/generate-catalog.py, then commit catalog.json and the generated playlists with the source changes."
+            git diff --cached -- catalog.json ':(glob)**/*.m3u8'
+            exit 1
           fi
-
-          git commit -m "Update catalog and playlists [skip ci]"
-
-          # Rebase onto anything that landed while we were building.
-          git pull --rebase origin "${GITHUB_REF_NAME}"
-          git push origin "HEAD:${GITHUB_REF_NAME}"

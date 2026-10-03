@@ -340,6 +340,14 @@ if __name__ == "__main__":
     catalog = clean_catalog(generate_catalog(repo_root))
 
     catalog_path = repo_root / "catalog.json"
+    if catalog_path.is_file():
+        previous = json.loads(catalog_path.read_text(encoding="utf-8"))
+        previous_generated_at = previous.pop("generatedAt", None)
+        current = dict(catalog)
+        current.pop("generatedAt", None)
+        if previous == current and isinstance(previous_generated_at, str):
+            catalog["generatedAt"] = previous_generated_at
+
     with open(catalog_path, "w", encoding="utf-8") as f:
         json.dump(catalog, f, indent=2, ensure_ascii=False)
 

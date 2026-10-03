@@ -10,9 +10,13 @@ Short version: **git holds words, the GitHub Release holds audio, your Mac holds
   encode MP3 + M4A  ->  uploaded to the "latest" GitHub Release
   song folders + README.md / LYRICS.txt stubs scaffolded into this repo
         |
-        |  git push
+        |          git commit
         v
-  Build Catalog action  ->  regenerates catalog.json + playlists
+        pre-commit hook  ->  regenerates + stages catalog.json and playlists
+              |
+              |  git push
+              v
+        Build Catalog action  ->  verifies generated files are up to date
         |
         v
   kepello.github.io/Musicplayer fetches catalog.json at runtime (no deploy needed)
@@ -28,7 +32,11 @@ Short version: **git holds words, the GitHub Release holds audio, your Mac holds
    actually yours to do.**
 4. Open `<Album>/ALBUM.json`, put the tracks in the real running order, and paste
    in the Spotify / Apple / Amazon links once CD Baby has distributed it.
-5. `git add . && git commit && git push`. The site updates itself.
+5. Run `./scripts/install-hooks.sh` once per clone. After that, the pre-commit
+   hook regenerates and stages `catalog.json` and the playlists whenever you
+   commit, so they stay in the same commit as their source changes.
+6. `git add . && git commit && git push`. The site updates itself; CI verifies
+   the generated files and never pushes a follow-up commit.
 
 Useful flags: `--all` to sweep every album, `-n` / `--dry-run` to see what it
 would do without touching anything.
@@ -63,7 +71,13 @@ album never means editing Python.
 ## catalog.json
 
 Generated — never edit it by hand. `scripts/generate-catalog.py` walks the album
-folders and writes it, along with the `-MP3.m3u8` / `-M4A.m3u8` playlists.
+folders and writes it, along with the `-MP3.m3u8` / `-M4A.m3u8` playlists. Run
+`./scripts/install-hooks.sh` once per clone to install the pre-commit hook; it
+regenerates and stages these files in the same commit as their source changes.
+CI verifies the generated files but never writes a separate bot commit.
+
+The `generatedAt` timestamp is preserved when catalog content is unchanged, so
+re-running the generator in CI doesn't create a timestamp-only diff.
 
 A song folder counts as a track when it contains a `README.md` or a `LYRICS.txt`.
 Discovery is driven by text, not audio, because no audio is present in a CI
@@ -78,8 +92,8 @@ The `title` comes from the first `_underscored_` line of the song's `README.md`.
 
 ## Conventions worth keeping
 
-- **Nothing deletes release assets.** The action only regenerates text. Audio is
-  uploaded additively by `sync-album.sh` with `--clobber`. An earlier version of
+- **Nothing deletes release assets.** Audio is uploaded additively by
+  `sync-album.sh` with `--clobber`. An earlier version of
   the workflow deleted and recreated the whole release on every push; that is
   gone, deliberately.
 - **The masters only exist on your Mac.** `~/Music/Masters/` is not backed up by
