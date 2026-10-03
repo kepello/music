@@ -252,6 +252,15 @@
       "sunoCreated": "2026-08-05T20:09:18Z",
       "sunoId": "9bf5b4d1-8a33-4e35-88ea-87d3faec0a80"
     },
+    "MyFather/TheWordsThatRemain": {
+      "audioMd5": "28fcb275d351bedfe8e58f48243090d9",
+      "duration": 212.56,
+      "master": "TheWordsThatRemain.wav",
+      "sampleRate": "44100",
+      "sha256": "7054447e1ede043239bba70cef19a6db069f7eb96b48f1eb208e244ff7fd4a31",
+      "sunoCreated": "2026-10-02T23:03:37Z",
+      "sunoId": "2490d85d-75d7-4052-97ec-00a4163c5de1"
+    },
     "MyFather/TurnAway": {
       "audioMd5": "15d0a81936c286cde22b6de6acef9e0c",
       "duration": 182.0,
